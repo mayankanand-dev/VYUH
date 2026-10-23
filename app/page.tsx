@@ -953,14 +953,6 @@ export default function VyuhPlatform() {
                         <span>RT: {post.metrics?.retweet_count ?? 0}</span>
                         <span>Likes: {post.metrics?.like_count ?? 0}</span>
                       </div>
-
-                      <button
-                        onClick={() => handlePreservePost(post)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-orange-600 hover:text-white text-slate-700 font-semibold text-xs transition-colors cursor-pointer"
-                      >
-                        <span className="material-symbols-outlined text-[14px]">lock</span>
-                        <span>Preserve Evidence</span>
-                      </button>
                     </div>
                   </div>
                 ))}
