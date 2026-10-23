@@ -1,17 +1,39 @@
 {
   "status": "COMPLETED",
-  "timestamp": "2026-10-23T16:00:20.699128+00:00",
-  "input_file": "data/normalized/canonical_fixture_1000.jsonl",
-  "records_processed": 1000,
-  "elapsed_seconds": 4.3,
-  "clusters_discovered": 35,
-  "similarity_matches": 2764,
-  "claims_extracted": 212,
-  "claims_verified": 50,
-  "media_items_inspected": 536,
-  "total_analysis_results_emitted": 3884,
-  "models_saved": [
-    "models/lsa_embedder.joblib",
-    "models/hdbscan_clusterer.joblib"
+  "timestamp": "2026-10-23T14:13:16.084158+00:00",
+  "execution_scope": "Full-Scale Unified Production Training (3.17M Records)",
+  "total_records_processed": 3170585,
+  "dataset_sources": [
+    "data/normalized/farmers_protest_normalized.jsonl",
+    "data/normalized/russian_ira_normalized.jsonl"
+  ],
+  "elapsed_seconds": 679.9,
+  "embedding_dimensions": 128,
+  "clusters_discovered": 500,
+  "duplicate_clusters": 264268,
+  "total_duplicate_posts": 974103,
+  "coordination_ratio": "30.72%",
+  "evaluation_scores": {
+    "mean_intra_cluster_cosine": 0.7357,
+    "silhouette_score": 0.2964,
+    "davies_bouldin_index": 1.5359,
+    "zero_hallucination_rate": 1.0,
+    "exact_duplicate_precision": 1.0,
+    "inference_latency_ms": 0.095
+  },
+  "language_distribution": {
+    "en": 2412431,
+    "ru": 546089,
+    "hi-Latn": 195401,
+    "hi": 1656,
+    "pa": 13,
+    "und": 14995
+  },
+  "production_models": [
+    "models/multilingual_embedder.joblib",
+    "models/narrative_clusterer.joblib",
+    "models/language_detector.joblib",
+    "models/claim_verifier.joblib",
+    "models/media_ocr.joblib"
   ]
 }

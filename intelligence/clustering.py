@@ -46,6 +46,12 @@ class NarrativeClusterEngine:
         if len(embeddings) < self.min_cluster_size:
             return np.full(len(embeddings), -1, dtype=int)
 
+        if hasattr(self, "fitted_clusterer") and self.fitted_clusterer is not None:
+            try:
+                return self.fitted_clusterer.predict(embeddings)
+            except Exception:
+                pass
+
         if self.algorithm == "hdbscan":
             try:
                 clusterer = HDBSCAN(

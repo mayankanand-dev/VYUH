@@ -93,16 +93,15 @@ def run_pipeline(
     # -------------------------------------------------------------
     # Step 2: Dense Multilingual Embeddings
     # -------------------------------------------------------------
-    print("[2/6] Generating dense multilingual vector representations...")
-    embedder = get_embedder(engine=engine_type, n_components=128)
+    prod_embedder_path = os.path.join(models_dir, "multilingual_embedder.joblib")
+    if os.path.exists(prod_embedder_path):
+        print(f"      Loading pre-trained production embedder -> {prod_embedder_path}")
+        raw_embedder = joblib.load(prod_embedder_path)
+        embedder = DenseMultilingualLSAEmbedder.from_saved(raw_embedder)
+    else:
+        embedder = get_embedder(engine=engine_type, n_components=128)
     embeddings = embedder.embed_texts(cleaned_texts)
     print(f"      Generated embedding matrix: {embeddings.shape} (L2-normalized).")
-
-    # Persist fitted embedder
-    if isinstance(embedder, DenseMultilingualLSAEmbedder):
-        embedder_path = os.path.join(models_dir, "lsa_embedder.joblib")
-        joblib.dump(embedder, embedder_path)
-        print(f"      Saved embedder model -> {embedder_path}")
 
     # -------------------------------------------------------------
     # Step 3: Multi-Tier Similarity Engine
@@ -121,13 +120,19 @@ def run_pipeline(
     # -------------------------------------------------------------
     # Step 4: Narrative Clustering & Temporal Growth Velocity
     # -------------------------------------------------------------
-    print("[4/6] Executing unsupervised narrative topic clustering (HDBSCAN)...")
-    cluster_engine = NarrativeClusterEngine(
-        min_cluster_size=6,
-        min_samples=2,
-        cluster_selection_epsilon=0.40,
-        algorithm="hdbscan"
-    )
+    prod_clusterer_path = os.path.join(models_dir, "narrative_clusterer.joblib")
+    if os.path.exists(prod_clusterer_path):
+        print(f"      Loading pre-trained production narrative clusterer -> {prod_clusterer_path}")
+        prod_kmeans = joblib.load(prod_clusterer_path)
+        cluster_engine = NarrativeClusterEngine(algorithm="kmeans")
+        cluster_engine.fitted_clusterer = prod_kmeans
+    else:
+        cluster_engine = NarrativeClusterEngine(
+            min_cluster_size=6,
+            min_samples=2,
+            cluster_selection_epsilon=0.40,
+            algorithm="hdbscan"
+        )
     clusters, cluster_labels = cluster_engine.discover_narratives(
         record_ids=record_ids,
         texts=cleaned_texts,
@@ -140,11 +145,6 @@ def run_pipeline(
     noise_count = int(np.sum(cluster_labels == -1))
     print(f"      Discovered {len(clusters)} narrative storylines.")
     print(f"      Unclustered background chatter (noise): {noise_count:,} records.")
-
-    # Persist clustering engine
-    cluster_model_path = os.path.join(models_dir, "hdbscan_clusterer.joblib")
-    joblib.dump(cluster_engine, cluster_model_path)
-    print(f"      Saved clustering engine -> {cluster_model_path}")
 
     # Temporal velocity analysis
     velocity_engine = NarrativeVelocityEngine(bucket_freq="daily", surge_std_multiplier=1.5)
@@ -276,10 +276,12 @@ def run_pipeline(
         "claims_extracted": len(extracted_claims),
         "claims_verified": len(claim_verification_results),
         "media_items_inspected": media_items_inspected,
-        "total_analysis_results_emitted": len(all_analysis_results),
-        "models_saved": [
-            os.path.join(models_dir, "lsa_embedder.joblib"),
-            os.path.join(models_dir, "hdbscan_clusterer.joblib")
+        "models_used": [
+            "models/multilingual_embedder.joblib",
+            "models/narrative_clusterer.joblib",
+            "models/language_detector.joblib",
+            "models/claim_verifier.joblib",
+            "models/media_ocr.joblib"
         ]
     }
 

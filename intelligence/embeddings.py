@@ -54,6 +54,19 @@ class DenseMultilingualLSAEmbedder(BaseEmbedder):
         self.svd = TruncatedSVD(n_components=n_components, random_state=42)
         self.is_fitted = False
 
+    @classmethod
+    def from_saved(cls, obj: Union[dict, "DenseMultilingualLSAEmbedder"]) -> "DenseMultilingualLSAEmbedder":
+        """Instantiates embedder from a serialized dict or instance."""
+        if isinstance(obj, cls):
+            return obj
+        if isinstance(obj, dict):
+            instance = cls(n_components=obj.get("n_components", 128))
+            instance.vectorizer = obj["vectorizer"]
+            instance.svd = obj["svd"]
+            instance.is_fitted = True
+            return instance
+        raise ValueError(f"Unsupported embedder object type: {type(obj)}")
+
     def fit(self, texts: List[str]) -> "DenseMultilingualLSAEmbedder":
         """Fits vocabulary and latent semantic space on corpus."""
         valid_texts = [t if t and t.strip() else "empty_record" for t in texts]
