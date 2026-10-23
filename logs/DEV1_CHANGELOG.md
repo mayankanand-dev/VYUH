@@ -134,5 +134,14 @@
   - `alpha/VYUH/OSINT_Disinfo_Team_README_Final.md` (Updated)
   - `alpha/VYUH/logs/DEV1_CHANGELOG.md` (Updated)
 
+---
+
+### [2026-10-23 17:32:00 UTC] - Monorepo Published to GitHub
+- **Action**: Initialized Git repository, configured `.gitignore` (ignoring all heavy CSVs and normalized JSONL files over 1 GB), created master `README.md`, bundled the `social-signal-lab` (X clone frontend), and pushed to GitHub.
+- **Remote URL**: `https://github.com/mayankanand-dev/VYUH.git` (branch `main`).
+- **Files Published**: 70 files (VYUH core ingestion, evidence preservation, canonical fixture, docs, logs, and Next.js X clone).
+- **Heavy Data Protected**: All raw CSVs (`tweets.csv` [1.81 GB], `users.csv`, `IRAhandle_tweets_*.csv`) and multi-gigabyte normalized streams (`farmers_protest_normalized.jsonl` [1.4 GB], `russian_ira_normalized.jsonl` [3.5 GB]) are excluded via `.gitignore` while preserving local Section 63 BSA evidence integrity.
+
+
 
 
