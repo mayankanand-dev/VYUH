@@ -1,0 +1,30 @@
+{
+  "status": "COMPLETED",
+  "timestamp": "2026-10-23T14:13:16.084158+00:00",
+  "total_training_records": 3170585,
+  "dataset_sources": [
+    "data/normalized/farmers_protest_normalized.jsonl",
+    "data/normalized/russian_ira_normalized.jsonl"
+  ],
+  "elapsed_seconds": 679.9,
+  "embedding_dimensions": 128,
+  "clusters_discovered": 500,
+  "duplicate_clusters": 264268,
+  "total_duplicate_posts": 974103,
+  "language_distribution": {
+    "en": 2412431,
+    "hi-Latn": 195401,
+    "hi": 1656,
+    "pa": 13,
+    "ru": 546089,
+    "und": 14995
+  },
+  "models_saved": [
+    "models/multilingual_embedder.joblib",
+    "models/narrative_clusterer.joblib",
+    "models/language_detector.joblib",
+    "models/claim_verifier.joblib",
+    "models/media_ocr.joblib"
+  ]
+}
+
