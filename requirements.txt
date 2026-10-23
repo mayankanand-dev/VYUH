@@ -1,0 +1,39 @@
+# ==============================================================================
+# VYUH: OSINT & Coordinated Disinformation Investigation Platform
+# Python Environment Requirements
+# Conforms to Section 63 BSA, 2023 & ISO/IEC 27037 Standards
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Developer 2: Content & Narrative Intelligence (NLP, Embeddings, Clustering, NLI)
+# ------------------------------------------------------------------------------
+
+# Core Data Validation & Schema Contract (Section 5 AnalysisResult)
+pydantic>=2.10.0
+
+# Numerical Computing & Linear Algebra
+numpy>=1.26.0
+
+# Machine Learning, Embeddings (LSA/TF-IDF/SVD), Clustering & Evaluation
+scikit-learn>=1.4.0
+joblib>=1.3.0
+
+# Deep Learning & Multilingual Sentence Transformers (Optional / Heavy Inference)
+torch>=2.0.0
+transformers>=4.40.0
+sentence-transformers>=3.0.0
+
+# Image Inspection & Media Attachment Processing (Phase 5 OCR)
+Pillow>=10.0.0
+
+# Optional OCR Engines (Supported with automatic image-inspection fallback)
+# paddlepaddle>=2.5.0
+# paddleocr>=2.7.0
+# easyocr>=1.7.0
+
+# ------------------------------------------------------------------------------
+# Developer 1 & Developer 3 Shared Dependencies
+# ------------------------------------------------------------------------------
+# Ingestion, Evidence Preservation, SHA-256 Verification & OSINT utilities
+python-dateutil>=2.8.2
+requests>=2.31.0

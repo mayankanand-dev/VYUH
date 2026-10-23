@@ -45,3 +45,6 @@ next-env.d.ts
 *.swo
 .DS_Store
 Thumbs.db
+
+#Dev2
+tasks.md
