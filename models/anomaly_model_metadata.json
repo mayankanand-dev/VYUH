@@ -7,15 +7,15 @@
     "repost_ratio",
     "median_inter_post_interval"
   ],
-  "trained_at": "2026-10-23T16:30:45.403201+00:00",
-  "total_records_ingested": 40000,
-  "total_accounts_trained": 1542,
+  "trained_at": "2026-10-23T17:35:00.454679+00:00",
+  "total_records_ingested": 50000,
+  "total_accounts_trained": 1838,
   "source_files": [
     "data\\normalized\\farmers_protest_normalized.jsonl",
     "data\\normalized\\russian_ira_normalized.jsonl"
   ],
-  "min_raw_score": 0.31748030182787845,
-  "max_raw_score": 0.7694614436284769,
+  "min_raw_score": 0.313023723885859,
+  "max_raw_score": 0.766951645739736,
   "contamination": 0.08,
   "n_estimators": 150
 }

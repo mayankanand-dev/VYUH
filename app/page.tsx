@@ -47,14 +47,49 @@ export default function VyuhPlatform() {
   const [verifyProgress, setVerifyProgress] = useState(0);
   const [selectedBsaEvidence, setSelectedBsaEvidence] = useState<EvidenceRecord | null>(null);
 
-  // Canonical Social Feed State (1,000 real records)
-  const allPosts = useMemo(() => canonicalPostsData as unknown as SocialPost[], []);
+  // Canonical Social Feed State backed by SQLite Database Server (30,000+ records)
+  const [posts, setPosts] = useState<SocialPost[]>([]);
+  const [totalPostsCount, setTotalPostsCount] = useState<number>(30000);
+  const [isPostsLoading, setIsPostsLoading] = useState<boolean>(false);
   const [postSearch, setPostSearch] = useState('');
   const [datasetFilter, setDatasetFilter] = useState<'ALL' | 'FARMERS' | 'RUSSIAN_IRA'>('ALL');
   const [minRiskFilter, setMinRiskFilter] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 20;
   const [preservedToast, setPreservedToast] = useState<string | null>(null);
+
+  // Load from SQLite API
+  useEffect(() => {
+    let ignore = false;
+    const fetchPosts = async () => {
+      setIsPostsLoading(true);
+      try {
+        const params = new URLSearchParams({
+          page: String(currentPage),
+          limit: String(postsPerPage),
+          dataset: datasetFilter,
+          min_risk: String(minRiskFilter)
+        });
+        if (postSearch.trim()) params.set('q', postSearch.trim());
+
+        const res = await fetch(`/api/posts?${params.toString()}`);
+        const data = await res.json();
+        if (!ignore && data.success) {
+          setPosts(data.posts || []);
+          setTotalPostsCount(data.total || 0);
+        }
+      } catch (err) {
+        console.error('Failed to load posts from SQLite API:', err);
+      } finally {
+        if (!ignore) setIsPostsLoading(false);
+      }
+    };
+
+    fetchPosts();
+    return () => {
+      ignore = true;
+    };
+  }, [currentPage, datasetFilter, minRiskFilter, postSearch]);
 
   // Network Graph State
   const [selectedCommunity, setSelectedCommunity] = useState<string>('ALL');
@@ -173,33 +208,9 @@ export default function VyuhPlatform() {
     }
   };
 
-  // Filtered Canonical Posts
-  const filteredPosts = useMemo(() => {
-    return allPosts.filter((p) => {
-      const matchesSearch =
-        postSearch === '' ||
-        (p.text_content?.toLowerCase().includes(postSearch.toLowerCase()) ?? false) ||
-        (p.author_handle?.toLowerCase().includes(postSearch.toLowerCase()) ?? false) ||
-        (p.hashtags?.some((h) => h.toLowerCase().includes(postSearch.toLowerCase())) ?? false);
-
-      const matchesDataset =
-        datasetFilter === 'ALL' ||
-        (datasetFilter === 'FARMERS' && p.dataset_source === 'farmers_protest') ||
-        (datasetFilter === 'RUSSIAN_IRA' && p.dataset_source === 'russian_ira');
-
-      const matchesRisk = p.bot_risk >= minRiskFilter;
-
-      return matchesSearch && matchesDataset && matchesRisk;
-    });
-  }, [allPosts, postSearch, datasetFilter, minRiskFilter]);
-
-  // Paginated Canonical Posts
-  const paginatedPosts = useMemo(() => {
-    const start = (currentPage - 1) * postsPerPage;
-    return filteredPosts.slice(start, start + postsPerPage);
-  }, [filteredPosts, currentPage]);
-
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  // Posts and pagination from SQLite Database Server
+  const paginatedPosts = posts;
+  const totalPages = Math.ceil(totalPostsCount / postsPerPage);
 
   // Filtered Network Graph Nodes & Edges
   const filteredNodes = useMemo(() => {
@@ -297,7 +308,7 @@ export default function VyuhPlatform() {
                 {[
                   { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
                   { id: 'investigations', label: 'Investigations', icon: 'folder_managed', badge: cases.length },
-                  { id: 'social-intelligence', label: 'Canonical Stream', icon: 'feed', badge: '1,000' },
+                  { id: 'social-intelligence', label: 'Canonical Stream', icon: 'feed', badge: '30,000+' },
                   { id: 'network-analysis', label: 'Account Network Graph', icon: 'hub', badge: '160 Nodes' },
                   { id: 'narrative-intelligence', label: 'Narratives & Claims', icon: 'psychology', badge: '35 Clusters' },
                   { id: 'media-forensics', label: 'Media Forensics', icon: 'image_search' },
@@ -706,15 +717,15 @@ export default function VyuhPlatform() {
               <div className="bg-white p-5 rounded-xl border border-[#c5c6cd] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h1 className="text-2xl font-bold tracking-tight text-[#0b1c30]">
-                    Canonical Stream Intelligence (1,000 Ingested Records)
+                    Canonical Stream Intelligence ({totalPostsCount.toLocaleString()} Ingested Records)
                   </h1>
                   <p className="text-xs text-[#44474c] mt-0.5">
-                    Real historical post stream normalized under Section 63 BSA standards with multi-signal coordination scoring
+                    Real historical post stream queried via SQLite WAL Server under Section 63 BSA standards with multi-signal coordination scoring
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-[#eff4ff] text-[#0b1c30]">
-                    Total Filtered: {filteredPosts.length} / 1,000
+                    Total Matched: {totalPostsCount.toLocaleString()} Records
                   </span>
                 </div>
               </div>
@@ -870,7 +881,7 @@ export default function VyuhPlatform() {
               <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-[#c5c6cd]">
                 <span className="text-xs text-[#44474c] font-mono">
                   Showing {(currentPage - 1) * postsPerPage + 1} to{' '}
-                  {Math.min(currentPage * postsPerPage, filteredPosts.length)} of {filteredPosts.length} posts
+                  {Math.min(currentPage * postsPerPage, totalPostsCount).toLocaleString()} of {totalPostsCount.toLocaleString()} posts (SQLite Engine)
                 </span>
                 <div className="flex items-center gap-2">
                   <button

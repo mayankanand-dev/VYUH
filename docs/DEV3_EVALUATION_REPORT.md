@@ -1,6 +1,6 @@
 # VYUH — Developer 3 Empirical Evaluation & Benchmark Report
 
-**Evaluation Date**: 2026-10-23 16:33:08 UTC  
+**Evaluation Date**: 2026-10-23 17:34:26 UTC  
 **Evaluator**: Developer 3  
 **Datasets**:
 - Ground-Truth State Disinformation: Russian IRA Troll Tweets (`russian_ira_normalized.jsonl`, 5,000 records sampled)

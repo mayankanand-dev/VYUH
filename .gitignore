@@ -49,6 +49,9 @@ runs/
 
 # Dev3 temporary runs
 data/dev3_output/
+*.db
+*.db-wal
+*.db-shm
 
 #Dev2
 tasks.md
