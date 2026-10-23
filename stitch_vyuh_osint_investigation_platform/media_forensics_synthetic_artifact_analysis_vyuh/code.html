@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error":"#ba1a1a","on-secondary-fixed-variant":"#753400","primary":"#000000","error-container":"#ffdad6","primary-container":"#0e1c2f","surface-container-lowest":"#ffffff","secondary-container":"#ff842e","surface-container-low":"#eff4ff","surface-container-high":"#dce9ff","outline-variant":"#c5c6cd","primary-fixed-dim":"#bac7e1","on-surface-variant":"#44474c","surface-container":"#e5eeff","secondary-fixed-dim":"#ffb68c","surface-dim":"#cbdbf5","on-tertiary-fixed-variant":"#003ea8","tertiary":"#000000","on-tertiary":"#ffffff","surface":"#f8f9ff","inverse-on-surface":"#eaf1ff","on-primary-container":"#77849c","on-error":"#ffffff","surface-tint":"#525f75","surface-variant":"#d3e4fe","tertiary-fixed":"#dbe1ff","primary-fixed":"#d6e3fe","tertiary-fixed-dim":"#b4c5ff","on-surface":"#0b1c30","on-primary-fixed-variant":"#3a475c","on-secondary":"#ffffff","surface-bright":"#f8f9ff","inverse-primary":"#bac7e1","inverse-surface":"#213145","surface-container-highest":"#d3e4fe","on-secondary-fixed":"#321200","on-tertiary-container":"#497cff","on-tertiary-fixed":"#00174b","secondary":"#9a4600","on-primary-fixed":"#0e1c2f","outline":"#75777d","on-primary":"#ffffff","background":"#f8f9ff","on-background":"#0b1c30","tertiary-container":"#00174b","on-secondary-container":"#642b00","secondary-fixed":"#ffdbc9","on-error-container":"#93000a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"margin":"1.5rem","space-lg":"1rem","space-xl":"1.5rem","gutter-compact":"0.5rem","space-xs":"0.25rem","gutter":"1rem","space-md":"0.75rem","space-sm":"0.5rem"},fontFamily:{"mono-md":["JetBrains Mono"],"body-lg":["Inter"],"title-md":["Inter"],"display-lg":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"mono-sm":["JetBrains Mono"],"mono-lg":["JetBrains Mono"],"label-md":["Inter"],"headline-lg":["Inter"]},fontSize:{"mono-md":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"mono-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"400"}],"mono-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-md":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-[0_1px_4px_rgba(11,28,48,0.05)]"><div class="h-16 px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="VYUH Intelligence Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WpTLn1fDcosQ6L-pnYhvDv6LzZI-CwyV4CdUdsEN9KWdGFZL9fWwOMiQhupGuQBTxl65FPsAdYbzdsqSbg8G35qq_dGjIy58PbE7oMg7kuen2tFH0NlSjKS5kG8b6mgCli6otQOMLHY-T8U7ffIA22Ul7WtVoNdEBgM6KRP-3TjrWgrrB6B0ZuQE-5ZE_eW5BT2t7azelQyPUdrPlrwGuYXp1IJYKkhzQuWKT_9t96PgAYkuFnmSnGjaI"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface tracking-tight font-bold">VYUH</span><span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-mono-sm text-mono-sm uppercase font-semibold">GOV-OSINT</span></div><span class="font-label-md text-label-md text-on-surface-variant hidden xl:inline">OSINT &amp; Disinformation Intelligence Platform | National Cyber Coordination</span></div></div><div class="h-6 w-px bg-outline-variant hidden md:block"></div><div class="hidden lg:flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded border border-outline-variant"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Case:</span><span class="font-mono-md text-mono-md text-on-surface font-semibold">#INV-2025-089X // Operation PaperStorm</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><span class="font-mono-sm text-mono-sm text-on-surface-variant truncate max-w-xs">Coordinated Banking Phish &amp; Disinformation</span></div><span class="px-space-xs py-0.5 bg-error-container text-on-error-container font-label-md text-label-md rounded font-bold uppercase tracking-wide">CONFIDENTIAL // LAW ENFORCEMENT &amp; CERT USE ONLY</span></div></div><div class="flex items-center gap-space-md"><div class="hidden 2xl:flex items-center gap-space-xs px-space-md py-1 rounded bg-surface-container text-on-surface"><span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span class="font-mono-sm text-mono-sm text-on-surface">Historical Replay Mode (Read-Only Archive - 14.2M Posts Indexed)</span></div><div class="flex items-center gap-space-xs"><button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-mono-sm text-mono-sm text-on-surface-variant hidden sm:inline">Cmd+K</span></button><button class="relative p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-mono-sm text-[9px] font-bold">3</span></button></div><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6qKwOq9OuxMcZzeJanW3TTy2Hk0fDOgNQURZzG4ftrx3VGOxzYf-NHnEtUAG9BROVmC1zL0s0huc80tKl4iberJpSA8VcDU-5Z-fSJNTP3Td6H-3Hq7qGp-ZWzkQItETGzTBUXfCG1rM8c3pNczHJ8zNhyqMStl98JLcaSX1v-m_lQTFye7NfAo36XXzuGJNBvLXBtXXYHoJpYNmpE7AmG_CMqK2i87SWgetsx_2_DXXpaWe1InM"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-secondary-container ring-1 ring-surface-container-lowest"></span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold">A. Sharma</span><span class="font-mono-sm text-mono-sm text-on-surface-variant">Senior Analyst, Cyber Defense</span></div></div></div></div><div class="h-10 px-margin flex items-center justify-between border-t border-outline-variant bg-surface"><nav class="flex items-center gap-space-xs overflow-x-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="investigation-overview" href="#">Investigation Overview</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="narrative-coordination" href="#">Narrative &amp; Coordination</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="network-accounts-osint" href="#">Network &amp; Accounts OSINT</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="media-forensics" href="#">Media Forensics</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="evidence-custody" href="#">Evidence &amp; Custody</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="legal-notice-prep" href="#">Legal Notice Prep</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="sandbox-lab" href="#">Sandbox Lab</a></nav><div class="hidden lg:flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-mono-sm text-mono-sm text-on-surface-variant uppercase">Case Ref:</span><span class="font-mono-sm text-mono-sm text-on-surface font-semibold">#INV-2025-089X</span></div><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold tracking-wider uppercase">RESTRICTED</span><div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">verified</span><span>SHA-256: 4b1f...9e2a</span></div><button class="flex items-center gap-space-xs px-space-md py-1 bg-secondary text-on-secondary rounded font-label-md text-label-md font-semibold hover:bg-secondary-container hover:text-on-secondary-container transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">file_download</span>Export Dossier</button></div></div></header><aside class="fixed left-0 top-[104px] bottom-0 w-64 bg-surface-container-lowest border-r border-outline-variant z-40 flex flex-col justify-between py-space-md"><div class="flex flex-col gap-space-sm px-space-md"><div class="px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Forensic Tooling</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="cluster-matrix" href="#"><span class="material-symbols-outlined text-[18px]">hub</span>Cluster Matrix</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="bot-heuristics" href="#"><span class="material-symbols-outlined text-[18px]">smart_toy</span>Bot Heuristics</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="synthetic-speech" href="#"><span class="material-symbols-outlined text-[18px]">record_voice_over</span>Synthetic Audio &amp; Video</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="geo-triangulation" href="#"><span class="material-symbols-outlined text-[18px]">share_location</span>Geo-Triangulation</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="disinfo-spread-tree" href="#"><span class="material-symbols-outlined text-[18px]">account_tree</span>Propagation Trees</a></nav><div class="mt-space-md px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Chain of Custody</div><div class="bg-surface-container-low p-space-sm rounded border border-outline-variant flex flex-col gap-1"><div class="flex items-center justify-between text-on-surface font-mono-sm text-mono-sm"><span>Ledger Block</span><span class="font-semibold">#8812-C</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Seals Intact</span><span class="text-secondary font-semibold">42/42</span></div><div class="flex items-center gap-1 mt-1 text-on-surface font-label-md text-label-md"><span class="material-symbols-outlined text-[14px] text-secondary">lock</span><span>Cryptographic Audit Mode</span></div></div></div><div class="px-space-md border-t border-outline-variant pt-space-sm flex flex-col gap-space-xs"><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Node Status</span><span class="text-on-surface font-semibold">Synced (12ms)</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Target Platform</span><span class="text-on-surface font-semibold">FedRAMP High</span></div></div></aside><div class="pl-64"><main class="relative pt-[104px] bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Forensic Operation Toolbar -->
+<div class="px-margin pt-space-md pb-space-sm bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex flex-wrap items-center justify-between gap-gutter">
+<!-- Search & Hash Lookup Input -->
+<div class="flex items-center gap-space-sm flex-1 min-w-[320px]">
+<div class="relative w-full max-w-lg">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">fingerprint</span>
+<input class="w-full pl-9 pr-24 py-1.5 bg-surface-container-low text-on-surface font-mono-md text-mono-md rounded shadow-inner focus:outline-none focus:bg-surface-container-lowest" placeholder="Search SHA-256, Perceptual Hash (pHash), Media UUID or upload artifact..." type="text" value="7f83b1657ff1e92d04ba4492a308"/>
+<button class="absolute right-1 top-1/2 -translate-y-1/2 px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase tracking-wider flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">file_upload</span>
+            Upload
+          </button>
+</div>
+<!-- Filter Chips: File Type -->
+<div class="hidden xl:flex items-center gap-1 bg-surface-container-low p-1 rounded">
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold shadow-sm">All (18)</button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Images (9)</button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Video (4)</button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Audio (3)</button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Docs (2)</button>
+</div>
+</div>
+<!-- Operational Diagnostic Actions -->
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Engine Pipeline:</span>
+<span class="font-mono-sm text-mono-sm font-semibold text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container animate-ping"></span>
+            8/8 Models Loaded
+          </span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 bg-primary text-on-primary rounded font-label-md text-label-md uppercase tracking-wider font-semibold hover:bg-on-surface-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">biotech</span>
+          Run Multi-Model Diagnostic
+        </button>
+</div>
+</div>
+<!-- Active Media Diagnostic Banner -->
+<div class="flex items-center justify-between px-space-md py-1.5 bg-error-container text-on-error-container rounded shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md uppercase tracking-wide font-bold">CRITICAL MANIPULATION FLAG</span>
+<span class="font-body-sm text-body-sm">Artifact <strong>#AR-4492-DOC</strong> exhibits splice anomalies, spoofed gazette insignia, and altered regulatory moratorium text.</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono-sm text-mono-sm">
+<span class="bg-surface-container-lowest/80 text-on-surface px-1.5 py-0.5 rounded font-semibold">ELA Peak Anomaly: 88.6%</span>
+<span class="bg-error text-on-error px-1.5 py-0.5 rounded font-bold uppercase">Severe Forgery</span>
+</div>
+</div>
+</div>
+<!-- Main Multi-Column Lab Workspace -->
+<div class="px-margin py-space-md grid grid-cols-12 gap-gutter">
+<!-- Left Main Column: Focused Artifact Analysis (8 Cols) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-space-md">
+<!-- Primary Analysis Card -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col gap-space-md">
+<!-- Artifact Header -->
+<div class="flex items-start justify-between flex-wrap gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary">description</span>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">gazette_order_4492.jpg</h1>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-md text-label-md font-bold uppercase">● Observed Tampering</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Altered Regulatory Notification // Alleged FinMin Banking Freeze Order (Dated 24 Feb 2025)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-space-sm py-1 rounded bg-surface-container-low font-mono-sm text-mono-sm text-on-surface-variant">File UUID: AR-4492-DOC-X89</span>
+<button class="p-1 rounded hover:bg-surface-container-low text-on-surface-variant" title="View Full Raw Image">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Comparative High-Res Visual Forensic Sandbox -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">
+<span>Inspection View:</span>
+<div class="flex items-center bg-surface-container-lowest rounded p-0.5 shadow-sm">
+<button class="px-space-sm py-0.5 rounded bg-primary text-on-primary font-semibold">Dual Split (Original vs ELA)</button>
+<button class="px-space-sm py-0.5 rounded text-on-surface-variant hover:text-on-surface">Pixel Noise Delta</button>
+<button class="px-space-sm py-0.5 rounded text-on-surface-variant hover:text-on-surface">Ghost JPEG Grid</button>
+</div>
+</div>
+<span class="font-mono-sm text-mono-sm text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+              88.6% ELA Discrepancy at [X: 420-780, Y: 1140-1420]
+            </span>
+</div>
+<!-- Dual Split Comparison Canvas -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm bg-surface-container-lowest p-space-xs rounded shadow-inner">
+<!-- Left Pane: Color Artifact with Highlights -->
+<div class="relative bg-surface rounded overflow-hidden flex flex-col">
+<div class="absolute top-2 left-2 z-10 bg-primary/90 text-on-primary px-space-xs py-0.5 rounded font-mono-sm text-mono-sm font-semibold">
+                Captured Ingestion [RGB 1200x1600]
+              </div>
+<div class="relative w-full h-80 bg-surface-container-high overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover object-top opacity-90" data-alt="Photographic evidence scan of a forged official government Gazette notification on official letterhead with state lion seal at the top and blurred signatures at the bottom in high clarity archival lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEA5AELoe-XTTxvxCNRU6Vp_p1xk69hkrlPnOpjynPkkIVef0sWFV1cT1BzK8OJra_Cq1lsI_JGS6VsdsbavMSloEpgSK8w2d84zCuqXYB_94ywDc_6aV2dsK6dmTUameRclzsExRQMwO8ba1r6O54rm9fycu2VdaSCDEHokmoRl8ibKjUH55nBiog-BrUj_Bq06TNYvA5numF3H-9m2qZM84gMAWlxyheltmSD3CMe5qjtAaoM48J"/>
+<!-- Forgery bounding boxes -->
+<div class="absolute top-12 left-1/4 right-1/4 h-16 bg-error/15 rounded flex items-start justify-end p-1 pointer-events-none">
+<span class="bg-error text-on-error font-mono-sm text-[10px] px-1 py-0.5 rounded font-bold">TYPE MISMATCH (Arial vs Kruti)</span>
+</div>
+<div class="absolute bottom-6 right-8 w-44 h-24 bg-error/25 rounded flex flex-col justify-between p-1.5 pointer-events-none">
+<div class="flex justify-between items-center">
+<span class="bg-error text-on-error font-mono-sm text-[10px] px-1 rounded font-bold">SPLICED SEAL</span>
+<span class="material-symbols-outlined text-error text-[14px]">crisis_alert</span>
+</div>
+<span class="bg-surface-container-lowest/90 font-mono-sm text-[9px] text-on-surface px-1 py-0.5 rounded self-start">Resampled Seal Matrix</span>
+</div>
+</div>
+<div class="p-space-xs bg-surface-container-lowest flex items-center justify-between font-mono-sm text-mono-sm text-on-surface-variant">
+<span>Rendering Engine: WebKit 17.2 Raster</span>
+<span>ICC: sRGB Profile intact</span>
+</div>
+</div>
+<!-- Right Pane: ELA Compression Heatmap -->
+<div class="relative bg-surface rounded overflow-hidden flex flex-col">
+<div class="absolute top-2 left-2 z-10 bg-secondary/95 text-on-secondary px-space-xs py-0.5 rounded font-mono-sm text-mono-sm font-semibold">
+                Error Level Analysis (ELA 95% Quantization)
+              </div>
+<div class="relative w-full h-80 bg-primary overflow-hidden flex items-center justify-center">
+<!-- SVG Simulating ELA high-pass frequency compression differential -->
+<svg class="w-full h-full object-cover" viewbox="0 0 400 300">
+<rect fill="#070c14" height="300" width="400"></rect>
+<!-- Low frequency baseline noise -->
+<g fill="#2d3748" opacity="0.25">
+<circle cx="50" cy="50" r="1.5"></circle><circle cx="120" cy="80" r="1"></circle><circle cx="210" cy="40" r="1.2"></circle>
+<circle cx="80" cy="220" r="1.5"></circle><circle cx="280" cy="180" r="1"></circle><circle cx="340" cy="250" r="1.2"></circle>
+</g>
+<!-- High luminous compression mismatch representing the spliced ministerial text -->
+<rect fill="#9a4600" filter="blur(3px)" height="40" opacity="0.65" width="240" x="80" y="60"></rect>
+<rect fill="#ff842e" height="30" opacity="0.8" width="220" x="90" y="65"></rect>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="11" font-weight="bold" x="95" y="85">HIGH ERROR LEVEL NOISE (Q-Factor 72)</text>
+<!-- Spliced Signature Block high intensity white-purple burst -->
+<circle cx="290" cy="220" fill="#ba1a1a" filter="blur(4px)" opacity="0.7" r="45"></circle>
+<circle cx="290" cy="220" fill="#ffdad6" opacity="0.9" r="30"></circle>
+<circle cx="290" cy="220" fill="#ffffff" r="12"></circle>
+<text fill="#ffdad6" font-family="JetBrains Mono" font-size="10" x="210" y="275">Re-compressed Artifact (Resaved 3x)</text>
+</svg>
+<div class="absolute bottom-2 left-2 right-2 bg-surface-container-lowest/90 px-space-sm py-1 rounded flex items-center justify-between text-on-surface">
+<span class="font-mono-sm text-mono-sm font-semibold">Peak Brightness: Seal Block</span>
+<span class="font-mono-sm text-mono-sm text-error font-bold">Delta: +64.2 dB</span>
+</div>
+</div>
+<div class="p-space-xs bg-surface-container-lowest flex items-center justify-between font-mono-sm text-mono-sm text-on-surface-variant">
+<span>Quantization Matrix: Standard ITU-R</span>
+<span>Error Threshold: &gt; 35% Anomalous</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Metadata & Provenance Forensic Breakdown -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Hashes & Provenance -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Cryptographic Hashes &amp; Ingestion</span>
+<div class="flex flex-col gap-1 mt-1 font-mono-sm text-mono-sm">
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">SHA-256</span>
+<span class="font-semibold text-on-surface select-all cursor-pointer">7f83b1657ff1...a308</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Perceptual Hash (pHash)</span>
+<span class="font-semibold text-secondary select-all">0x9f83a4c102b4e881</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Exif Metadata Status</span>
+<span class="text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">block</span>
+                  Completely Stripped (Telegram Web API)
+                </span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Origin Pipeline</span>
+<span class="text-on-surface">Bot Node TG-IN-912 // Channel @delhi_alertz</span>
+</div>
+</div>
+</div>
+<!-- Template & Font Verification -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Corpus Matching &amp; Typography</span>
+<div class="flex flex-col gap-1 mt-1 font-mono-sm text-mono-sm">
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Source Gazette Template</span>
+<span class="text-on-surface font-semibold">Matched: 2021 Gazette (CG-DL-E-2104)</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Document Similarity</span>
+<span class="text-secondary font-semibold">91.4% Structural Alignment</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Font Renderer Audit</span>
+<span class="text-error font-semibold">Mismatch: Arial Regular (Non-Govt)</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Mandated Government Serif</span>
+<span class="text-on-surface-variant">Expected: Kruti Dev 010 / Mangal</span>
+</div>
+</div>
+</div>
+</div>
+<!-- OCR Extracted Text & Diff Comparison Panel -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">difference</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-bold">OCR Text Extraction vs Official Gazette Archive (Diff Engine)</span>
+</div>
+<span class="font-mono-sm text-mono-sm px-1.5 py-0.5 rounded bg-error text-on-error font-bold">2 Fatal Discrepancies</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm font-mono-sm text-mono-sm">
+<!-- OCR Tampered Version -->
+<div class="p-space-sm rounded bg-error-container text-on-error-container flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase font-bold text-error">Extracted From Target (#AR-4492-DOC)</span>
+<p class="leading-relaxed bg-surface-container-lowest/80 p-space-xs rounded text-on-surface">
+                "...In exercise of powers conferred under section 45ZB of RBI Act, all commercial retail operations are hereby placed under <mark class="bg-error text-on-error font-bold px-1 rounded">mandatory 72h moratorium effective 25-02-2025</mark> due to liquidity settlement recalibration across RTGS gateways..."
+              </p>
+</div>
+<!-- Authentic Gazette Baseline -->
+<div class="p-space-sm rounded bg-surface-container-low text-on-surface flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase font-bold text-on-surface-variant">Official Archive Record (Gazette #4492/2021)</span>
+<p class="leading-relaxed bg-surface-container-lowest p-space-xs rounded text-on-surface">
+                "...In exercise of powers conferred under section 45ZB of RBI Act, the Monetary Policy Committee announces <mark class="bg-surface-container-high text-on-surface font-semibold px-1 rounded">scheduled quarterly adjustments to liquidity reserve ratios</mark> with continuous uninterrupted public counter availability..."
+              </p>
+</div>
+</div>
+</div>
+<!-- Synthetic Media & Multi-Model Inference Verdict -->
+<div class="p-space-sm rounded bg-surface-container-high flex flex-col gap-space-sm">
+<div class="flex flex-wrap items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary-container font-label-md text-label-md uppercase font-bold">
+                ✦ MODEL INFERENCE: 99.4% CONF
+              </span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">
+                Diagnostic: Malicious Regulatory Forgery with Coordinated Disinformation Distribution
+              </span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-bold uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">gavel</span>
+              Human-in-the-Loop Verification Required
+            </span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm font-mono-sm text-mono-sm">
+<div class="bg-surface-container-lowest p-space-xs rounded flex flex-col">
+<span class="text-on-surface-variant">Seal Boundary Splice</span>
+<span class="text-error font-bold">99.8% Synthetic</span>
+</div>
+<div class="bg-surface-container-lowest p-space-xs rounded flex flex-col">
+<span class="text-on-surface-variant">Kernel Sharpness Diff</span>
+<span class="text-error font-bold">High Anomaly (8.2σ)</span>
+</div>
+<div class="bg-surface-container-lowest p-space-xs rounded flex flex-col">
+<span class="text-on-surface-variant">Compression Generations</span>
+<span class="text-on-surface font-semibold">3 (Re-encoded)</span>
+</div>
+<div class="bg-surface-container-lowest p-space-xs rounded flex flex-col">
+<span class="text-on-surface-variant">Attribution Actor</span>
+<span class="text-secondary font-bold">RAG-RING-IND-4</span>
+</div>
+</div>
+</div>
+<!-- Chain of Custody & Operational Action Bar -->
+<div class="pt-space-sm flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">lock</span>
+<span>WORM Block: 0x8812c4492-evidence</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-semibold text-on-surface">Verified Seal</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1.5 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+              Preserve in WORM Evidence Vault
+            </button>
+<button class="px-space-md py-1.5 rounded bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors font-label-md text-label-md font-semibold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">send_and_archive</span>
+              Stage in Sahyog Notice Draft
+            </button>
+<button class="px-space-md py-1.5 rounded bg-primary text-on-primary hover:bg-on-surface-variant transition-colors font-label-md text-label-md font-semibold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">print</span>
+              Export Forensic Manifest
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Case Queue & Forensic Artifacts Pipeline (4 Cols) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-space-md">
+<!-- Queue Header Card -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">dynamic_feed</span>
+<h2 class="font-title-md text-title-md font-bold text-on-surface">Analyzed Artifacts Queue</h2>
+</div>
+<span class="font-mono-sm text-mono-sm px-space-xs py-0.5 rounded bg-surface-container-low text-on-surface-variant font-semibold">
+            4 Flagged In Case
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Artifacts under current evidentiary lock for Operation PaperStorm. Click any card to switch deep forensic inspection workbench.
+        </p>
+<!-- Artifact Queue List -->
+<div class="flex flex-col gap-space-sm mt-1">
+<!-- Item 1: Active Target (gazette_order_4492.jpg) -->
+<div class="p-space-sm rounded bg-surface-container-high shadow-sm flex flex-col gap-space-xs relative">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-error">picture_as_pdf</span>
+<span class="font-mono-md text-mono-md font-bold text-on-surface">gazette_order_4492.jpg</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-error text-on-error font-mono-sm text-mono-sm font-bold">HIGH SEVERITY</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1">
+<div class="w-14 h-14 bg-surface-container-lowest rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Macro thumbnail photograph of a bureaucratic document section with highlighted signature stamp and red forensic bounding boxes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf736NeKG-Lo_iGvLxc7P7JFPjiImGJuLp3nk_jYgb8mZJ-gcXqetnrEjx0ELtPjSs-4ygmNqaqLl_iMS1TqpRJP6voQcKvk9nkkx2wkk5pvtUdTdH2HI68AnLoymvwJe-B0_iVe7YfaTJM76qnLpz7IiIHLEOf7EsCe-t63a2B413Uxy2gFsYPcD0IIR-qtS8i2KjSe1DfyMJ4Lb1a5ORke2-fgbyDw9QStoPonEcdlRktIXzoIkt"/>
+</div>
+<div class="flex flex-col gap-0.5 flex-1 min-w-0">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Altered Circular: Banking Moratorium</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">SHA: 7f83...a308</span>
+<div class="flex items-center gap-space-xs text-error font-mono-sm text-mono-sm font-bold">
+<span>99.4% Doctored Typography</span>
+<span class="text-on-surface-variant">• Active View</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2: Voice Clone Audio (rbi_press_briefing_audio.wav) -->
+<div class="p-space-sm rounded bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm flex flex-col gap-space-xs cursor-pointer group">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">record_voice_over</span>
+<span class="font-mono-md text-mono-md font-bold text-on-surface group-hover:text-secondary transition-colors">rbi_press_briefing_audio.wav</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-mono-sm text-mono-sm font-bold">CRITICAL</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1">
+<div class="w-14 h-14 bg-surface-container-highest rounded flex flex-col items-center justify-center flex-shrink-0 text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px] text-secondary">graphic_eq</span>
+<span class="font-mono-sm text-[9px]">01:42s</span>
+</div>
+<div class="flex flex-col gap-0.5 flex-1 min-w-0">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Cloned Spokesperson Audio</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">SHA: 3d12...91bf</span>
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm">
+<span class="text-error font-bold">94.2% Synthetic Probability</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">ElevenLabs acoustic artifact signature matched</span>
+</div>
+<button class="p-1 rounded bg-surface-container-lowest text-on-surface-variant group-hover:text-on-surface" title="Inspect Audio">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Item 3: Recycled 2021 Video (atm_dry_protest_video.mp4) -->
+<div class="p-space-sm rounded bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm flex flex-col gap-space-xs cursor-pointer group">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface">video_file</span>
+<span class="font-mono-md text-mono-md font-bold text-on-surface group-hover:text-secondary transition-colors">atm_dry_protest_video.mp4</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm font-bold">RECYCLED MEDIA</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1">
+<div class="w-14 h-14 bg-surface-container-lowest rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Video frame freeze thumbnail showing crowd gathered in front of an automated teller machine bank branch in daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSeNS9nrc7vMfuG0o1Lp_A0Xx7ddTCf8MiGBrShApTZaGxez29m6eaJJg3JhDIvxkWrrYJb2S1qWeXyoE6JcgQDgYYwwurcZZmp8HbGqBZAKBpvC_C6M3enGmMMYmDBYej6g7EZU7dcNjZ_uvsJ63qBt0eUuJVpk6tOk6pW8j2crGf8A1cMsqsOOQxzSHSe8oBXFypOxQXaTPAyesYBuJldiyMOuu6P9cGTKOOAFrTz4z7ZSMBL0Ep"/>
+</div>
+<div class="flex flex-col gap-0.5 flex-1 min-w-0">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Deceptive Recontextualization</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">SHA: a882...e411</span>
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm">
+<span class="text-error font-bold">InVID Keyframe: 100% Duplicate</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Identical to Aug 2021 Mumbai strike video</span>
+</div>
+<button class="p-1 rounded bg-surface-container-lowest text-on-surface-variant group-hover:text-on-surface" title="Inspect Video">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Item 4: Fabricated Infographic (bank_governor_quote_card.png) -->
+<div class="p-space-sm rounded bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm flex flex-col gap-space-xs cursor-pointer group">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface">image</span>
+<span class="font-mono-md text-mono-md font-bold text-on-surface group-hover:text-secondary transition-colors">bank_governor_quote_card.png</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm font-bold">FABRICATED CARD</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1">
+<div class="w-14 h-14 bg-surface-container-lowest rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Digital graphic quote card with counterfeit media agency branding and quotation text regarding financial collapse." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDktyO53ScqiSn6ZyLGR2cwI1gAXtBZgeHkVPfMvcMHmuv6OWMAoWRWCb_eZM9RaiUDMK7zgpBGw7EKR2sg6WK7isClTAIOJG7_7-RQqSGTBubQVAccfd_F7LStEi3EirXF5NvFXstqcs1YVGxIL-B-XC9dWXyEJD2M9_hnnRpk4APi8NeF6vBNhademXsdSlvp5Juj1rsPx3hU-pCGD7bCkNh66bWF_00WiGZ2Wx9VMl0KTSR2byGf"/>
+</div>
+<div class="flex flex-col gap-0.5 flex-1 min-w-0">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Fabricated News Graphic</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">SHA: 9c14...002e</span>
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm">
+<span class="text-secondary font-bold">96.1% Layout Template Match</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Tied to Disinformation Ring Fleet #12</span>
+</div>
+<button class="p-1 rounded bg-surface-container-lowest text-on-surface-variant group-hover:text-on-surface" title="Inspect Graphic">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Forensic Diagnostic Telemetry Panel -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col gap-space-sm">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">memory</span>
+          Hardware Engine Telemetry
+        </span>
+<div class="flex flex-col gap-space-xs font-mono-sm text-mono-sm">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span>Neural GPU Inference (A100-SXM)</span>
+<span class="text-on-surface font-semibold">41% Load</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-low rounded overflow-hidden">
+<div class="h-full bg-secondary w-[41%]"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant mt-1">
+<span>Perceptual Hash Clustered Nodes</span>
+<span class="text-on-surface font-semibold">1,489 Media Items</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant mt-1">
+<span>Govt Media Seal Reference Corpus</span>
+<span class="text-secondary font-semibold">v2025.02 (124,000 Seals)</span>
+</div>
+</div>
+<div class="mt-space-xs p-space-xs bg-surface-container-low rounded flex items-center justify-between font-mono-sm text-mono-sm">
+<span class="text-on-surface-variant">Audit Signature</span>
+<span class="text-on-surface font-mono-sm font-semibold select-all">SHA-256: 4b1f...9e2a</span>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,54 @@
+[
+  {
+    "case_id": "INV-2025-089X",
+    "title": "Operation PaperStorm",
+    "status": "ACTIVE_INVESTIGATION",
+    "priority": "HIGH",
+    "lead_officer": "Insp. A. Sharma",
+    "unit": "Cyber Defense Operations / Special Task Force",
+    "created_at": "2025-05-12T08:30:00Z",
+    "narrative_focus": "Coordinated synthetic panic & banking run rumors targeting state financial hubs",
+    "evidence_count": 18,
+    "statutory_sections": ["IT Act Sec 79(3)(b)", "BNS Sec 196", "BNS Sec 353"],
+    "coordination_vectors": ["Synchronized Bot Clusters", "Hashtag Hijacking", "Manipulated Circulars"]
+  },
+  {
+    "case_id": "INV-2025-092M",
+    "title": "Operation RedGlacier",
+    "status": "UNDER_REVIEW",
+    "priority": "HIGH",
+    "lead_officer": "DySP R. Verma",
+    "unit": "OSINT Unit, Cyber Crime Police Station Patna",
+    "created_at": "2025-05-14T11:15:00Z",
+    "narrative_focus": "Cross-border sockpuppet botnet disseminating localized communal provocation",
+    "evidence_count": 12,
+    "statutory_sections": ["IT Act Sec 66D", "IT Act Sec 79(3)(b)", "BNS Sec 299"],
+    "coordination_vectors": ["IRA Sockpuppet Network", "Proxy Geolocation Shifting", "Meme Injection"]
+  },
+  {
+    "case_id": "INV-2025-095K",
+    "title": "Agrarian Protest Disinformation Inquest",
+    "status": "ACTIVE_INVESTIGATION",
+    "priority": "MEDIUM",
+    "lead_officer": "Insp. P. Jha",
+    "unit": "State Cyber Intelligence Bureau",
+    "created_at": "2025-05-16T14:40:00Z",
+    "narrative_focus": "Automated engagement boosting on agricultural policy hashtags and localized protests",
+    "evidence_count": 14,
+    "statutory_sections": ["IT Act Sec 79(3)(b)", "IT Rules 2021 Rule 3(1)(d)"],
+    "coordination_vectors": ["Copy-Paste Tweet Storms", "High Burst Velocity", "Inauthentic Retweet Swarms"]
+  },
+  {
+    "case_id": "INV-2025-101T",
+    "title": "Operation ShadowSignal",
+    "status": "STAGED_FOR_NOTICE",
+    "priority": "CRITICAL",
+    "lead_officer": "Insp. A. Sharma",
+    "unit": "Cyber Defense Operations / Special Task Force",
+    "created_at": "2025-05-17T09:00:00Z",
+    "narrative_focus": "Coordinated deepfake audio dissemination during sensitive public assembly",
+    "evidence_count": 6,
+    "statutory_sections": ["IT Act Sec 66D", "IT Act Sec 79(3)(b)", "BNS Sec 336"],
+    "coordination_vectors": ["Audio Cloning", "Telegram Relay Nodes", "Instant Messenger Forwarding"]
+  }
+]

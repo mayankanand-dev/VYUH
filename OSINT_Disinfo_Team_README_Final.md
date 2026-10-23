@@ -600,4 +600,31 @@ All modules—including **Dev 2** (Content & Narrative Intelligence), **Dev 3** 
    - Attach model findings (e.g. narrative clusters, claim NLI assessments, coordination scores, graph edges) to the stable canonical `record_id` (or `post_id`).
    - Derive NLP features (tokens, embeddings, language codes) in memory or in model output tables, preserving canonical provenance.
 
+---
+
+## 12. Sandboxing & Algorithmic Module Lab (Zero-Write Testing Enclave)
+
+To allow safe testing, heuristic scoring, model tuning, and stress tests without tainting production evidence registers or judicial chain of custody, the platform includes an isolated **Algorithmic Module Lab & Pipeline Workbench** (`data-view="sandbox"`).
+
+### Core Enclave Guarantees & Safeguards
+- **Zero Write Privileges to Production HSM**: All synthetic data injections, mock ELA image scans, and pipeline test runs execute strictly within an isolated ephemeral RAM partition (`SYNTH-INFER-04`).
+- **No Automatic Evidence Poisoning**: Artifacts processed in the sandbox generate temporary mock tokens and cannot alter live case ledgers (`INV-*`) or production WORM manifests (`SEC-NORTH-PROD-01`).
+- **Audit Traceability**: All benchmark runs, smoke tests, and heuristic evaluations are logged to `alpha/VYUH/logs/audit_log.jsonl` under the operator identity `operator: "sandbox_test_runner"`.
+
+### The 8-Stage Extraction Pipeline Progression Sequence
+The workbench provides an interactive verification ribbon testing the full lifecycle of a ingested social post:
+1. `01. INGEST`: Synthetic payload parsing, header sanity check, and streaming integrity.
+2. `02. NORM`: Validation against the 26 mandatory canonical schema fields defined in `CANONICAL_DATA_SCHEMA.md`.
+3. `03. NLP`: Multilingual sentiment classification (Hindi/English/Punjabi), provocative phrase matching, and bot probability scoring.
+4. `04. MEDIA`: Forensic Error Level Analysis (ELA) simulation, artifact hash inspection, and EXIF integrity checks.
+5. `05. CLUSTER`: Louvain modularity clustering, co-occurrence temporal burst isolation, and sockpuppet coordination calculation.
+6. `06. WORM`: Ephemeral mock-HSM vault seal simulation with zero write to persistent custody.
+7. `07. NOTICE`: Rule evaluation against Section 79(3)(b) IT Act and Section 94 BNSS preservation parameters.
+8. `08. EXPORT`: Court-admissible staging bundle generation.
+
+### Module Lab APIs
+- `POST /api/sandbox/smoke-test`: Executes the 8-stage sequence, measuring real-time latency (ms) per stage and validating compliance.
+- `POST /api/sandbox/evaluate-text`: Isolated heuristic scanner allowing investigators to test raw slogan text, hashtags, or suspicious shortlinks against the disinformation ruleset without committing to evidence.
+
+
 

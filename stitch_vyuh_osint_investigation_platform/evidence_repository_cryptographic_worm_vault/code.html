@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error":"#ba1a1a","on-secondary-fixed-variant":"#753400","primary":"#000000","error-container":"#ffdad6","primary-container":"#0e1c2f","surface-container-lowest":"#ffffff","secondary-container":"#ff842e","surface-container-low":"#eff4ff","surface-container-high":"#dce9ff","outline-variant":"#c5c6cd","primary-fixed-dim":"#bac7e1","on-surface-variant":"#44474c","surface-container":"#e5eeff","secondary-fixed-dim":"#ffb68c","surface-dim":"#cbdbf5","on-tertiary-fixed-variant":"#003ea8","tertiary":"#000000","on-tertiary":"#ffffff","surface":"#f8f9ff","inverse-on-surface":"#eaf1ff","on-primary-container":"#77849c","on-error":"#ffffff","surface-tint":"#525f75","surface-variant":"#d3e4fe","tertiary-fixed":"#dbe1ff","primary-fixed":"#d6e3fe","tertiary-fixed-dim":"#b4c5ff","on-surface":"#0b1c30","on-primary-fixed-variant":"#3a475c","on-secondary":"#ffffff","surface-bright":"#f8f9ff","inverse-primary":"#bac7e1","inverse-surface":"#213145","surface-container-highest":"#d3e4fe","on-secondary-fixed":"#321200","on-tertiary-container":"#497cff","on-tertiary-fixed":"#00174b","secondary":"#9a4600","on-primary-fixed":"#0e1c2f","outline":"#75777d","on-primary":"#ffffff","background":"#f8f9ff","on-background":"#0b1c30","tertiary-container":"#00174b","on-secondary-container":"#642b00","secondary-fixed":"#ffdbc9","on-error-container":"#93000a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"margin":"1.5rem","space-lg":"1rem","space-xl":"1.5rem","gutter-compact":"0.5rem","space-xs":"0.25rem","gutter":"1rem","space-md":"0.75rem","space-sm":"0.5rem"},fontFamily:{"mono-md":["JetBrains Mono"],"body-lg":["Inter"],"title-md":["Inter"],"display-lg":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"mono-sm":["JetBrains Mono"],"mono-lg":["JetBrains Mono"],"label-md":["Inter"],"headline-lg":["Inter"]},fontSize:{"mono-md":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"mono-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"400"}],"mono-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-md":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-[0_1px_4px_rgba(11,28,48,0.05)]"><div class="h-16 px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="VYUH Intelligence Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WpTLn1fDcosQ6L-pnYhvDv6LzZI-CwyV4CdUdsEN9KWdGFZL9fWwOMiQhupGuQBTxl65FPsAdYbzdsqSbg8G35qq_dGjIy58PbE7oMg7kuen2tFH0NlSjKS5kG8b6mgCli6otQOMLHY-T8U7ffIA22Ul7WtVoNdEBgM6KRP-3TjrWgrrB6B0ZuQE-5ZE_eW5BT2t7azelQyPUdrPlrwGuYXp1IJYKkhzQuWKT_9t96PgAYkuFnmSnGjaI"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface tracking-tight font-bold">VYUH</span><span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-mono-sm text-mono-sm uppercase font-semibold">GOV-OSINT</span></div><span class="font-label-md text-label-md text-on-surface-variant hidden xl:inline">OSINT &amp; Disinformation Intelligence Platform | National Cyber Coordination</span></div></div><div class="h-6 w-px bg-outline-variant hidden md:block"></div><div class="hidden lg:flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded border border-outline-variant"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Case:</span><span class="font-mono-md text-mono-md text-on-surface font-semibold">#INV-2025-089X // Operation PaperStorm</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><span class="font-mono-sm text-mono-sm text-on-surface-variant truncate max-w-xs">Coordinated Banking Phish &amp; Disinformation</span></div><span class="px-space-xs py-0.5 bg-error-container text-on-error-container font-label-md text-label-md rounded font-bold uppercase tracking-wide">CONFIDENTIAL // LAW ENFORCEMENT &amp; CERT USE ONLY</span></div></div><div class="flex items-center gap-space-md"><div class="hidden 2xl:flex items-center gap-space-xs px-space-md py-1 rounded bg-surface-container text-on-surface"><span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span class="font-mono-sm text-mono-sm text-on-surface">Historical Replay Mode (Read-Only Archive - 14.2M Posts Indexed)</span></div><div class="flex items-center gap-space-xs"><button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-mono-sm text-mono-sm text-on-surface-variant hidden sm:inline">Cmd+K</span></button><button class="relative p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-mono-sm text-[9px] font-bold">3</span></button></div><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6qKwOq9OuxMcZzeJanW3TTy2Hk0fDOgNQURZzG4ftrx3VGOxzYf-NHnEtUAG9BROVmC1zL0s0huc80tKl4iberJpSA8VcDU-5Z-fSJNTP3Td6H-3Hq7qGp-ZWzkQItETGzTBUXfCG1rM8c3pNczHJ8zNhyqMStl98JLcaSX1v-m_lQTFye7NfAo36XXzuGJNBvLXBtXXYHoJpYNmpE7AmG_CMqK2i87SWgetsx_2_DXXpaWe1InM"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-secondary-container ring-1 ring-surface-container-lowest"></span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold">A. Sharma</span><span class="font-mono-sm text-mono-sm text-on-surface-variant">Senior Analyst, Cyber Defense</span></div></div></div></div><div class="h-10 px-margin flex items-center justify-between border-t border-outline-variant bg-surface"><nav class="flex items-center gap-space-xs overflow-x-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="investigation-overview" href="#">Investigation Overview</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="narrative-coordination" href="#">Narrative &amp; Coordination</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="network-accounts-osint" href="#">Network &amp; Accounts OSINT</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="media-forensics" href="#">Media Forensics</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="evidence-custody" href="#">Evidence &amp; Custody</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="legal-notice-prep" href="#">Legal Notice Prep</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="sandbox-lab" href="#">Sandbox Lab</a></nav><div class="hidden lg:flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-mono-sm text-mono-sm text-on-surface-variant uppercase">Case Ref:</span><span class="font-mono-sm text-mono-sm text-on-surface font-semibold">#INV-2025-089X</span></div><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold tracking-wider uppercase">RESTRICTED</span><div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">verified</span><span>SHA-256: 4b1f...9e2a</span></div><button class="flex items-center gap-space-xs px-space-md py-1 bg-secondary text-on-secondary rounded font-label-md text-label-md font-semibold hover:bg-secondary-container hover:text-on-secondary-container transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">file_download</span>Export Dossier</button></div></div></header><aside class="fixed left-0 top-[104px] bottom-0 w-64 bg-surface-container-lowest border-r border-outline-variant z-40 flex flex-col justify-between py-space-md"><div class="flex flex-col gap-space-sm px-space-md"><div class="px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Forensic Tooling</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="cluster-matrix" href="#"><span class="material-symbols-outlined text-[18px]">hub</span>Cluster Matrix</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="bot-heuristics" href="#"><span class="material-symbols-outlined text-[18px]">smart_toy</span>Bot Heuristics</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="synthetic-speech" href="#"><span class="material-symbols-outlined text-[18px]">record_voice_over</span>Synthetic Audio &amp; Video</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="geo-triangulation" href="#"><span class="material-symbols-outlined text-[18px]">share_location</span>Geo-Triangulation</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="disinfo-spread-tree" href="#"><span class="material-symbols-outlined text-[18px]">account_tree</span>Propagation Trees</a></nav><div class="mt-space-md px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Chain of Custody</div><div class="bg-surface-container-low p-space-sm rounded border border-outline-variant flex flex-col gap-1"><div class="flex items-center justify-between text-on-surface font-mono-sm text-mono-sm"><span>Ledger Block</span><span class="font-semibold">#8812-C</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Seals Intact</span><span class="text-secondary font-semibold">42/42</span></div><div class="flex items-center gap-1 mt-1 text-on-surface font-label-md text-label-md"><span class="material-symbols-outlined text-[14px] text-secondary">lock</span><span>Cryptographic Audit Mode</span></div></div></div><div class="px-space-md border-t border-outline-variant pt-space-sm flex flex-col gap-space-xs"><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Node Status</span><span class="text-on-surface font-semibold">Synced (12ms)</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Target Platform</span><span class="text-on-surface font-semibold">FedRAMP High</span></div></div></aside><div class="pl-64"><main class="relative pt-[104px] bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- WORM Hardware Security Module Status Banner -->
+<section class="bg-primary-container text-on-primary-container px-margin py-space-md shadow-md relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 w-72 h-72 rounded-full bg-secondary-container/10 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md relative z-10">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded bg-surface-container-lowest/10 flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-mono-md text-mono-md text-surface-container-lowest font-bold tracking-wider uppercase">Cryptographic Evidence Vault</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-lowest/15 text-surface-container-lowest font-mono-sm text-mono-sm font-semibold tracking-widest uppercase">HSM Root Partition 01</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container">
+            Immutable Write-Once-Read-Many (WORM) ledger. Cryptographic hardware-anchored timestamping under FIPS 140-3 Level 4 physical enclave.
+          </p>
+</div>
+</div>
+<!-- Quick Metrics Strip -->
+<div class="flex items-center flex-wrap gap-space-md bg-surface-container-lowest/5 px-space-md py-space-sm rounded">
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-on-primary-container/80 uppercase">Vault State</span>
+<div class="flex items-center gap-1 text-surface-container-lowest font-mono-md text-mono-md font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></span>
+<span>100% Sealed</span>
+</div>
+</div>
+<div class="w-px h-6 bg-surface-container-lowest/20"></div>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-on-primary-container/80 uppercase">Preserved Artifacts</span>
+<span class="font-mono-md text-mono-md text-surface-container-lowest font-semibold">42 / 42 Verified</span>
+</div>
+<div class="w-px h-6 bg-surface-container-lowest/20"></div>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-on-primary-container/80 uppercase">Root Hash Anchor</span>
+<span class="font-mono-sm text-mono-sm text-surface-container-lowest font-mono">0x7F9B...89E2</span>
+</div>
+<div class="w-px h-6 bg-surface-container-lowest/20"></div>
+<div class="flex items-center gap-1.5 text-secondary-container font-label-md text-label-md uppercase font-bold tracking-wider">
+<span class="material-symbols-outlined text-[16px]">key</span>
+<span>PKCS#11 Validated</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter & Action Control Bar -->
+<section class="bg-surface-container-lowest px-margin py-space-md shadow-sm">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<!-- Search Input + Filters -->
+<div class="flex flex-1 flex-wrap items-center gap-space-sm">
+<div class="relative min-w-[280px] flex-1 sm:flex-initial">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-[18px] text-on-surface-variant">fingerprint</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-surface-container-low text-on-surface font-body-md text-body-md rounded focus:outline-none focus:bg-surface-container transition-colors" placeholder="Search Evidence ID, SHA-256, URL, or Officer..." type="text"/>
+</div>
+<select class="px-space-md py-1.5 bg-surface-container-low text-on-surface font-body-md text-body-md rounded focus:outline-none focus:bg-surface-container transition-colors">
+<option>Type: All Evidence (WARC, ELA, PCAP)</option>
+<option>WARC Web Archive (.warc.gz)</option>
+<option>Media Forensics (ELA / EXIF Raw)</option>
+<option>PCAP Network Stream (.pcapng)</option>
+<option>Memory Dump (.vmem)</option>
+<option>Social Post Canonical JSON</option>
+</select>
+<select class="px-space-md py-1.5 bg-surface-container-low text-on-surface font-body-md text-body-md rounded focus:outline-none focus:bg-surface-container transition-colors">
+<option>Status: All Statuses</option>
+<option>Sealed in Ledger (WORM)</option>
+<option>Integrity Verified (Live Hash Match)</option>
+<option>Staged in Legal Notice</option>
+<option>Court Certified (Sec 65B Ready)</option>
+</select>
+<div class="flex items-center gap-1 px-space-md py-1.5 bg-surface-container-low text-on-surface-variant font-mono-sm text-mono-sm rounded">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Last 7 Days (Feb 12 - Feb 19, 2025)</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center flex-wrap gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container-low text-on-surface hover:bg-surface-container rounded font-label-md text-label-md uppercase transition-colors" id="btnBatchVerify" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">sync</span>
+<span>Batch Verify Hashes</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container-low text-on-surface hover:bg-surface-container rounded font-label-md text-label-md uppercase transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">cloud_upload</span>
+<span>Import External WARC</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container rounded font-label-md text-label-md uppercase transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">archive</span>
+<span>Export Sealed Dossier</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Live Integrity Hash Bar (Simulation / Micro-Interaction Banner) -->
+<div class="hidden px-margin py-space-xs bg-surface-container-low text-on-surface text-mono-sm font-mono-sm flex items-center justify-between transition-all" id="integrityStatusToast">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px] animate-spin">refresh</span>
+<span>Background Job: Calculating SHA-256 and Blake3 digests across 42 WORM artifacts...</span>
+</div>
+<span class="font-bold text-secondary">42/42 PARALLEL MATCH CONFIRMED (0.04s)</span>
+</div>
+<!-- Master Split Layout: Table (65%) + Forensic Drawer Inspector (35%) -->
+<div class="px-margin py-space-lg grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT: High Density Forensic Evidence Registry Table -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded shadow-sm overflow-hidden flex flex-col">
+<!-- Table Top Meta -->
+<div class="px-space-md py-space-sm bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Vault Chain Index:</span>
+<span class="font-mono-md text-mono-md text-on-surface font-semibold">Partition SEC-NORTH-PROD-01</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant font-mono-sm text-mono-sm">42 Items</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">Auto-recheck: Every 15 min</span>
+<span class="inline-flex w-2 h-2 rounded-full bg-secondary-container"></span>
+</div>
+</div>
+<!-- Evidence Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="px-space-md py-space-xs">Evidence ID</th>
+<th class="px-space-md py-space-xs">Artifact &amp; Type</th>
+<th class="px-space-md py-space-xs">Source Platform / URI</th>
+<th class="px-space-md py-space-xs">Preserved UTC</th>
+<th class="px-space-md py-space-xs">SHA-256 Digest</th>
+<th class="px-space-md py-space-xs">Officer</th>
+<th class="px-space-md py-space-xs">Status</th>
+<th class="px-space-md py-space-xs text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1: Selected Item -->
+<tr class="bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group" onclick="selectEvidenceRow('EVID-2025-089X-001')">
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary">radio_button_checked</span>
+<span class="font-mono-md text-mono-md font-bold text-on-surface">#EVID-2025-089X-001</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex items-center gap-space-xs whitespace-nowrap">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-mono-sm font-semibold">WARC</span>
+<span class="font-title-md text-body-md font-semibold text-on-surface truncate max-w-[130px]">phish-login-v4.warc</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col max-w-[180px]">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">X / Twitter Thread</span>
+<span class="font-mono-sm text-mono-sm text-on-surface truncate">https://x.com/fin_alert_91/status/1892</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-mono-sm text-mono-sm text-on-surface">2025-02-18 04:32:11.842Z</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-1 font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-semibold font-mono">b782f91a...710d</span>
+<button class="text-on-surface-variant hover:text-on-surface" title="Copy Hash" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-on-surface">A. Sharma (ID-9482)</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Verified
+                  </span>
+</td>
+<td class="px-space-md py-space-sm text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Inspect Full Record">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Download Raw WARC Archive">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="selectEvidenceRow('EVID-2025-089X-002')">
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-secondary">radio_button_unchecked</span>
+<span class="font-mono-md text-mono-md font-semibold text-on-surface">#EVID-2025-089X-002</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex items-center gap-space-xs whitespace-nowrap">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-mono-sm font-semibold">ELA</span>
+<span class="font-body-md text-body-md text-on-surface truncate max-w-[130px]">forged_bank_seal.png</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col max-w-[180px]">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Telegram Channel</span>
+<span class="font-mono-sm text-mono-sm text-on-surface truncate">t.me/central_reserve_leaks/881</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-mono-sm text-mono-sm text-on-surface">2025-02-18 04:35:55.109Z</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-1 font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-semibold font-mono">c42b1049...f9a3</span>
+<button class="text-on-surface-variant hover:text-on-surface" title="Copy Hash" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-on-surface">Forensic Agent Bot-04</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+                    Sealed
+                  </span>
+</td>
+<td class="px-space-md py-space-sm text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Inspect">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Download">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="selectEvidenceRow('EVID-2025-089X-003')">
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-secondary">radio_button_unchecked</span>
+<span class="font-mono-md text-mono-md font-semibold text-on-surface">#EVID-2025-089X-003</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex items-center gap-space-xs whitespace-nowrap">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-mono-sm font-semibold">PCAP</span>
+<span class="font-body-md text-body-md text-on-surface truncate max-w-[130px]">c2-beacon-dump.pcapng</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col max-w-[180px]">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">DNS Ingress Node</span>
+<span class="font-mono-sm text-mono-sm text-on-surface truncate">194.26.29.112:53 UDP</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-mono-sm text-mono-sm text-on-surface">2025-02-18 05:12:02.001Z</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-1 font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-semibold font-mono">81903fae...311c</span>
+<button class="text-on-surface-variant hover:text-on-surface" title="Copy Hash" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-on-surface">K. Rao (CERT-IN)</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Staged Notice
+                  </span>
+</td>
+<td class="px-space-md py-space-sm text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Inspect">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Download">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="selectEvidenceRow('EVID-2025-089X-004')">
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-secondary">radio_button_unchecked</span>
+<span class="font-mono-md text-mono-md font-semibold text-on-surface">#EVID-2025-089X-004</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex items-center gap-space-xs whitespace-nowrap">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-mono-sm font-semibold">JSON</span>
+<span class="font-body-md text-body-md text-on-surface truncate max-w-[130px]">botnet_seed_matrix.json</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col max-w-[180px]">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">CrowdTangle Ingest</span>
+<span class="font-mono-sm text-mono-sm text-on-surface truncate">api.internal/v2/graph/clusters</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-mono-sm text-mono-sm text-on-surface">2025-02-18 06:40:19.412Z</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-1 font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-semibold font-mono">1f298da1...76bc</span>
+<button class="text-on-surface-variant hover:text-on-surface" title="Copy Hash" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-on-surface">A. Sharma (ID-9482)</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Verified
+                  </span>
+</td>
+<td class="px-space-md py-space-sm text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Inspect">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Download">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="selectEvidenceRow('EVID-2025-089X-005')">
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-secondary">radio_button_unchecked</span>
+<span class="font-mono-md text-mono-md font-semibold text-on-surface">#EVID-2025-089X-005</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex items-center gap-space-xs whitespace-nowrap">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-mono-sm font-semibold">AUDIO</span>
+<span class="font-body-md text-body-md text-on-surface truncate max-w-[130px]">deepfake_call_leak.flac</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col max-w-[180px]">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">WhatsApp Audio Clip</span>
+<span class="font-mono-sm text-mono-sm text-on-surface truncate">cdn.media-archive/2025/audio/09</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-mono-sm text-mono-sm text-on-surface">2025-02-18 07:14:30.992Z</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<div class="flex items-center gap-1 font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-semibold font-mono">09ab772e...ee29</span>
+<button class="text-on-surface-variant hover:text-on-surface" title="Copy Hash" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-on-surface">S. Sen (Cyber Lab 2)</span>
+</td>
+<td class="px-space-md py-space-sm whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+                    Sealed
+                  </span>
+</td>
+<td class="px-space-md py-space-sm text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Inspect">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Download">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-space-md py-space-xs bg-surface-container-low flex items-center justify-between font-mono-sm text-mono-sm text-on-surface-variant">
+<div>Displaying 1–5 of 42 Ledger Entries</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface text-on-surface">Previous</button>
+<span class="px-2 py-1 font-semibold text-on-surface">Page 1 of 9</span>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface text-on-surface">Next</button>
+</div>
+</div>
+</div>
+<!-- Live Cryptographic Audit Proof Strip -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px] text-secondary">enhanced_encryption</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Ledger Block Hash #49821</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">Merkle Root: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-1 rounded bg-surface-container-low font-mono-sm text-mono-sm text-on-surface font-semibold">Signed by CERT-IN HSM Root</span>
+<button class="px-space-md py-1 bg-surface-container-low hover:bg-surface-container text-on-surface rounded font-label-md text-label-md uppercase font-semibold">
+            Verify Merkle Leaf
+          </button>
+</div>
+</div>
+</div>
+<!-- RIGHT: Inspector / Forensic Detail Drawer -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Forensic Record Card -->
+<div class="bg-surface-container-lowest rounded shadow-md overflow-hidden flex flex-col">
+<!-- Header with Classification & Artifact Name -->
+<div class="p-space-md bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-mono-sm text-mono-sm font-bold uppercase tracking-wider">
+              ✦ FORENSIC VAULT ARTIFACT
+            </span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant font-semibold">WORM L-04 #4029</span>
+</div>
+<h2 class="font-title-md text-title-md text-on-surface font-bold">#EVID-SNAP-4029.warc</h2>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant break-all">Original: https://x.com/fin_alert_91/status/1892019448102</span>
+</div>
+<!-- Evidence Visual Preview Sandbox (Rich Media) -->
+<div class="relative w-full h-44 bg-surface-container overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A forensic web capture snapshot showing an archived social media disinformation post threatening bank solvency with cryptographic overlays, hexadecimal hex view strip at the bottom, and forensic watermarks in clinical corporate blue and amber tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChjuxvrurO0iG7wEBI9J7ovnFTk1OfLruZBNwRJ0z9ADGFKXzAq8FhSn82NQdXAivUHp60WFUm5uNMKLj5CtIye9RR-E8vt08Ps29iJc_TmT8AJ4O-dudr8BtUZuvusDpWBZ0ZzTjDbYj_evze3GWyZgPdyWebVi36U9XM78PdmnE4TOC6N_gjO9eC7OHbwcHVlw5WODgrL0xRbYu672E2ynlyX2jABvQq3rZkAsRMz_zUZS7iePoU"/>
+<div class="absolute inset-0 bg-primary-container/20 flex flex-col justify-between p-space-sm pointer-events-none">
+<div class="flex justify-between items-center">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-lowest/90 text-on-surface font-mono-sm text-mono-sm font-bold">WARC ISO 28500</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary text-on-secondary font-mono-sm text-mono-sm font-semibold">TAMPER-SEALED</span>
+</div>
+<div class="bg-surface-container-lowest/90 px-space-xs py-0.5 rounded font-mono-sm text-mono-sm text-on-surface truncate">
+              Payload: 14.8 MB (HTTP/1.1 200 OK + DOM Tree + Subresource assets)
+            </div>
+</div>
+</div>
+<!-- Technical Checksum & Integrity Matching Matrix -->
+<div class="p-space-md flex flex-col gap-space-sm">
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">
+            Dual Hash Verification
+          </div>
+<!-- SHA-256 -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant font-semibold">SHA-256 Digest</span>
+<span class="inline-flex items-center gap-1 font-mono-sm text-mono-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> MATCHED
+              </span>
+</div>
+<div class="font-mono-sm text-mono-sm text-on-surface break-all bg-surface-container-lowest p-1 rounded font-mono select-all">
+              b782f91a084ef7a892b12389d42918bb129fa89345bc781200ef98a8710d29ca
+            </div>
+</div>
+<!-- Blake3 -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant font-semibold">Blake3 (High-Speed Block Hash)</span>
+<span class="inline-flex items-center gap-1 font-mono-sm text-mono-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> MATCHED
+              </span>
+</div>
+<div class="font-mono-sm text-mono-sm text-on-surface break-all bg-surface-container-lowest p-1 rounded font-mono select-all">
+              4a08fd799a45610bcde89100234a91902bb8c491aaef001923847aa10293beef
+            </div>
+</div>
+<!-- HTTP Original Response Headers Snapshot -->
+<div class="flex flex-col gap-1 mt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Server Provenance Headers</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">200 OK</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded font-mono-sm text-mono-sm text-on-surface space-y-0.5 overflow-x-auto">
+<p><span class="text-on-surface-variant">Server:</span> envoy-internal-proxy/1.24</p>
+<p><span class="text-on-surface-variant">Date:</span> Tue, 18 Feb 2025 04:32:11 GMT</p>
+<p><span class="text-on-surface-variant">Content-Type:</span> text/html; charset=utf-8</p>
+<p><span class="text-on-surface-variant">CF-Ray:</span> 84ab920194bc02-BOM</p>
+<p><span class="text-on-surface-variant">x-frame-options:</span> DENY</p>
+<p><span class="text-on-surface-variant">Strict-Transport-Security:</span> max-age=63072000</p>
+</div>
+</div>
+<!-- Section 65B Indian Evidence Act Compliance Block -->
+<div class="mt-space-xs bg-surface-container-low p-space-md rounded flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">gavel</span>
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Sec 65B Electronic Certificate</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-mono-sm font-semibold">FORM II</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Auto-certified by Certifying Officer under Indian Evidence Act Sec 65B(4). Machine hash, continuous power cycle logs, and non-tampered output certificates generated.
+            </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-mono-sm text-mono-sm text-on-surface font-semibold">Cert ID: #SEC65B-2025-IND-891</span>
+<button class="px-space-sm py-1 bg-surface-container hover:bg-surface text-on-surface rounded font-mono-sm text-mono-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">description</span> View Certificate
+              </button>
+</div>
+</div>
+<!-- Chain-of-Custody Immutable Timeline -->
+<div class="mt-space-sm flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">
+              Chain-of-Custody Audit Log (4 Events)
+            </span>
+<div class="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container">
+<!-- Event 1 -->
+<div class="relative flex flex-col">
+<div class="absolute -left-6 top-0.5 w-3 h-3 rounded-full bg-secondary"></div>
+<div class="flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-on-surface font-semibold">Ingestion &amp; Packet Capture</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">04:32:11Z</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Automated Crawler Alpha recorded raw HTTP stream.</span>
+</div>
+<!-- Event 2 -->
+<div class="relative flex flex-col">
+<div class="absolute -left-6 top-0.5 w-3 h-3 rounded-full bg-surface-container-highest"></div>
+<div class="flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-on-surface font-semibold">Forensic ELA &amp; Metadata Scan</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">04:35:55Z</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Forensic Engine completed sub-pixel anomaly validation.</span>
+</div>
+<!-- Event 3 -->
+<div class="relative flex flex-col">
+<div class="absolute -left-6 top-0.5 w-3 h-3 rounded-full bg-secondary"></div>
+<div class="flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-on-surface font-semibold">Cryptographically Sealed in WORM</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">08:30:45Z</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Officer A. Sharma sealed item into SEC-NORTH-PROD-01.</span>
+</div>
+<!-- Event 4 -->
+<div class="relative flex flex-col">
+<div class="absolute -left-6 top-0.5 w-3 h-3 rounded-full bg-surface-container-highest"></div>
+<div class="flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-on-surface font-semibold">Staged to Legal Notice</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">09:18:22Z</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Attached to Notice Draft #NOTICE-2025-018.</span>
+</div>
+</div>
+</div>
+<!-- Bottom Operational Action Buttons -->
+<div class="pt-space-md flex items-center gap-space-xs">
+<button class="flex-1 py-1.5 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container font-label-md text-label-md uppercase rounded transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Re-Verify Integrity</span>
+</button>
+<button class="flex-1 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md uppercase rounded transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Download WARC (14.8 MB)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Cryptographic Manifest Card -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold uppercase tracking-wider">HSM Verification Signature</span>
+<span class="font-mono-sm text-mono-sm text-secondary font-bold">RSA-4096 / PSS</span>
+</div>
+<div class="bg-surface-container-low p-space-xs rounded font-mono-sm text-mono-sm text-on-surface-variant break-all">
+          SIG: 8c9012bb...90fa114e // HSM-SLOT-03 // CERT-CRL-VALID
+        </div>
+<div class="flex items-center justify-between font-mono-sm text-mono-sm text-on-surface-variant">
+<span>Notary Device: YubiHSM2 Auth</span>
+<span>Sync Status: REALTIME</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function selectEvidenceRow(evidenceId) {
+    console.log("Selected forensic artifact: " + evidenceId);
+  }
+
+  const batchBtn = document.getElementById('btnBatchVerify');
+  const toast = document.getElementById('integrityStatusToast');
+
+  if (batchBtn && toast) {
+    batchBtn.addEventListener('click', () => {
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4000);
+    });
+  }
+</script></main></div></body></html>

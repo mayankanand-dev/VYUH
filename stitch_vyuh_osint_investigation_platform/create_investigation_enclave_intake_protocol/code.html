@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error":"#ba1a1a","on-secondary-fixed-variant":"#753400","primary":"#000000","error-container":"#ffdad6","primary-container":"#0e1c2f","surface-container-lowest":"#ffffff","secondary-container":"#ff842e","surface-container-low":"#eff4ff","surface-container-high":"#dce9ff","outline-variant":"#c5c6cd","primary-fixed-dim":"#bac7e1","on-surface-variant":"#44474c","surface-container":"#e5eeff","secondary-fixed-dim":"#ffb68c","surface-dim":"#cbdbf5","on-tertiary-fixed-variant":"#003ea8","tertiary":"#000000","on-tertiary":"#ffffff","surface":"#f8f9ff","inverse-on-surface":"#eaf1ff","on-primary-container":"#77849c","on-error":"#ffffff","surface-tint":"#525f75","surface-variant":"#d3e4fe","tertiary-fixed":"#dbe1ff","primary-fixed":"#d6e3fe","tertiary-fixed-dim":"#b4c5ff","on-surface":"#0b1c30","on-primary-fixed-variant":"#3a475c","on-secondary":"#ffffff","surface-bright":"#f8f9ff","inverse-primary":"#bac7e1","inverse-surface":"#213145","surface-container-highest":"#d3e4fe","on-secondary-fixed":"#321200","on-tertiary-container":"#497cff","on-tertiary-fixed":"#00174b","secondary":"#9a4600","on-primary-fixed":"#0e1c2f","outline":"#75777d","on-primary":"#ffffff","background":"#f8f9ff","on-background":"#0b1c30","tertiary-container":"#00174b","on-secondary-container":"#642b00","secondary-fixed":"#ffdbc9","on-error-container":"#93000a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"margin":"1.5rem","space-lg":"1rem","space-xl":"1.5rem","gutter-compact":"0.5rem","space-xs":"0.25rem","gutter":"1rem","space-md":"0.75rem","space-sm":"0.5rem"},fontFamily:{"mono-md":["JetBrains Mono"],"body-lg":["Inter"],"title-md":["Inter"],"display-lg":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"mono-sm":["JetBrains Mono"],"mono-lg":["JetBrains Mono"],"label-md":["Inter"],"headline-lg":["Inter"]},fontSize:{"mono-md":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"mono-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"400"}],"mono-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-md":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-[0_1px_4px_rgba(11,28,48,0.05)]"><div class="h-16 px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="VYUH Intelligence Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WpTLn1fDcosQ6L-pnYhvDv6LzZI-CwyV4CdUdsEN9KWdGFZL9fWwOMiQhupGuQBTxl65FPsAdYbzdsqSbg8G35qq_dGjIy58PbE7oMg7kuen2tFH0NlSjKS5kG8b6mgCli6otQOMLHY-T8U7ffIA22Ul7WtVoNdEBgM6KRP-3TjrWgrrB6B0ZuQE-5ZE_eW5BT2t7azelQyPUdrPlrwGuYXp1IJYKkhzQuWKT_9t96PgAYkuFnmSnGjaI"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface tracking-tight font-bold">VYUH</span><span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-mono-sm text-mono-sm uppercase font-semibold">GOV-OSINT</span></div><span class="font-label-md text-label-md text-on-surface-variant hidden xl:inline">OSINT &amp; Disinformation Intelligence Platform | National Cyber Coordination</span></div></div><div class="h-6 w-px bg-outline-variant hidden md:block"></div><div class="hidden lg:flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded border border-outline-variant"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Case:</span><span class="font-mono-md text-mono-md text-on-surface font-semibold">#INV-2025-089X // Operation PaperStorm</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><span class="font-mono-sm text-mono-sm text-on-surface-variant truncate max-w-xs">Coordinated Banking Phish &amp; Disinformation</span></div><span class="px-space-xs py-0.5 bg-error-container text-on-error-container font-label-md text-label-md rounded font-bold uppercase tracking-wide">CONFIDENTIAL // LAW ENFORCEMENT &amp; CERT USE ONLY</span></div></div><div class="flex items-center gap-space-md"><div class="hidden 2xl:flex items-center gap-space-xs px-space-md py-1 rounded bg-surface-container text-on-surface"><span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span class="font-mono-sm text-mono-sm text-on-surface">Historical Replay Mode (Read-Only Archive - 14.2M Posts Indexed)</span></div><div class="flex items-center gap-space-xs"><button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-mono-sm text-mono-sm text-on-surface-variant hidden sm:inline">Cmd+K</span></button><button class="relative p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-mono-sm text-[9px] font-bold">3</span></button></div><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6qKwOq9OuxMcZzeJanW3TTy2Hk0fDOgNQURZzG4ftrx3VGOxzYf-NHnEtUAG9BROVmC1zL0s0huc80tKl4iberJpSA8VcDU-5Z-fSJNTP3Td6H-3Hq7qGp-ZWzkQItETGzTBUXfCG1rM8c3pNczHJ8zNhyqMStl98JLcaSX1v-m_lQTFye7NfAo36XXzuGJNBvLXBtXXYHoJpYNmpE7AmG_CMqK2i87SWgetsx_2_DXXpaWe1InM"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-secondary-container ring-1 ring-surface-container-lowest"></span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold">A. Sharma</span><span class="font-mono-sm text-mono-sm text-on-surface-variant">Senior Analyst, Cyber Defense</span></div></div></div></div><div class="h-10 px-margin flex items-center justify-between border-t border-outline-variant bg-surface"><nav class="flex items-center gap-space-xs overflow-x-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="investigation-overview" href="#">Investigation Overview</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="narrative-coordination" href="#">Narrative &amp; Coordination</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="network-accounts-osint" href="#">Network &amp; Accounts OSINT</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="media-forensics" href="#">Media Forensics</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="evidence-custody" href="#">Evidence &amp; Custody</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="legal-notice-prep" href="#">Legal Notice Prep</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="sandbox-lab" href="#">Sandbox Lab</a></nav><div class="hidden lg:flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-mono-sm text-mono-sm text-on-surface-variant uppercase">Case Ref:</span><span class="font-mono-sm text-mono-sm text-on-surface font-semibold">#INV-2025-089X</span></div><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold tracking-wider uppercase">RESTRICTED</span><div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">verified</span><span>SHA-256: 4b1f...9e2a</span></div><button class="flex items-center gap-space-xs px-space-md py-1 bg-secondary text-on-secondary rounded font-label-md text-label-md font-semibold hover:bg-secondary-container hover:text-on-secondary-container transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">file_download</span>Export Dossier</button></div></div></header><aside class="fixed left-0 top-[104px] bottom-0 w-64 bg-surface-container-lowest border-r border-outline-variant z-40 flex flex-col justify-between py-space-md"><div class="flex flex-col gap-space-sm px-space-md"><div class="px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Forensic Tooling</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="cluster-matrix" href="#"><span class="material-symbols-outlined text-[18px]">hub</span>Cluster Matrix</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="bot-heuristics" href="#"><span class="material-symbols-outlined text-[18px]">smart_toy</span>Bot Heuristics</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="synthetic-speech" href="#"><span class="material-symbols-outlined text-[18px]">record_voice_over</span>Synthetic Audio &amp; Video</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="geo-triangulation" href="#"><span class="material-symbols-outlined text-[18px]">share_location</span>Geo-Triangulation</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="disinfo-spread-tree" href="#"><span class="material-symbols-outlined text-[18px]">account_tree</span>Propagation Trees</a></nav><div class="mt-space-md px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Chain of Custody</div><div class="bg-surface-container-low p-space-sm rounded border border-outline-variant flex flex-col gap-1"><div class="flex items-center justify-between text-on-surface font-mono-sm text-mono-sm"><span>Ledger Block</span><span class="font-semibold">#8812-C</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Seals Intact</span><span class="text-secondary font-semibold">42/42</span></div><div class="flex items-center gap-1 mt-1 text-on-surface font-label-md text-label-md"><span class="material-symbols-outlined text-[14px] text-secondary">lock</span><span>Cryptographic Audit Mode</span></div></div></div><div class="px-space-md border-t border-outline-variant pt-space-sm flex flex-col gap-space-xs"><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Node Status</span><span class="text-on-surface font-semibold">Synced (12ms)</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Target Platform</span><span class="text-on-surface font-semibold">FedRAMP High</span></div></div></aside><div class="pl-64"><main class="relative pt-[104px] bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Command Ribbon -->
+<div class="bg-surface-container-lowest px-margin py-space-md shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md">
+<!-- Breadcrumb & Titles -->
+<div class="flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="hover:text-on-surface cursor-pointer transition-colors">Portal</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-on-surface cursor-pointer transition-colors">Investigations Registry</span>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-semibold">New Investigation Intake</span>
+</div>
+<div class="flex items-center gap-space-sm mt-0.5">
+<span class="material-symbols-outlined text-secondary text-[24px]">shield_person</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-bold">
+            Initialize Investigation Enclave &amp; Intake Protocol
+          </h1>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm font-semibold tracking-wider">
+            FORM 4.C // SEC-69A
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+          Formal case dossier provisioning under Section 69A &amp; IT Act compliance frameworks. All ingested telemetry, seed vectors, and custody parameters are cryptographically anchored upon creation.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-sm self-start lg:self-center shrink-0">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">drafts</span>
+          Save Draft
+        </button>
+<button class="flex items-center gap-space-xs px-space-lg py-2 rounded bg-primary-container text-on-primary font-label-md text-label-md hover:bg-inverse-surface transition-all shadow-md" onclick="document.getElementById('intakeForm').requestSubmit()" type="button">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">verified_user</span>
+          Initialize Enclave &amp; Begin Ingestion
+        </button>
+</div>
+</div>
+</div>
+<!-- Operational Alert Strip -->
+<div class="bg-surface-container-high px-margin py-2 flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">lock_reset</span>
+<span class="font-mono-sm text-mono-sm">
+<strong>Hardware Enclave HSM-Node:</strong> SGX-DELHI-04 [Attestation: VALID] | Ledger Block Height: #8812-C
+      </span>
+</div>
+<div class="hidden md:flex items-center gap-space-md font-mono-sm text-mono-sm text-on-surface-variant">
+<span>Latency: 14ms</span>
+<span>•</span>
+<span class="text-secondary font-semibold">Strict Chain-of-Custody Active</span>
+</div>
+</div>
+<!-- Form Body / Multi-section Layout -->
+<form class="p-margin flex flex-col gap-space-xl max-w-7xl mx-auto w-full" id="intakeForm" onsubmit="event.preventDefault(); triggerEnclaveProvision();">
+<!-- Section 1: Administrative Identification & Classification -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded bg-primary-container text-on-primary flex items-center justify-center font-mono-sm text-mono-sm font-bold">01</span>
+<h2 class="font-title-md text-title-md text-on-surface font-bold">Administrative Identification &amp; Statutory Classification</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">
+          MANDATORY TELEMETRY ANCHOR
+        </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-lg">
+<!-- Case Title -->
+<div class="md:col-span-8 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1">
+            Operation Codename &amp; Primary Title <span class="text-error">*</span>
+</label>
+<input class="w-full bg-surface-container-low px-space-md py-2.5 rounded font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container transition-colors shadow-inner" placeholder="e.g., Operation FalseWave // Coordinated Infrastructure Disinformation" required="" type="text" value="Operation FalseWave // Coordinated Infrastructure Disinformation"/>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Standard convention: [Operation Name] // [Primary Vector / Incident Spec]</span>
+</div>
+<!-- Case Ref ID -->
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center justify-between">
+<span>Internal Case Reference</span>
+<span class="text-secondary font-mono-sm text-mono-sm">Auto-Generated</span>
+</label>
+<div class="flex items-center bg-surface-container px-space-sm py-1.5 rounded">
+<input class="w-full bg-transparent font-mono-md text-mono-md font-semibold text-on-surface focus:outline-none" id="caseRefId" readonly="" type="text" value="INV-2025-095K-NCR"/>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" onclick="navigator.clipboard.writeText(document.getElementById('caseRefId').value)" title="Copy Case ID" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Allocated via Central National Cyber Docket</span>
+</div>
+<!-- Vector Selection -->
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">
+            Investigation Type / Threat Vector <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low px-space-md py-2.5 rounded font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container cursor-pointer pr-10">
+<option value="financial">Financial Panic &amp; Banking Rumor</option>
+<option value="infra">State Infrastructure Sabotage</option>
+<option value="election">Election Malinformation &amp; Voter Suppression</option>
+<option value="phishing">Credential Harvesting &amp; Sovereign Impersonation</option>
+<option value="deepfake">Synthetic Voice &amp; Deepfake Impersonation</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-[18px] pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Statutory Priority -->
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">
+            Statutory Urgency Tier <span class="text-error">*</span>
+</label>
+<div class="grid grid-cols-3 gap-1 bg-surface-container-low p-1 rounded">
+<label class="flex items-center justify-center py-1.5 px-2 rounded cursor-pointer transition-all bg-surface-container-lowest text-on-surface shadow-sm font-label-md text-label-md font-semibold text-center">
+<input checked="" class="hidden" name="priorityTier" type="radio" value="tier1"/>
+<span>Tier-1 (Immediate)</span>
+</label>
+<label class="flex items-center justify-center py-1.5 px-2 rounded cursor-pointer transition-all hover:bg-surface-container text-on-surface-variant font-label-md text-label-md text-center">
+<input class="hidden" name="priorityTier" type="radio" value="tier2"/>
+<span>Tier-2 High</span>
+</label>
+<label class="flex items-center justify-center py-1.5 px-2 rounded cursor-pointer transition-all hover:bg-surface-container text-on-surface-variant font-label-md text-label-md text-center">
+<input class="hidden" name="priorityTier" type="radio" value="tier3"/>
+<span>Tier-3 Medium</span>
+</label>
+</div>
+</div>
+<!-- Designated Lead Custodian -->
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">
+            Designated Lead Custodian <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low px-space-md py-2.5 rounded font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container cursor-pointer pr-10">
+<option selected="">Officer A. Sharma (ID-9482) — Senior Analyst</option>
+<option>Officer K. Rao (ID-8821) — Technical Director</option>
+<option>Officer V. Joseph (ID-7104) — Forensic Lead</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-[18px] pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Suspicion, Narrative Scope & Legal Basis -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded bg-primary-container text-on-primary flex items-center justify-center font-mono-sm text-mono-sm font-bold">02</span>
+<h2 class="font-title-md text-title-md text-on-surface font-bold">Suspicion, Narrative Scope &amp; Legal Framework</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">
+          EVIDENTIARY THRESHOLD
+        </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-lg">
+<!-- Suspicion Narrative Summary -->
+<div class="md:col-span-7 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold">
+              Executive Suspicion Summary &amp; Modus Operandi <span class="text-error">*</span>
+</label>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant" id="charCount">284 / 2,000</span>
+</div>
+<textarea class="w-full bg-surface-container-low p-space-md rounded font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container transition-colors resize-none shadow-inner leading-relaxed" id="suspicionText" oninput="document.getElementById('charCount').textContent = `${this.value.length} / 2,000`" placeholder="Document preliminary forensic indicators, target syndicates, observed synthetic speech artifacts, or synchronized network amplification nodes requiring statutory intervention..." rows="5">Observed anomalous spike in coordinated micro-targeted accounts disseminating falsified Reserve Bank solvency circulars. Synthetic voice clones simulating Ministry executives detected across 18 high-velocity Telegram broadcasting nodes with cross-platform syndication to verified micro-blogging entities.</textarea>
+<div class="flex items-center gap-space-sm font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+<span>Summary will be incorporated directly into automated Section 69A requisition notices.</span>
+</div>
+</div>
+<!-- CII Sectors & Legal Provisions Stack -->
+<div class="md:col-span-5 flex flex-col gap-space-md">
+<!-- Critical Information Infrastructure -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">
+              Target Critical Information Infrastructure (CII)
+            </label>
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-2">
+<label class="flex items-center gap-space-sm cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded bg-surface-container-lowest text-primary accent-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Banking &amp; Financial Services (CII-01)</span>
+</label>
+<label class="flex items-center gap-space-sm cursor-pointer select-none">
+<input class="w-4 h-4 rounded bg-surface-container-lowest text-primary accent-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Power &amp; Energy Grids (CII-04)</span>
+</label>
+<label class="flex items-center gap-space-sm cursor-pointer select-none">
+<input class="w-4 h-4 rounded bg-surface-container-lowest text-primary accent-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Civil Aviation &amp; Logistics (CII-07)</span>
+</label>
+<label class="flex items-center gap-space-sm cursor-pointer select-none">
+<input class="w-4 h-4 rounded bg-surface-container-lowest text-primary accent-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Public Health Infrastructure (CII-09)</span>
+</label>
+<label class="flex items-center gap-space-sm cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded bg-surface-container-lowest text-primary accent-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Government Gazette &amp; Statutory Orders</span>
+</label>
+</div>
+</div>
+<!-- Applicable Legal Provisions -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">
+              Applicable Statutory Grounds
+            </label>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm flex items-center gap-1 font-semibold">
+                ● IT Act Sec 69A
+                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm flex items-center gap-1 font-semibold">
+                ● IT Act Sec 79(3)(b)
+                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm flex items-center gap-1 font-semibold">
+                ● Rule 3(1)(d) Intermediary Rules
+                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="px-space-sm py-1 rounded bg-surface-container-low text-on-surface-variant font-mono-sm text-mono-sm flex items-center gap-1 hover:bg-surface-container cursor-pointer">
+                + Add BNS / IPC Grounds
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Data Ingestion & Seed Telemetry Parameters -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded bg-primary-container text-on-primary flex items-center justify-center font-mono-sm text-mono-sm font-bold">03</span>
+<h2 class="font-title-md text-title-md text-on-surface font-bold">Data Ingestion, Crawlers &amp; Seed Telemetry Parameters</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">
+          REAL-TIME PIPE
+        </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-lg">
+<!-- Seed URLs & Vectors -->
+<div class="md:col-span-7 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center justify-between">
+<span>Primary Seed URLs, Hashtags &amp; Account Handles</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Newline delimited</span>
+</label>
+<textarea class="w-full bg-surface-container-low p-space-md rounded font-mono-md text-mono-md text-on-surface focus:outline-none focus:bg-surface-container transition-colors resize-none shadow-inner" placeholder="https://x.com/seed_alert_in
+t.me/reserve_leak_bulletin
+#BankHolidayEmergency
+https://youtube.com/watch?v=sample_seed_09" rows="5">https://x.com/reserve_alert_in
+t.me/central_emergency_bulletin
+#BankSolvencyAlert2025
+https://youtube.com/watch?v=fake_press_briefing</textarea>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Crawl engine will expand radial degree graph up to 3 hops within configured policy bounds.</span>
+</div>
+<!-- Ingestion Connectors Status Grid -->
+<div class="md:col-span-5 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Active Ingestion Connectors</label>
+<div class="grid grid-cols-1 gap-2">
+<!-- X Connector -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">X / Twitter Sovereign API Firehose</span>
+</div>
+<span class="font-mono-sm text-mono-sm px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface">ACTIVE [8.4k evt/s]</span>
+</div>
+<!-- Telegram Connector -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Telegram Channel Scraper Swarm</span>
+</div>
+<span class="font-mono-sm text-mono-sm px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface">ACTIVE [42 Channels]</span>
+</div>
+<!-- YouTube Media Ingest -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">YouTube Stream Transcoder &amp; OCR</span>
+</div>
+<span class="font-mono-sm text-mono-sm px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface">ACTIVE</span>
+</div>
+<!-- Darknet Mirror Ingest -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-body-md text-body-md text-on-surface-variant">Darknet Onion RSS Aggregator</span>
+</div>
+<span class="font-mono-sm text-mono-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">TOR STANDBY</span>
+</div>
+</div>
+</div>
+<!-- Historical Window -->
+<div class="md:col-span-6 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Historical Lookback Boundary</label>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col bg-surface-container-low px-space-md py-2 rounded">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Lookback Window Start</span>
+<input class="bg-transparent font-mono-md text-mono-md text-on-surface focus:outline-none" type="text" value="2025-02-15 00:00 UTC"/>
+</div>
+<div class="flex flex-col bg-surface-container-low px-space-md py-2 rounded">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Window Terminus</span>
+<input class="bg-transparent font-mono-md text-mono-md text-on-surface focus:outline-none" type="text" value="Present // Continuous Live Firehose"/>
+</div>
+</div>
+</div>
+<!-- Enclave Isolation Mode -->
+<div class="md:col-span-6 flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Data Isolation Level &amp; Storage Ring</label>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-1 rounded">
+<label class="flex flex-col p-2 rounded cursor-pointer transition-all bg-surface-container-lowest text-on-surface shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold">Air-Gapped Sovereign Enclave</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant mt-1">Classified Local HSM Instance</span>
+</label>
+<label class="flex flex-col p-2 rounded cursor-pointer transition-all hover:bg-surface-container text-on-surface-variant">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold">Inter-Agency Bridge</span>
+<span class="material-symbols-outlined text-[16px] text-outline-variant">share</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant mt-1">CERT-In + IB Shared Pipeline</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Chain of Custody & Legal Attestation -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded bg-primary-container text-on-primary flex items-center justify-center font-mono-sm text-mono-sm font-bold">04</span>
+<h2 class="font-title-md text-title-md text-on-surface font-bold">Chain of Custody, Officer Attestation &amp; Cryptographic Sealing</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">
+          EVIDENTIARY VALIDITY
+        </span>
+</div>
+<!-- Live Forensic Certificate Preview Card -->
+<div class="bg-surface-container-low p-space-lg rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[28px]">token</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Genesis Block Parameters</span>
+<div class="font-mono-sm text-mono-sm text-on-surface-variant">
+              SHA-256 Seed Digest: <span class="font-semibold text-on-surface">e9a8f4c12d7b889345e0d...48a2bc90</span>
+</div>
+<div class="font-mono-sm text-mono-sm text-on-surface-variant">
+              Attesting Token: <span class="text-secondary font-semibold">CERT-GOV-HWTOKEN-9482-PKI</span> | HSM Slot: 02
+            </div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-md py-2 rounded shadow-sm shrink-0">
+<span class="material-symbols-outlined text-secondary text-[20px]">encrypted</span>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm font-bold text-on-surface">WORM Storage Bound</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Write Once, Read Many</span>
+</div>
+</div>
+</div>
+<!-- Formal Attestation Checkbox -->
+<div class="bg-surface-container-high/60 p-space-md rounded flex items-start gap-space-md">
+<input class="mt-1 w-5 h-5 rounded bg-surface-container-lowest text-primary accent-primary cursor-pointer shrink-0" id="attestationCheck" required="" type="checkbox"/>
+<label class="cursor-pointer select-none font-body-md text-body-md text-on-surface leading-relaxed" for="attestationCheck">
+<strong>STATUTORY ATTESTATION:</strong> I solemnly attest under the Information Technology Act, 2000, Section 69A and CERT-In procedural directives that this intake vector is initiated solely for bona fide public defense, territorial cybersecurity, or public order preservation. I acknowledge that all ingested packets, raw telemetries, and officer analytical touches are ledgered into an immutable, court-admissible audit log.
+        </label>
+</div>
+<!-- Action Footer -->
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<button class="w-full sm:w-auto px-space-lg py-2.5 rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" onclick="window.history.back()" type="button">
+          Cancel / Abort Intake
+        </button>
+<div class="w-full sm:w-auto flex flex-col sm:flex-row items-center gap-space-sm">
+<button class="w-full sm:w-auto px-space-lg py-2.5 rounded bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-colors" type="button">
+            Save Incomplete Draft
+          </button>
+<button class="w-full sm:w-auto flex items-center justify-center gap-space-sm px-space-xl py-2.5 rounded bg-primary-container text-on-primary hover:bg-inverse-surface font-label-md text-label-md font-semibold transition-all shadow-md group" type="submit">
+<span class="material-symbols-outlined text-secondary-container text-[18px] group-hover:scale-110 transition-transform">enhanced_encryption</span>
+<span>Cryptographically Provision Enclave</span>
+</button>
+</div>
+</div>
+</div>
+</form>
+<!-- Interactive Modal / Notification Trigger Simulation -->
+<div class="fixed bottom-6 right-6 hidden bg-primary-container text-on-primary p-space-md rounded-xl shadow-xl z-50 flex items-center gap-space-md max-w-md animate-fade-in" id="statusToast">
+<span class="material-symbols-outlined text-secondary-container text-[28px] animate-spin">autorenew</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold">Initializing Enclave...</span>
+<span class="font-mono-sm text-mono-sm text-on-primary-container">Anchoring SHA-256 genesis block &amp; triggering stream firehoses.</span>
+</div>
+</div>
+<script>
+    function triggerEnclaveProvision() {
+      const toast = document.getElementById('statusToast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.innerHTML = `
+            <span class="material-symbols-outlined text-secondary text-[28px]">verified</span>
+            <div class="flex flex-col">
+              <span class="font-title-md text-title-md font-bold text-on-primary">Enclave Provisioned</span>
+              <span class="font-mono-sm text-mono-sm text-on-primary-container">INV-2025-095K-NCR active. Redirecting to Stream Dashboard...</span>
+            </div>
+          `;
+          setTimeout(() => {
+            toast.classList.add('hidden');
+          }, 3000);
+        }, 1600);
+      }
+    }
+  </script>
+</div></main></div></body></html>
