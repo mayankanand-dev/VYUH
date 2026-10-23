@@ -157,6 +157,46 @@ All scoring outputs (`coordination_scores.jsonl`, `account_anomalies.jsonl`) con
 
 ---
 
+## 4.1 Node and Degree Streams (`graph_nodes.jsonl`, `graph_degrees.jsonl`)
+
+### Node Export (`graph_nodes.jsonl`)
+```json
+{
+  "account_id": "twitter:1015969769760096384",
+  "platform": "twitter",
+  "author_name": "ShashiRajbhar6",
+  "record_count": 1,
+  "community_id": "community_4",
+  "total_degree": 6,
+  "in_degree": 0,
+  "out_degree": 6,
+  "weighted_degree": 3.0,
+  "pagerank": 0.001762,
+  "betweenness_centrality": 0.0
+}
+```
+
+### Degree Export (`graph_degrees.jsonl`)
+```json
+{
+  "account_id": "twitter:1015969769760096384",
+  "in_degree": 0,
+  "out_degree": 6,
+  "total_degree": 6,
+  "weighted_degree": 3.0
+}
+```
+
+---
+
+## 4.2 Findings and Edges Compatibility Aliases
+
+To support all consumer naming conventions:
+- **`coordination_findings.jsonl`**: Exact duplicate of `coordination_scores.jsonl` (`AnalysisResult` records).
+- **`graph_edges.jsonl`**: Exact duplicate of `coordination_edges.jsonl` (`CoordinationEdge` records).
+
+---
+
 ## 5. Communities and Influence Schema (`communities_and_influence.json`)
 
 ```json

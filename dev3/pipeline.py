@@ -11,7 +11,8 @@ Executes:
 8. Evidence-supported geospatial analysis
 9. Multimedia forensics for local assets
 10. Optional OSINT username enumeration and candidate linkage
-11. Audit and reproducibility run summary
+11. Standard contract JSONL outputs (graph_nodes, graph_edges, graph_degrees, coordination_findings)
+12. Audit and reproducibility run summary
 
 Adheres strictly to Sections 4, 5, and 10 of Master Prompt.
 """
@@ -119,7 +120,9 @@ def run_dev3_pipeline(
         records,
         sync_window_seconds=sync_window_seconds,
     )
+    # Write both standard edge names for complete contract interoperability
     write_jsonl(run_dir / "coordination_edges.jsonl", edges)
+    write_jsonl(run_dir / "graph_edges.jsonl", edges)
     print(f"       Found {len(edges)} total edges ({sync_diagnostics['observed_edge_count']} observed, {sync_diagnostics['inferred_edge_count']} inferred).")
 
     # Stage 4: Account graph construction
@@ -138,6 +141,38 @@ def run_dev3_pipeline(
     }
     write_json(run_dir / "communities_and_influence.json", combined_network_analytics)
 
+    # Export graph_nodes.jsonl and graph_degrees.jsonl
+    acct_to_comm = communities_res.get("account_to_community", {})
+    acct_metrics = influence_res.get("account_metrics", {})
+
+    graph_nodes = []
+    graph_degrees = []
+    for node_id, attrs in graph.nodes.items():
+        metrics = acct_metrics.get(node_id, {})
+        graph_nodes.append({
+            "account_id": node_id,
+            "platform": attrs.get("platform", "twitter"),
+            "author_name": attrs.get("author_name", node_id),
+            "record_count": attrs.get("record_count", 0),
+            "community_id": acct_to_comm.get(node_id, "comm_unassigned"),
+            "total_degree": metrics.get("total_degree", 0),
+            "in_degree": metrics.get("in_degree", 0),
+            "out_degree": metrics.get("out_degree", 0),
+            "weighted_degree": metrics.get("weighted_degree", 0.0),
+            "pagerank": metrics.get("pagerank", 0.0),
+            "betweenness_centrality": metrics.get("betweenness_centrality", 0.0),
+        })
+        graph_degrees.append({
+            "account_id": node_id,
+            "in_degree": metrics.get("in_degree", 0),
+            "out_degree": metrics.get("out_degree", 0),
+            "total_degree": metrics.get("total_degree", 0),
+            "weighted_degree": metrics.get("weighted_degree", 0.0),
+        })
+
+    write_jsonl(run_dir / "graph_nodes.jsonl", graph_nodes)
+    write_jsonl(run_dir / "graph_degrees.jsonl", graph_degrees)
+
     # Stage 6: Behavioural anomaly screening
     print("[INFO] Screening behavioural cadence and content anomalies...")
     anomaly_results = screen_account_anomalies(features)
@@ -148,7 +183,9 @@ def run_dev3_pipeline(
     print("[INFO] Computing transparent multi-signal campaign scores...")
     coordination_scores = compute_account_coordination_scores(features, edges)
     score_list = list(coordination_scores.values())
+    # Write both coordination_scores.jsonl and coordination_findings.jsonl
     write_jsonl(run_dir / "coordination_scores.jsonl", score_list)
+    write_jsonl(run_dir / "coordination_findings.jsonl", score_list)
 
     # Stage 8: Geospatial analysis
     print("[INFO] Performing evidence-supported geospatial activity screening...")
@@ -185,9 +222,18 @@ def run_dev3_pipeline(
 
     # Compile Run Summary
     output_counts = {
+        "input_records": total_records,
+        "account_nodes": len(graph_nodes),
+        "graph_nodes": len(graph_nodes),
+        "graph_edges": len(edges),
+        "graph_degrees": len(graph_degrees),
         "account_features": len(features_list),
         "coordination_edges": len(edges),
         "coordination_scores": len(score_list),
+        "coordination_findings": len(score_list),
+        "observed_edges": sync_diagnostics["observed_edge_count"],
+        "inferred_edges": sync_diagnostics["inferred_edge_count"],
+        "unresolved_targets": graph_summary.get("unresolved_target_count", 0),
         "communities": communities_res.get("total_communities", 0),
         "anomalous_accounts_screened": len(anomaly_list),
         "media_assets_analyzed": len(media_results),

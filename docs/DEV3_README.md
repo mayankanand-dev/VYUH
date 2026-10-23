@@ -132,21 +132,23 @@ Each pipeline run creates an isolated directory `runs/RUN_DEV3_<timestamp>_<uuid
 
 1. **`run_summary.json`**: Execution audit trail, input record count, parameter checkpoints, software versions, and global limitations.
 2. **`account_features.jsonl`**: Statistical behavioural profiles per account (rates, intervals, ratios, burst counts, missing data indicators).
-3. **`coordination_edges.jsonl`**: Typed observed interaction edges (`reply`, `repost`, `mention`) and inferred coordination edges (`synchronized_post`, `similar_content`, `shared_url`, `shared_media`).
-4. **`coordination_scores.jsonl`**: Standard `AnalysisResult` objects with provisional screening labels (`low_evidence`, `needs_review`, `elevated_coordination_signals`, `inconclusive`).
-5. **`graph_summary.json`**: Node/edge counts, observed vs inferred breakdown, degree distributions, top connected accounts, and unresolved target diagnostics.
-6. **`communities_and_influence.json`**: Modularity-derived community clusters, PageRank rankings, betweenness centrality, and candidate earliest observed originators.
-7. **`account_anomalies.jsonl`**: Unsupervised cadence and repetition outlier screening results (`score_type="anomaly"`).
-8. **`geospatial_analysis.json`**: Numeric coordinate coverage, geographic cell hotspots, and spatial activity spike z-scores.
-9. **`media_analysis.jsonl`**: SHA-256 byte matches, perceptual pHash near-duplicates, JPEG ELA forensic indicators, and video frame findings.
-10. **`osint_findings.jsonl`**: Platform username search findings with provenance, status (`found`, `not_found`, `blocked`, `error`), and timestamps.
-11. **`candidate_account_links.jsonl`**: Cautious cross-platform linkage hypotheses with alternative explanations and mandatory human-review flags.
+3. **`coordination_findings.jsonl`** / **`coordination_scores.jsonl`**: Standard `AnalysisResult` objects with provisional screening labels (`low_evidence`, `needs_review`, `elevated_coordination_signals`, `inconclusive`).
+4. **`graph_nodes.jsonl`**: Individual platform-scoped account node records with community IDs, degree stats, and PageRank.
+5. **`graph_edges.jsonl`** / **`coordination_edges.jsonl`**: Typed observed interaction edges (`reply`, `repost`, `mention`) and inferred coordination edges (`synchronized_post`, `similar_content`, `shared_url`, `shared_media`).
+6. **`graph_degrees.jsonl`**: Per-account directed in-degree, out-degree, total degree, and weighted degree.
+7. **`graph_summary.json`**: Node/edge counts, observed vs inferred breakdown, degree distributions, top connected accounts, and unresolved target diagnostics.
+8. **`communities_and_influence.json`**: Modularity-derived community clusters, PageRank rankings, betweenness centrality, and candidate earliest observed originators.
+9. **`account_anomalies.jsonl`**: Unsupervised cadence and repetition outlier screening results (`score_type="anomaly"`).
+10. **`geospatial_analysis.json`**: Numeric coordinate coverage, geographic cell hotspots, and spatial activity spike z-scores.
+11. **`media_analysis.jsonl`**: SHA-256 byte matches, perceptual pHash near-duplicates, JPEG ELA forensic indicators, and video frame findings.
+12. **`osint_findings.jsonl`**: Platform username search findings with provenance, status (`found`, `not_found`, `blocked`, `error`), and timestamps.
+13. **`candidate_account_links.jsonl`**: Cautious cross-platform linkage hypotheses with alternative explanations and mandatory human-review flags.
 
 ---
 
 ## 6. How to Inspect Inferred vs. Observed Graph Edges
 
-In `coordination_edges.jsonl`:
+In `coordination_edges.jsonl` (and `graph_edges.jsonl`):
 - **Observed Edges** have `"observed_or_inferred": "observed"` and correspond directly to platform mechanics (`reply`, `repost`, `mention`).
 - **Inferred Edges** have `"observed_or_inferred": "inferred"` and represent algorithmic hypotheses (`synchronized_post`, `similar_content`, `shared_url`, `shared_media`).
 
@@ -162,4 +164,4 @@ The test suite runs 100% offline with zero external network dependencies:
 pytest -v
 ```
 
-All 30 unit and integration tests execute deterministically in ~4 seconds.
+All 39 unit and integration tests execute deterministically in ~4 seconds.

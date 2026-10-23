@@ -67,6 +67,10 @@ def test_full_dev3_pipeline_execution(synthetic_canonical_file: Path, tmp_path: 
     assert (run_dir / "account_features.jsonl").exists()
     assert (run_dir / "coordination_edges.jsonl").exists()
     assert (run_dir / "coordination_scores.jsonl").exists()
+    assert (run_dir / "coordination_findings.jsonl").exists()
+    assert (run_dir / "graph_nodes.jsonl").exists()
+    assert (run_dir / "graph_edges.jsonl").exists()
+    assert (run_dir / "graph_degrees.jsonl").exists()
     assert (run_dir / "graph_summary.json").exists()
     assert (run_dir / "communities_and_influence.json").exists()
     assert (run_dir / "account_anomalies.jsonl").exists()
@@ -78,6 +82,11 @@ def test_full_dev3_pipeline_execution(synthetic_canonical_file: Path, tmp_path: 
         summary = json.load(f)
         assert summary["input_records_count"] == 10
         assert summary["output_counts"]["account_features"] == 3
+        assert summary["output_counts"]["coordination_scores"] == 3
+        assert summary["output_counts"]["coordination_findings"] == 3
+        assert summary["output_counts"]["graph_nodes"] == 3
+        assert summary["output_counts"]["graph_edges"] == 9
+        assert summary["output_counts"]["graph_degrees"] == 3
         assert summary["output_counts"]["coordination_scores"] == 3
 
     # Verify evidence IDs retained in coordination scores
