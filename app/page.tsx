@@ -140,6 +140,10 @@ export default function VyuhPlatform() {
   const [isScanningClusters, setIsScanningClusters] = useState(false);
   const [caseRelatedPosts, setCaseRelatedPosts] = useState<SocialPost[]>([]);
   const [isCasePostsLoading, setIsCasePostsLoading] = useState(false);
+  const [selectedClusterForReview, setSelectedClusterForReview] = useState<CandidateCluster | null>(null);
+  const [officerClusterReport, setOfficerClusterReport] = useState<string>('');
+  const [officerCaseReport, setOfficerCaseReport] = useState<string>('');
+  const clusterCarouselRef = React.useRef<HTMLDivElement>(null);
 
   // Evidence State
   const [evidenceList, setEvidenceList] = useState<EvidenceRecord[]>(initialEvidence);
@@ -412,6 +416,103 @@ export default function VyuhPlatform() {
       setIsScanningClusters(false);
       setTimeout(() => setPreservedToast(null), 4000);
     }
+  };
+
+  // Carousel Horizontal Scroll Handler
+  const scrollClusters = (direction: 'left' | 'right') => {
+    if (clusterCarouselRef.current) {
+      const scrollAmount = direction === 'left' ? -380 : 380;
+      clusterCarouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  // Open Cluster Review Modal with Officer Disposition Report Form
+  const handleOpenClusterReview = (cluster: CandidateCluster) => {
+    setSelectedClusterForReview(cluster);
+    setOfficerClusterReport('');
+  };
+
+  // Accept Cluster with Officer Final Report
+  const handleAcceptClusterWithReport = (cluster: CandidateCluster) => {
+    const reportNote = officerClusterReport.trim()
+      ? `\n\n[Authorized Officer Final Report]: ${officerClusterReport.trim()}`
+      : '';
+    const newCase: CaseRecord = {
+      case_id: `INV-2026-${cluster.id.replace('CL-AI-', 'AI-')}`,
+      title: `${cluster.cluster_name} (AI Cluster Approved)`,
+      status: 'ACTIVE_INVESTIGATION',
+      priority: cluster.threat_level,
+      lead_officer: 'Authorized Officer',
+      unit: 'Cyber Defense Operations / Special Task Force',
+      created_at: new Date().toISOString(),
+      narrative_focus: `${cluster.ai_analysis}${reportNote}`,
+      evidence_count: (cluster.sample_tweets || []).length,
+      statutory_sections: cluster.recommended_sections,
+      coordination_vectors: [
+        cluster.velocity_spike,
+        `Semantic Cohesion: ${((cluster.cohesion_score || cluster.coordination_score || 0.85) * 100).toFixed(1)}%`,
+        'Officer Approved Cluster'
+      ],
+      target_keyword: cluster.target_keyword,
+      suspect_accounts: cluster.suspect_accounts.map((a) => `@${a.handle}`)
+    };
+    setCases([newCase, ...cases]);
+    setCandidateClusters(candidateClusters.filter((c) => c.id !== cluster.id));
+    setSelectedClusterForReview(null);
+    setOfficerClusterReport('');
+    setPreservedToast(`AI Cluster ${cluster.id} approved and converted to Active Case!`);
+    setTimeout(() => setPreservedToast(null), 4000);
+  };
+
+  // Decline Cluster with Officer Final Report
+  const handleDeclineClusterWithReport = (clusterId: string) => {
+    setCandidateClusters(candidateClusters.filter((c) => c.id !== clusterId));
+    setSelectedClusterForReview(null);
+    setOfficerClusterReport('');
+    setPreservedToast(`AI Cluster ${clusterId} declined / archived: No further action required.`);
+    setTimeout(() => setPreservedToast(null), 4000);
+  };
+
+  // Update Populated Case with Officer Final Report
+  const handleUpdateCaseReport = (caseId: string) => {
+    if (!officerCaseReport.trim()) return;
+    setCases(cases.map((c) => {
+      if (c.case_id === caseId) {
+        return {
+          ...c,
+          narrative_focus: `${c.narrative_focus}\n\n[Officer Assessment Report]: ${officerCaseReport.trim()}`
+        };
+      }
+      return c;
+    }));
+    if (selectedCase && selectedCase.case_id === caseId) {
+      setSelectedCase({
+        ...selectedCase,
+        narrative_focus: `${selectedCase.narrative_focus}\n\n[Officer Assessment Report]: ${officerCaseReport.trim()}`
+      });
+    }
+    setOfficerCaseReport('');
+    setPreservedToast(`Officer report updated for case ${caseId}.`);
+    setTimeout(() => setPreservedToast(null), 4000);
+  };
+
+  // Close / Decline Further Action on Populated Case
+  const handleCloseCaseAction = (caseId: string) => {
+    const reason = officerCaseReport.trim() || 'Officer disposition: Investigation concluded and disposed. No further action required.';
+    setCases(cases.map((c) => {
+      if (c.case_id === caseId) {
+        return {
+          ...c,
+          status: 'DISPOSED_NO_FURTHER_ACTION',
+          narrative_focus: `${c.narrative_focus}\n\n[Case Disposition / Final Closure Report]: ${reason}`
+        };
+      }
+      return c;
+    }));
+    setSelectedCase(null);
+    setOfficerCaseReport('');
+    setPreservedToast(`Case ${caseId} marked as Disposed / Closed.`);
+    setTimeout(() => setPreservedToast(null), 4000);
   };
 
   // Handle Media File Selection in Media Forensics
@@ -1001,134 +1102,177 @@ export default function VyuhPlatform() {
                 </div>
               </div>
 
-              {/* AI Disinformation Cluster Detection Section */}
+              {/* AI Disinformation Cluster Detection Section - Horizontal Scroll Carousel */}
               {candidateClusters.length > 0 && (
-                <div className="bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-white p-6 rounded-3xl border border-orange-200 shadow-xs flex flex-col gap-5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-orange-600 text-white flex items-center justify-center shadow-xs">
-                        <span className="material-symbols-outlined text-[18px]">psychology</span>
+                <div className="bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-white p-6 rounded-3xl border border-orange-200 shadow-xs flex flex-col gap-4">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-2xl bg-orange-600 text-white flex items-center justify-center shadow-xs">
+                        <span className="material-symbols-outlined text-[20px]">psychology</span>
                       </div>
                       <div>
-                        <h2 className="font-bold text-base text-slate-900">
-                          AI Disinformation Cluster Detection
-                        </h2>
-                        <p className="text-[11px] text-slate-500">
-                          {candidateClusters.length} candidate coordinated campaigns flagged by NLP & Graph Analytics. Review AI analysis and decide whether to accept.
+                        <div className="flex items-center gap-2">
+                          <h2 className="font-bold text-base text-slate-900">
+                            AI Disinformation Clusters
+                          </h2>
+                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold font-mono bg-orange-100 text-orange-900 border border-orange-200">
+                            {candidateClusters.length} Clusters in Database
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 mt-0.5">
+                          Horizontally scrollable carousel of all NLP clusters. Click any cluster card to view its related tweets, accounts, and issue officer final disposition report.
                         </p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-bold font-mono bg-orange-100 text-orange-900 border border-orange-200">
-                      Pending Officer Decision
-                    </span>
+
+                    {/* Carousel Navigation Buttons */}
+                    <div className="flex items-center gap-2 self-end md:self-auto">
+                      <button
+                        type="button"
+                        onClick={() => scrollClusters('left')}
+                        className="w-8 h-8 rounded-xl bg-white border border-slate-200 hover:border-orange-400 hover:bg-orange-50 text-slate-700 hover:text-orange-600 flex items-center justify-center shadow-xs transition-all cursor-pointer"
+                        title="Scroll clusters left"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => scrollClusters('right')}
+                        className="w-8 h-8 rounded-xl bg-white border border-slate-200 hover:border-orange-400 hover:bg-orange-50 text-slate-700 hover:text-orange-600 flex items-center justify-center shadow-xs transition-all cursor-pointer"
+                        title="Scroll clusters right"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleScanClusters}
+                        disabled={isScanningClusters}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-orange-400 hover:bg-orange-50 text-[11px] font-semibold text-slate-700 cursor-pointer shadow-xs"
+                      >
+                        <span className={`material-symbols-outlined text-[14px] ${isScanningClusters ? 'animate-spin text-orange-600' : ''}`}>sync</span>
+                        <span>Re-Sync</span>
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                    {candidateClusters.map((cluster) => (
-                      <div
-                        key={cluster.id}
-                        className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between gap-4 hover:border-orange-300 transition-all"
-                      >
-                        <div className="flex flex-col gap-3">
-                          <div className="flex items-center justify-between">
-                            <span className="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg bg-slate-100 text-slate-800">
-                              {cluster.id}
-                            </span>
-                            <span
-                              className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
-                                cluster.threat_level === 'CRITICAL'
-                                  ? 'bg-rose-100 text-rose-700'
-                                  : 'bg-amber-100 text-amber-800'
-                              }`}
-                            >
-                              {cluster.threat_level} THREAT
-                            </span>
-                          </div>
-
-                          <h3 className="font-bold text-sm text-slate-900 leading-snug">
-                            {cluster.cluster_name}
-                          </h3>
-
-                          {/* Velocity & AI Analysis */}
-                          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 flex flex-col gap-1.5">
-                            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-orange-700">
-                              <span className="material-symbols-outlined text-[14px]">speed</span>
-                              <span>{cluster.velocity_spike}</span>
-                            </div>
-                            <p className="text-[11px] text-slate-600 leading-relaxed">
-                              {cluster.ai_analysis}
-                            </p>
-                          </div>
-
-                          {/* Suspect Accounts */}
-                          <div className="flex flex-col gap-1">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                              Key Suspect Accounts:
-                            </span>
-                            <div className="flex flex-wrap gap-1.5">
-                              {cluster.suspect_accounts.map((acc, i) => (
-                                <button
-                                  key={i}
-                                  onClick={() => handleInspectAccount(acc.handle)}
-                                  className="px-2 py-0.5 rounded-lg bg-orange-50 border border-orange-100 text-orange-950 font-mono text-[10px] flex items-center gap-1 hover:bg-orange-100 cursor-pointer"
-                                >
-                                  <span>@{acc.handle}</span>
-                                  <span className="text-[9px] font-bold text-rose-600">
-                                    {(acc.risk * 100).toFixed(0)}%
-                                  </span>
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Sample Flagged Tweet */}
-                          {cluster.sample_tweets && cluster.sample_tweets.length > 0 && (
-                            <div className="p-2.5 bg-orange-50/50 rounded-xl border border-orange-100/60 flex flex-col gap-1">
-                              <span className="text-[9px] font-bold text-orange-800 uppercase tracking-wider font-mono">
-                                Sample Flagged Post:
+                  {/* Horizontally Scrollable Track */}
+                  <div className="relative">
+                    <div
+                      ref={clusterCarouselRef}
+                      className="flex gap-4 overflow-x-auto pb-4 pt-1 px-1 scroll-smooth snap-x snap-mandatory"
+                      style={{ scrollbarWidth: 'thin' }}
+                    >
+                      {candidateClusters.map((cluster) => (
+                        <div
+                          key={cluster.id}
+                          onClick={() => handleOpenClusterReview(cluster)}
+                          className="w-[360px] min-w-[360px] snap-start bg-white p-5 rounded-3xl border border-slate-200 shadow-xs flex flex-col justify-between gap-3 hover:border-orange-400 hover:shadow-md transition-all cursor-pointer group active:scale-[0.99]"
+                        >
+                          <div className="flex flex-col gap-2.5">
+                            <div className="flex items-center justify-between">
+                              <span className="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg bg-slate-100 text-slate-800 group-hover:bg-orange-50 group-hover:text-orange-950 transition-colors">
+                                {cluster.id}
                               </span>
-                              <p className="text-[11px] text-slate-700 italic leading-relaxed line-clamp-2">
-                                &ldquo;{cluster.sample_tweets[0]}&rdquo;
+                              <div className="flex items-center gap-1.5">
+                                <span
+                                  className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+                                    cluster.threat_level === 'CRITICAL'
+                                      ? 'bg-rose-100 text-rose-700'
+                                      : 'bg-amber-100 text-amber-800'
+                                  }`}
+                                >
+                                  {cluster.threat_level}
+                                </span>
+                                {cluster.cohesion_score && (
+                                  <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-purple-50 text-purple-700 border border-purple-100">
+                                    {(cluster.cohesion_score * 100).toFixed(0)}% Cohesion
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
+                            <h3 className="font-bold text-sm text-slate-900 leading-snug group-hover:text-orange-600 transition-colors line-clamp-2">
+                              {cluster.cluster_name}
+                            </h3>
+
+                            {/* Velocity & AI Analysis Snippet */}
+                            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col gap-1">
+                              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-orange-700">
+                                <span className="material-symbols-outlined text-[14px]">speed</span>
+                                <span>{cluster.velocity_spike}</span>
+                              </div>
+                              <p className="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
+                                {cluster.ai_analysis}
                               </p>
                             </div>
-                          )}
 
-                          {/* Model Attribution Badge */}
-                          <div className="text-[10px] text-slate-400 font-mono flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[12px] text-orange-600">memory</span>
-                            <span>Model: BERTopic (narrative_clusterer.joblib)</span>
-                          </div>
-
-                          {/* Statutory Recommendations */}
-                          <div className="flex flex-wrap gap-1 pt-1">
-                            {cluster.recommended_sections.map((sec, i) => (
-                              <span key={i} className="px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[9px] font-mono">
-                                {sec}
+                            {/* Suspect Accounts */}
+                            <div className="flex flex-col gap-1">
+                              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                                Key Suspect Accounts:
                               </span>
-                            ))}
+                              <div className="flex flex-wrap gap-1">
+                                {cluster.suspect_accounts.slice(0, 3).map((acc, i) => (
+                                  <span
+                                    key={i}
+                                    className="px-2 py-0.5 rounded-lg bg-orange-50 border border-orange-100 text-orange-950 font-mono text-[10px] flex items-center gap-1"
+                                  >
+                                    <span>@{acc.handle}</span>
+                                    <span className="text-[9px] font-bold text-rose-600">
+                                      {(acc.risk * 100).toFixed(0)}%
+                                    </span>
+                                  </span>
+                                ))}
+                                {cluster.suspect_accounts.length > 3 && (
+                                  <span className="px-1.5 py-0.5 text-[10px] font-mono text-slate-400">
+                                    +{cluster.suspect_accounts.length - 3} more
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Sample Flagged Tweet */}
+                            {cluster.sample_tweets && cluster.sample_tweets.length > 0 && (
+                              <div className="p-2.5 bg-orange-50/50 rounded-xl border border-orange-100/60 flex flex-col gap-1">
+                                <span className="text-[9px] font-bold text-orange-800 uppercase tracking-wider font-mono">
+                                  Sample Tweet:
+                                </span>
+                                <p className="text-[11px] text-slate-700 italic leading-relaxed line-clamp-2">
+                                  &ldquo;{cluster.sample_tweets[0]}&rdquo;
+                                </p>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Click Card Call-to-Action & Quick Actions */}
+                          <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                            <span className="text-[11px] font-bold text-orange-600 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                              <span>Click to See Tweets & Report</span>
+                              <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                            </span>
+
+                            <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                              <button
+                                type="button"
+                                onClick={() => handleAcceptCluster(cluster)}
+                                className="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 transition-colors cursor-pointer"
+                                title="Quick Accept & Open Case"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">check</span>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleDismissCluster(cluster.id)}
+                                className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
+                                title="Decline / Dismiss cluster"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">close</span>
+                              </button>
+                            </div>
                           </div>
                         </div>
-
-                        {/* Officer Decision Buttons */}
-                        <div className="pt-3 border-t border-slate-100 flex items-center gap-2">
-                          <button
-                            onClick={() => handleAcceptCluster(cluster)}
-                            className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold text-xs shadow-xs transition-all cursor-pointer flex items-center justify-center gap-1.5"
-                          >
-                            <span className="material-symbols-outlined text-[16px]">check_circle</span>
-                            <span>Accept & Open Case</span>
-                          </button>
-
-                          <button
-                            onClick={() => handleDismissCluster(cluster.id)}
-                            className="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs transition-all cursor-pointer"
-                            title="Dismiss as benign / false positive"
-                          >
-                            Dismiss
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
@@ -2308,6 +2452,198 @@ export default function VyuhPlatform() {
           )}
 
           {/* ======================================================== */}
+          {/* MODAL: AI CLUSTER REVIEW & OFFICER FINAL REPORT */}
+          {/* ======================================================== */}
+          {selectedClusterForReview && (
+            <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+              <div className="bg-white w-full max-w-2xl rounded-3xl border border-slate-200 shadow-2xl p-7 flex flex-col gap-5 animate-in fade-in zoom-in-95 max-h-[90vh] overflow-y-auto">
+                <div className="flex items-start justify-between pb-4 border-b border-slate-100">
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-xl bg-orange-100 text-orange-950">
+                        {selectedClusterForReview.id}
+                      </span>
+                      <span
+                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+                          selectedClusterForReview.threat_level === 'CRITICAL'
+                            ? 'bg-rose-100 text-rose-700'
+                            : 'bg-amber-100 text-amber-800'
+                        }`}
+                      >
+                        {selectedClusterForReview.threat_level} THREAT
+                      </span>
+                      {selectedClusterForReview.cohesion_score && (
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-purple-100 text-purple-800">
+                          {((selectedClusterForReview.cohesion_score) * 100).toFixed(1)}% Semantic Cohesion
+                        </span>
+                      )}
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-900 mt-1">{selectedClusterForReview.cluster_name}</h2>
+                  </div>
+                  <button
+                    onClick={() => setSelectedClusterForReview(null)}
+                    className="p-1.5 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+
+                {/* Model Attribution & Velocity Details */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">AI Model</span>
+                    <span className="text-xs font-bold text-slate-800 font-mono mt-0.5 block truncate" title="BERTopic (narrative_clusterer.joblib)">
+                      BERTopic + HDBSCAN
+                    </span>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Velocity Spike</span>
+                    <span className="text-xs font-semibold text-orange-700 mt-0.5 block truncate">
+                      {selectedClusterForReview.velocity_spike}
+                    </span>
+                  </div>
+                  <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Suspect Accounts</span>
+                    <span className="text-xs font-bold text-orange-600 font-mono mt-0.5 block">
+                      {selectedClusterForReview.suspect_accounts?.length || 0} Flagged
+                    </span>
+                  </div>
+                </div>
+
+                {/* Coordinated AI Narrative Analysis */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">AI Disinformation Analysis</span>
+                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-700 leading-relaxed">
+                    {selectedClusterForReview.ai_analysis}
+                  </div>
+                </div>
+
+                {/* Suspect Accounts with Bot Risk */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    Suspect Accounts Flagged ({selectedClusterForReview.suspect_accounts?.length || 0})
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedClusterForReview.suspect_accounts?.map((acc, i) => (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          setSelectedClusterForReview(null);
+                          handleInspectAccount(acc.handle);
+                        }}
+                        className="px-2.5 py-1.5 rounded-xl bg-orange-50 border border-orange-100 text-orange-950 font-mono text-xs flex items-center gap-1.5 hover:bg-orange-100 cursor-pointer"
+                      >
+                        <span>@{acc.handle}</span>
+                        <span className="text-[10px] font-bold text-rose-600 bg-white px-1.5 py-0.5 rounded-md border border-rose-100">
+                          {(acc.risk * 100).toFixed(0)}% Bot Risk
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Related Canonical Tweets */}
+                <div className="flex flex-col gap-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      Related Flagged Canonical Tweets ({selectedClusterForReview.sample_tweets?.length || 0})
+                    </span>
+                    <span className="text-[11px] text-slate-400 font-mono">SQLite Evidence Records</span>
+                  </div>
+
+                  <div className="flex flex-col gap-2.5 max-h-56 overflow-y-auto pr-1">
+                    {(selectedClusterForReview.sample_tweets || []).map((tweet, i) => {
+                      const matchedAcc = selectedClusterForReview.suspect_accounts?.[i % (selectedClusterForReview.suspect_accounts.length || 1)];
+                      return (
+                        <div
+                          key={i}
+                          className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col gap-2 hover:border-orange-200 transition-colors"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-mono text-xs font-bold text-slate-900">
+                              @{matchedAcc?.handle || 'suspect_author'}
+                            </span>
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-100 text-rose-700">
+                              Bot Risk: {((matchedAcc?.risk || 0.75) * 100).toFixed(0)}%
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-700 leading-relaxed italic">
+                            &ldquo;{tweet}&rdquo;
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Statutory Violations */}
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Recommended Legal Sections</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(selectedClusterForReview.recommended_sections || []).map((sec, i) => (
+                      <span key={i} className="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-700 font-mono text-xs font-semibold">
+                        {sec}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Officer Final Report / Disposition Form */}
+                <div className="flex flex-col gap-2 p-4 bg-amber-500/5 rounded-2xl border border-orange-200">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-[16px] text-orange-600">edit_note</span>
+                      <span>Authorized Officer Final Report / Disposition</span>
+                    </label>
+                    <span className="text-[10px] text-slate-500 font-mono">Sign-off: Authorized Officer</span>
+                  </div>
+                  <textarea
+                    rows={3}
+                    placeholder="Enter officer assessment and findings (e.g., 'Cluster verified as coordinated bot swarm amplifying communal slogans. Approving as active investigation under Section 79(3)(b) IT Act' OR 'Organic discourse, false positive, cluster declined/archived')..."
+                    value={officerClusterReport}
+                    onChange={(e) => setOfficerClusterReport(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-orange-500"
+                  />
+                  <p className="text-[10px] text-slate-500">
+                    Required for compliance. Officer report will be logged and sealed with case records.
+                  </p>
+                </div>
+
+                {/* Decision Buttons */}
+                <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedClusterForReview(null)}
+                    className="px-4 py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleDeclineClusterWithReport(selectedClusterForReview.id)}
+                      className="px-4 py-2.5 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">cancel</span>
+                      <span>Decline / Archive (No Action)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleAcceptClusterWithReport(selectedClusterForReview)}
+                      className="px-5 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold shadow-xs transition-all cursor-pointer flex items-center gap-1.5"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">verified</span>
+                      <span>Accept & Open Active Case</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ======================================================== */}
           {/* MODAL: CASE DETAILS (CLICKABLE CASE CARDS) */}
           {/* ======================================================== */}
           {selectedCase && (
@@ -2322,8 +2658,12 @@ export default function VyuhPlatform() {
                       <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-100 text-amber-800">
                         {selectedCase.priority} PRIORITY
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800">
-                        ACTIVE CASE
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+                        selectedCase.status === 'DISPOSED_NO_FURTHER_ACTION'
+                          ? 'bg-slate-100 text-slate-700'
+                          : 'bg-emerald-100 text-emerald-800'
+                      }`}>
+                        {selectedCase.status === 'DISPOSED_NO_FURTHER_ACTION' ? 'DISPOSED / CLOSED' : 'ACTIVE CASE'}
                       </span>
                     </div>
                     <h2 className="text-xl font-bold text-slate-900 mt-1">{selectedCase.title}</h2>
@@ -2355,7 +2695,7 @@ export default function VyuhPlatform() {
 
                 <div className="flex flex-col gap-2">
                   <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Case Summary & Disinformation Narrative</span>
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-700 leading-relaxed">
+                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-700 leading-relaxed whitespace-pre-line">
                     {selectedCase.narrative_focus}
                   </div>
                 </div>
@@ -2463,6 +2803,45 @@ export default function VyuhPlatform() {
                         {sec}
                       </span>
                     ))}
+                  </div>
+                </div>
+
+                {/* Officer Final Report / Case Disposition Form */}
+                <div className="flex flex-col gap-2 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-[16px] text-orange-600">assignment</span>
+                      <span>Authorized Officer Final Assessment & Disposition Report</span>
+                    </label>
+                    <span className="text-[10px] text-slate-500 font-mono">Lead: Authorized Officer</span>
+                  </div>
+                  <textarea
+                    rows={3}
+                    placeholder="Type updated officer findings, supplementary evidence analysis, or final case closure disposition notes..."
+                    value={officerCaseReport}
+                    onChange={(e) => setOfficerCaseReport(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-orange-500"
+                  />
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="text-[10px] text-slate-500">Record officer disposition to case audit trail</span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleUpdateCaseReport(selectedCase.case_id)}
+                        disabled={!officerCaseReport.trim()}
+                        className="px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-white text-[11px] font-semibold cursor-pointer shadow-xs"
+                      >
+                        Update Report
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleCloseCaseAction(selectedCase.case_id)}
+                        className="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-[11px] font-semibold cursor-pointer"
+                        title="Close or dispose of this case file"
+                      >
+                        Decline / Dispose Case
+                      </button>
+                    </div>
                   </div>
                 </div>
 

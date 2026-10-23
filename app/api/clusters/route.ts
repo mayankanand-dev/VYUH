@@ -24,10 +24,8 @@ export async function GET() {
     const narrativeData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
     const rawClusters: any[] = narrativeData.clusters || [];
 
-    // Filter for clusters with top keywords, sorted by cohesion score (highest coordination first)
-    const sortedClusters = rawClusters
-      .filter((c) => c.top_keywords && c.top_keywords.length > 0)
-      .sort((a, b) => (b.cohesion_score || 0) - (a.cohesion_score || 0));
+    // Sort clusters by cohesion score (highest coordination first)
+    const sortedClusters = [...rawClusters].sort((a, b) => (b.cohesion_score || 0) - (a.cohesion_score || 0));
 
     const database = getDb();
     const selectPostStmt = database.prepare(`
@@ -37,8 +35,15 @@ export async function GET() {
       LIMIT 1
     `);
 
-    // Enrich top candidate clusters with real SQLite tweets and account data
-    const enrichedClusters = sortedClusters.slice(0, 9).map((c) => {
+    const selectByKeywordStmt = database.prepare(`
+      SELECT post_id, author_handle, author_name, text_content, bot_risk, created_at_utc, retweet_count, like_count
+      FROM posts
+      WHERE text_content LIKE ?
+      LIMIT 3
+    `);
+
+    // Enrich ALL 35 candidate clusters with real SQLite tweets and accounts
+    const enrichedClusters = sortedClusters.map((c, index) => {
       const repPosts: any[] = [];
       const repIds = c.representative_record_ids || [];
 
@@ -61,6 +66,30 @@ export async function GET() {
           }
         } catch {
           // ignore lookup error
+        }
+      }
+
+      // Fallback: If no direct record_id match, fetch by top keyword from SQLite
+      if (repPosts.length === 0 && c.top_keywords && c.top_keywords[0]) {
+        try {
+          const kw = c.top_keywords[0];
+          const rows = selectByKeywordStmt.all(`%${kw}%`) as any[];
+          for (const row of rows) {
+            repPosts.push({
+              post_id: row.post_id,
+              author_handle: row.author_handle,
+              author_name: row.author_name || row.author_handle,
+              text_content: row.text_content,
+              bot_risk: row.bot_risk,
+              created_at_utc: row.created_at_utc,
+              metrics: {
+                retweet_count: row.retweet_count || 0,
+                like_count: row.like_count || 0
+              }
+            });
+          }
+        } catch {
+          // ignore keyword search error
         }
       }
 
@@ -88,9 +117,9 @@ export async function GET() {
       // Map keywords to statutory infractions
       const kwString = (c.top_keywords || []).join(' ').toLowerCase();
       const recommendedSections: string[] = ['IT Act Sec 79(3)(b)'];
-      if (kwString.includes('terrorist') || kwString.includes('rioters') || kwString.includes('hate')) {
+      if (kwString.includes('terrorist') || kwString.includes('rioters') || kwString.includes('hate') || kwString.includes('protest')) {
         recommendedSections.push('BNS Sec 196', 'BNS Sec 353');
-      } else if (kwString.includes('wiretap') || kwString.includes('mafia') || kwString.includes('leaked')) {
+      } else if (kwString.includes('wiretap') || kwString.includes('mafia') || kwString.includes('leaked') || kwString.includes('tower')) {
         recommendedSections.push('IT Act Sec 66D', 'BNS Sec 318');
       } else {
         recommendedSections.push('Section 94 BNSS', 'BNS Sec 353');
@@ -101,14 +130,17 @@ export async function GET() {
       // AI Analysis synthesis grounded in the BERTopic & Sentence-BERT outputs
       const aiAnalysis = `BERTopic (models/narrative_clusterer.joblib) identified ${c.record_count} posts clustered with ${(cohesion * 100).toFixed(1)}% semantic cohesion. Multilingual embeddings (models/multilingual_embedder.joblib) detected synchronized repetition of key phrases [${(c.top_keywords || []).slice(0, 3).join(', ')}] across ${suspectAccounts.length || 'multiple'} accounts.`;
 
+      // Clean display name
+      const cleanName = c.name ? c.name.replace(/^Narrative:\s*/, '') : `Cluster #${index + 1}`;
+
       return {
-        id: c.cluster_id,
-        cluster_name: c.name.replace(/^Narrative:\s*/, ''),
+        id: c.cluster_id || `narrative_${String(index).padStart(2, '0')}`,
+        cluster_name: cleanName,
         cohesion_score: c.cohesion_score,
         record_count: c.record_count,
         dominant_language: c.dominant_language || 'en',
         threat_level: threatLevel,
-        velocity_spike: `${(cohesion * 100).toFixed(0)}% semantic cohesion (${c.record_count} posts)`,
+        velocity_spike: `${(cohesion * 100).toFixed(1)}% semantic cohesion (${c.record_count} posts)`,
         ai_analysis: aiAnalysis,
         top_keywords: c.top_keywords || [],
         top_hashtags: c.top_hashtags || [],
@@ -129,7 +161,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      total_clusters: rawClusters.length,
+      total_clusters: enrichedClusters.length,
       candidate_clusters: enrichedClusters
     });
   } catch (err: any) {
