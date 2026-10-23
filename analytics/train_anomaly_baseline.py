@@ -63,33 +63,39 @@ def extract_feature_matrix(
 
 def train_anomaly_model(
     canonical_files: List[Path],
-    records_per_file: Optional[int] = 20000,
+    records_per_file: Optional[int] = 100000,
     contamination: float = 0.08,
-    n_estimators: int = 150,
+    n_estimators: int = 200,
     output_model_path: Path = Path("models/anomaly_detector_baseline.joblib"),
 ) -> Dict[str, Any]:
     """Train Isolation Forest on accounts sampled from canonical files."""
     print("[INFO] Starting Anomaly Model Training...")
-    all_records: List[Dict[str, Any]] = []
+    total_records = 0
 
-    for p in canonical_files:
-        if not p.exists():
-            print(f"[WARN] File not found: {p}; skipping.")
-            continue
-        print(f"[INFO] Ingesting up to {records_per_file} records from {p.name}...")
-        count = 0
-        for rec in stream_canonical_records(p, limit=records_per_file):
-            all_records.append(rec)
-            count += 1
-        print(f"       Loaded {count} records from {p.name}.")
+    def stream_all_records():
+        nonlocal total_records
+        for p in canonical_files:
+            if not p.exists():
+                print(f"[WARN] File not found: {p}; skipping.")
+                continue
+            print(f"[INFO] Ingesting up to {records_per_file} records from {p.name}...")
+            count = 0
+            for rec in stream_canonical_records(p, limit=records_per_file):
+                yield rec
+                count += 1
+                total_records += 1
+                if count % 25000 == 0:
+                    print(f"       ... streamed {count:,} records from {p.name}")
+            print(f"       Completed {count:,} records from {p.name}.")
 
-    if not all_records:
+    print("[INFO] Extracting account features across input streams...")
+    features = extract_account_features(stream_all_records())
+
+    if total_records == 0:
         raise ValueError("No records found to train on.")
 
-    print(f"[INFO] Total training records loaded: {len(all_records)}")
-    print("[INFO] Extracting account features...")
-    features = extract_account_features(all_records)
-    print(f"[INFO] Extracted features for {len(features)} unique accounts.")
+    print(f"[INFO] Total training records loaded: {total_records:,}")
+    print(f"[INFO] Extracted features for {len(features):,} unique accounts.")
 
     account_ids, X = extract_feature_matrix(features, min_posts=2)
     print(f"[INFO] Eligible multi-post accounts for baseline training: {len(account_ids)}")
@@ -120,7 +126,7 @@ def train_anomaly_model(
         "scaler": scaler,
         "feature_names": FEATURE_NAMES,
         "trained_at": current_utc_iso(),
-        "total_records_ingested": len(all_records),
+        "total_records_ingested": total_records,
         "total_accounts_trained": len(account_ids),
         "source_files": [str(p) for p in canonical_files if p.exists()],
         "min_raw_score": min_score,

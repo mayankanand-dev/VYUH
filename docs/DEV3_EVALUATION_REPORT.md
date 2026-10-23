@@ -1,11 +1,11 @@
 # VYUH — Developer 3 Empirical Evaluation & Benchmark Report
 
-**Evaluation Date**: 2026-10-23 17:34:26 UTC  
+**Evaluation Date**: 2026-10-23 17:51:56 UTC  
 **Evaluator**: Developer 3  
 **Datasets**:
-- Ground-Truth State Disinformation: Russian IRA Troll Tweets (`russian_ira_normalized.jsonl`, 5,000 records sampled)
-- Baseline Organic & Protest Discussion: Farmers Protest Tweets (`farmers_protest_normalized.jsonl`, 5,000 records sampled)
-- Total Unique Evaluated Accounts: 1,597 (8 Russian IRA trolls, 1,589 organic public accounts)
+- Ground-Truth State Disinformation: Russian IRA Troll Tweets (`russian_ira_normalized.jsonl`, 25,000 records sampled)
+- Baseline Organic & Protest Discussion: Farmers Protest Tweets (`farmers_protest_normalized.jsonl`, 25,000 records sampled)
+- Total Unique Evaluated Accounts: 5,111 (38 Russian IRA trolls, 5,073 organic public accounts)
 
 ---
 
@@ -26,13 +26,13 @@ All metrics are derived from verifiable canonical data without synthetic label f
 | **Precision** | **0.0000** | Ratio of flagged accounts that were confirmed IRA trolls ($rac{TP}{TP + FP}$) |
 | **Recall** | **0.0000** | Ratio of confirmed IRA trolls successfully surfaced ($rac{TP}{TP + FN}$) |
 | **F1 Score** | **0.0000** | Harmonic mean of precision and recall |
-| **False Positive Rate (FPR)** | **0.0006** | Organic accounts erroneously flagged as elevated coordination ($rac{FP}{FP + TN}$) |
+| **False Positive Rate (FPR)** | **0.0014** | Organic accounts erroneously flagged as elevated coordination ($rac{FP}{FP + TN}$) |
 
 **Confusion Matrix**:
 - **True Positives (TP)**: 0
-- **False Positives (FP)**: 1
-- **True Negatives (TN)**: 1588
-- **False Negatives (FN)**: 8
+- **False Positives (FP)**: 7
+- **True Negatives (TN)**: 5066
+- **False Negatives (FN)**: 38
 
 ---
 
@@ -43,13 +43,13 @@ All metrics are derived from verifiable canonical data without synthetic label f
 | **Precision** | **0.0000** | Flagged anomalies confirmed as inauthentic troll personas |
 | **Recall** | **0.0000** | Disinformation accounts exhibiting anomalous cadence/repetition |
 | **F1 Score** | **0.0000** | Harmonic mean of precision and recall |
-| **False Positive Rate (FPR)** | **0.0000** | Organic accounts displaying atypical posting velocity |
+| **False Positive Rate (FPR)** | **0.0012** | Organic accounts displaying atypical posting velocity |
 
 **Confusion Matrix**:
 - **True Positives (TP)**: 0
-- **False Positives (FP)**: 0
-- **True Negatives (TN)**: 1589
-- **False Negatives (FN)**: 8
+- **False Positives (FP)**: 6
+- **True Negatives (TN)**: 5067
+- **False Negatives (FN)**: 38
 
 ---
 
