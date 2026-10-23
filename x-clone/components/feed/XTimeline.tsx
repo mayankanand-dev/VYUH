@@ -27,41 +27,86 @@ export default function XTimeline({
 }: XTimelineProps) {
   const { isAnalysisMode, setAnalysisMode } = useAnalysisMode();
   const [dataSource, setDataSource] = useState<DataSource>('all');
-  const [posts, setPosts] = useState<Post[]>(CANONICAL_FIXTURE_POSTS);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [hasMore, setHasMore] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const [totalPostsCount, setTotalPostsCount] = useState<number>(30000);
   const [timelineTab, setTimelineTab] = useState<'forYou' | 'following'>('forYou');
   const [selectedPostForDetail, setSelectedPostForDetail] = useState<Post | null>(null);
   const [selectedPostForDetection, setSelectedPostForDetection] = useState<Post | null>(null);
+  const observerTarget = React.useRef<HTMLDivElement | null>(null);
 
   // Fetch live feed from SQLite server
   React.useEffect(() => {
     let ignore = false;
     const fetchFeed = async () => {
-      setIsLoading(true);
+      if (page === 1) {
+        setIsLoading(true);
+      } else {
+        setIsLoadingMore(true);
+      }
       try {
-        const params = new URLSearchParams({ source: dataSource, limit: '50' });
+        const params = new URLSearchParams({
+          source: dataSource,
+          page: String(page),
+          limit: '40',
+        });
         if (searchQuery.trim()) params.set('q', searchQuery.trim());
         const res = await fetch(`/api/posts?${params.toString()}`);
         const data = await res.json();
-        if (!ignore && data.success && Array.isArray(data.posts) && data.posts.length > 0) {
-          setPosts(data.posts);
-          setTotalPostsCount(data.total || 30000);
+        if (!ignore && data.success && Array.isArray(data.posts)) {
+          setTotalPostsCount(data.total || 0);
+          setPosts((prevPosts) => {
+            if (page === 1) return data.posts;
+            const existingIds = new Set(prevPosts.map((p) => p.id));
+            const newPosts = data.posts.filter((p: Post) => !existingIds.has(p.id));
+            return [...prevPosts, ...newPosts];
+          });
+          setHasMore(data.posts.length === 40 && page * 40 < (data.total || 0));
         }
       } catch (err) {
         console.error('Failed to fetch from x-clone SQLite API:', err);
       } finally {
-        if (!ignore) setIsLoading(false);
+        if (!ignore) {
+          setIsLoading(false);
+          setIsLoadingMore(false);
+        }
       }
     };
     fetchFeed();
     return () => {
       ignore = true;
     };
-  }, [dataSource, searchQuery]);
+  }, [dataSource, searchQuery, page]);
+
+  // Infinite scroll observer
+  React.useEffect(() => {
+    const target = observerTarget.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !isLoading && !isLoadingMore) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { threshold: 0.1, rootMargin: '600px' }
+    );
+
+    observer.observe(target);
+    return () => {
+      observer.unobserve(target);
+    };
+  }, [hasMore, isLoading, isLoadingMore]);
 
   const handleSourceChange = (source: DataSource) => {
-    setDataSource(source);
+    if (source !== dataSource) {
+      setDataSource(source);
+      setPage(1);
+      setPosts([]);
+    }
   };
 
   // Toggle Like
@@ -188,23 +233,9 @@ export default function XTimeline({
           return false;
         }
       }
-
-      // Search query filter
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
-        const matchesContent = post.content.toLowerCase().includes(q);
-        const matchesName = post.authorName.toLowerCase().includes(q);
-        const matchesHandle = post.authorHandle.toLowerCase().includes(q);
-        const matchesHashtag = post.hashtags?.some((h) => h.toLowerCase().includes(q));
-
-        if (!matchesContent && !matchesName && !matchesHandle && !matchesHashtag) {
-          return false;
-        }
-      }
-
       return true;
     });
-  }, [posts, timelineTab, searchQuery]);
+  }, [posts, timelineTab]);
 
   return (
     <main className="w-full max-w-[600px] min-h-screen bg-black text-[#e7e9ea]">
@@ -268,7 +299,7 @@ export default function XTimeline({
                 : 'bg-[#181818] text-[#71767b] hover:text-[#e7e9ea] hover:bg-[#202020]'
             }`}
           >
-            All Canonical (1,000)
+            All Canonical (30,000)
           </button>
           <button
             onClick={() => handleSourceChange('farmers')}
@@ -278,7 +309,7 @@ export default function XTimeline({
                 : 'bg-[#181818] text-[#71767b] hover:text-[#e7e9ea] hover:bg-[#202020]'
             }`}
           >
-            Farmers Protest (500)
+            Farmers Protest (15,000)
           </button>
           <button
             onClick={() => handleSourceChange('ira')}
@@ -288,7 +319,7 @@ export default function XTimeline({
                 : 'bg-[#181818] text-[#71767b] hover:text-[#e7e9ea] hover:bg-[#202020]'
             }`}
           >
-            Russian IRA Trolls (500)
+            Russian IRA Trolls (15,000)
           </button>
           <button
             onClick={() => handleSourceChange('simulated')}
@@ -298,7 +329,7 @@ export default function XTimeline({
                 : 'bg-[#181818] text-[#71767b] hover:text-[#e7e9ea] hover:bg-[#202020]'
             }`}
           >
-            Simulated Lab
+            Coordinated Bots (15,000)
           </button>
         </div>
 
@@ -323,7 +354,7 @@ export default function XTimeline({
 
       {/* Posts Timeline */}
       <div className="divide-y divide-[#2f3336]">
-        {filteredPosts.length === 0 ? (
+        {filteredPosts.length === 0 && !isLoading ? (
           <div className="p-12 text-center space-y-3 bg-black">
             <div className="w-12 h-12 rounded-full bg-[#16181c] text-[#71767b] mx-auto flex items-center justify-center border border-[#2f3336]">
               <Search className="w-6 h-6" />
@@ -361,6 +392,27 @@ export default function XTimeline({
             />
           ))
         )}
+
+        {/* Infinite Scroll Sentinel & Load More Indicator */}
+        <div ref={observerTarget} className="py-6 flex flex-col items-center justify-center text-center px-4">
+          {isLoadingMore || isLoading ? (
+            <div className="flex items-center gap-2.5 text-xs text-[#71767b] py-3">
+              <span className="w-4 h-4 border-2 border-[#1d9bf0] border-t-transparent rounded-full animate-spin" />
+              <span>Streaming next batch from SQLite ({posts.length} of {totalPostsCount.toLocaleString()} loaded)...</span>
+            </div>
+          ) : hasMore ? (
+            <button
+              onClick={() => setPage((p) => p + 1)}
+              className="px-5 py-2.5 rounded-full text-xs font-semibold text-[#1d9bf0] bg-[#16181c] hover:bg-[#1d9bf0]/10 border border-[#2f3336] transition-colors cursor-pointer"
+            >
+              Load more posts (Showing {posts.length.toLocaleString()} of {totalPostsCount.toLocaleString()})
+            </button>
+          ) : posts.length > 0 ? (
+            <div className="py-4 text-xs text-[#71767b] border-t border-[#2f3336]/40 w-full">
+              ✓ All {totalPostsCount.toLocaleString()} posts loaded from SQLite archive.
+            </div>
+          ) : null}
+        </div>
       </div>
 
       {/* Post Detail Modal */}

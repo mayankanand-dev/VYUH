@@ -54,6 +54,8 @@ export async function GET(request: NextRequest) {
     } else if (source === 'ira') {
       whereClauses.push('dataset_source = ?');
       params.push('russian_ira');
+    } else if (source === 'simulated') {
+      whereClauses.push('bot_risk >= 0.5');
     }
 
     if (q) {
