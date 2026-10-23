@@ -1,7 +1,7 @@
 [
   {
     "case_id": "INV-2026-FARMERS-01",
-    "title": "Operation Kisan Echo \u2014 Agrarian Policy Amplification Inquest",
+    "title": "Operation Kisan Echo — Agrarian Policy Amplification Inquest",
     "status": "ACTIVE_INVESTIGATION",
     "priority": "HIGH",
     "lead_officer": "Authorized Officer",
@@ -18,11 +18,13 @@
       "Temporal Synchronization (<300s)",
       "Identical Slogan Repetition",
       "High Burst Velocity"
-    ]
+    ],
+    "target_keyword": "FarmersProtest",
+    "suspect_accounts": ["@kaursuk06272818", "@Davidmu66668113", "@ShashiRajbhar6"]
   },
   {
     "case_id": "INV-2026-IRA-02",
-    "title": "Operation St. Petersburg Bridge \u2014 Cross-Border Influence Swarm",
+    "title": "Operation St. Petersburg Bridge — Cross-Border Influence Swarm",
     "status": "ACTIVE_INVESTIGATION",
     "priority": "CRITICAL",
     "lead_officer": "Authorized Officer",
@@ -39,12 +41,14 @@
       "IRA Sockpuppet Network",
       "Proxy Geolocation Shifting",
       "Meme Injection"
-    ]
+    ],
+    "target_keyword": "news",
+    "suspect_accounts": ["@ira_troll_01", "@world_news_wire", "@daily_dispatch_x"]
   },
   {
     "case_id": "INV-2026-PAPERSTORM-03",
-    "title": "Operation PaperStorm \u2014 Multi-Signal Forensic Inquest",
-    "status": "STAGED_FOR_NOTICE",
+    "title": "Operation PaperStorm — Multi-Signal Forensic Inquest",
+    "status": "ACTIVE_INVESTIGATION",
     "priority": "CRITICAL",
     "lead_officer": "Authorized Officer",
     "unit": "State Cyber Intelligence Bureau",
@@ -60,6 +64,77 @@
       "Counterfeit Circular Splices",
       "Synchronized Retweet Swarms",
       "Hardware HSM Preserved"
-    ]
+    ],
+    "target_keyword": "police",
+    "suspect_accounts": ["@leak_alert_hub", "@insider_bulletin", "@rapid_wire_in"]
+  },
+  {
+    "case_id": "INV-2026-BIHAR-04",
+    "title": "Operation Mithila Shield — Regional Rumor & Communal Flare Prevention",
+    "status": "ACTIVE_INVESTIGATION",
+    "priority": "CRITICAL",
+    "lead_officer": "Authorized Officer",
+    "unit": "Special Task Force, Bihar Police Cyber Cell",
+    "created_at": "2026-04-18T08:20:00Z",
+    "narrative_focus": "Geo-targeted provocative rumors distributed through coordinated hashtag swarms to incite inter-district tension across north Bihar sectors.",
+    "evidence_count": 36,
+    "statutory_sections": [
+      "BNS Sec 196",
+      "BNS Sec 353",
+      "IT Act Sec 66"
+    ],
+    "coordination_vectors": [
+      "Geo-targeted Proxy Seeding",
+      "Template Image Manipulation",
+      "Off-Platform Bridge"
+    ],
+    "target_keyword": "bihar",
+    "suspect_accounts": ["@mithila_voices", "@bihar_insider_voice", "@alert_bihar_now"]
+  },
+  {
+    "case_id": "INV-2026-MANDATE-05",
+    "title": "Operation Mandate Watch — Coordinated Disinformation Sockpuppet Network",
+    "status": "ACTIVE_INVESTIGATION",
+    "priority": "HIGH",
+    "lead_officer": "Authorized Officer",
+    "unit": "Cyber Defense Operations / Electoral Integrity Unit",
+    "created_at": "2026-04-20T11:00:00Z",
+    "narrative_focus": "Automated accounts running coordinated retweet amplification of false institutional voting procedures and spoofed electoral circulars.",
+    "evidence_count": 19,
+    "statutory_sections": [
+      "IT Act Sec 66D",
+      "BNS Sec 318",
+      "IT Act Sec 79(3)(b)"
+    ],
+    "coordination_vectors": [
+      "Sockpuppet Follower Rings",
+      "Automated Retweet Scripting",
+      "Sentiment Manipulation"
+    ],
+    "target_keyword": "election",
+    "suspect_accounts": ["@vote_truth_watch", "@ballot_leak_real", "@poll_observer_ind"]
+  },
+  {
+    "case_id": "INV-2026-DEEPFAKE-06",
+    "title": "Operation MirrorTrap — Synthetic Video Impersonation Probe",
+    "status": "ACTIVE_INVESTIGATION",
+    "priority": "CRITICAL",
+    "lead_officer": "Authorized Officer",
+    "unit": "Digital Forensics & Video Analytics Lab",
+    "created_at": "2026-04-22T16:45:00Z",
+    "narrative_focus": "AI voice cloned audio spliced over public address footage to manufacture fake administrative lockdown declarations and civil unrest panic.",
+    "evidence_count": 31,
+    "statutory_sections": [
+      "IT Act Sec 66E",
+      "IT Act Sec 66D",
+      "BNS Sec 336"
+    ],
+    "coordination_vectors": [
+      "Synthetic Voice Cloning",
+      "Temporal Phase Discontinuity",
+      "Cross-Platform Reseed"
+    ],
+    "target_keyword": "fake",
+    "suspect_accounts": ["@breaking_now_ai", "@truth_unfiltered99", "@media_exposed_in"]
   }
 ]

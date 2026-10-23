@@ -13,6 +13,8 @@ export interface CaseRecord {
   evidence_count: number;
   statutory_sections: string[];
   coordination_vectors: string[];
+  target_keyword?: string;
+  suspect_accounts?: string[];
 }
 
 export interface EvidenceRecord {

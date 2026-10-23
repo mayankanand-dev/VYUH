@@ -17,6 +17,77 @@ type ActiveTab =
   | 'evidence-repository'
   | 'sandbox-module-lab';
 
+interface CandidateCluster {
+  id: string;
+  cluster_name: string;
+  threat_level: 'CRITICAL' | 'HIGH' | 'MEDIUM';
+  velocity_spike: string;
+  coordination_score: number;
+  ai_analysis: string;
+  suspect_accounts: { handle: string; risk: number }[];
+  sample_tweets: string[];
+  recommended_sections: string[];
+  target_keyword: string;
+}
+
+const initialCandidateClusters: CandidateCluster[] = [
+  {
+    id: 'CL-AI-082',
+    cluster_name: 'Coordinated Slogan Swarm & Hashtag Burst',
+    threat_level: 'HIGH',
+    velocity_spike: '+340% velocity spike in 45s',
+    coordination_score: 0.87,
+    ai_analysis: 'BERTopic and temporal cross-correlation detected 14 accounts repeating identical phrasing within a 45-second window. Slogan copy-paste pattern indicates script-driven amplification.',
+    suspect_accounts: [
+      { handle: 'kaursuk06272818', risk: 0.76 },
+      { handle: 'Davidmu66668113', risk: 0.76 },
+      { handle: 'ShashiRajbhar6', risk: 0.31 }
+    ],
+    sample_tweets: [
+      'Supporting farmers means supporting our country #StopHateAgainstFarmers #FarmersProtest',
+      'Support farmers if you are related to food #StopHateAgainstFarmers #FarmersProtest'
+    ],
+    recommended_sections: ['BNS Sec 196', 'IT Act Sec 79(3)(b)', 'BNS Sec 353'],
+    target_keyword: 'FarmersProtest'
+  },
+  {
+    id: 'CL-AI-091',
+    cluster_name: 'Regional Communal Flare & Media Overlay Swarm',
+    threat_level: 'CRITICAL',
+    velocity_spike: '+210% surge across 8 regional nodes',
+    coordination_score: 0.92,
+    ai_analysis: 'Computer vision and graph analytics detected manipulated regional media graphics spliced with inflammatory captions distributed through proxy nodes across North Bihar sectors.',
+    suspect_accounts: [
+      { handle: 'mithila_voices', risk: 0.82 },
+      { handle: 'alert_bihar_now', risk: 0.74 }
+    ],
+    sample_tweets: [
+      'Urgent alert: Curfew rumored in district headquarters after confrontation. Circulate widely!',
+      'Local authorities silent as tensions reported in sector 4. Stay prepared.'
+    ],
+    recommended_sections: ['BNS Sec 353', 'IT Act Sec 66D', 'BNS Sec 299'],
+    target_keyword: 'bihar'
+  },
+  {
+    id: 'CL-AI-104',
+    cluster_name: 'Coordinated Impersonation & Spoofed Circular Broadcast',
+    threat_level: 'CRITICAL',
+    velocity_spike: '+480% burst across Telegram-Twitter bridge',
+    coordination_score: 0.95,
+    ai_analysis: 'Synthetic document broadcast matching known leak-peddling campaign signatures with 0% organic engagement and automated sockpuppet retweets.',
+    suspect_accounts: [
+      { handle: 'leak_alert_hub', risk: 0.89 },
+      { handle: 'insider_bulletin', risk: 0.84 }
+    ],
+    sample_tweets: [
+      'LEAKED: Administrative notice on cancellation of state exams. Download verification pdf before deleted.',
+      'OFFICIAL MEMO: Recruitment list leaked online. Check roll numbers here now!'
+    ],
+    recommended_sections: ['IT Act Sec 66D', 'BNS Sec 318', 'Section 94 BNSS'],
+    target_keyword: 'police'
+  }
+];
+
 export default function VyuhPlatform() {
   // Authentication State
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -33,6 +104,12 @@ export default function VyuhPlatform() {
   const [newCaseTitle, setNewCaseTitle] = useState('');
   const [newCasePriority, setNewCasePriority] = useState('HIGH');
   const [newCaseNarrative, setNewCaseNarrative] = useState('');
+
+  // AI Disinformation Clusters & Case Related Posts State
+  const [candidateClusters, setCandidateClusters] = useState<CandidateCluster[]>(initialCandidateClusters);
+  const [isScanningClusters, setIsScanningClusters] = useState(false);
+  const [caseRelatedPosts, setCaseRelatedPosts] = useState<SocialPost[]>([]);
+  const [isCasePostsLoading, setIsCasePostsLoading] = useState(false);
 
   // Evidence State
   const [evidenceList, setEvidenceList] = useState<EvidenceRecord[]>(initialEvidence);
@@ -214,6 +291,69 @@ export default function VyuhPlatform() {
     setIsCreateCaseOpen(false);
     setNewCaseTitle('');
     setNewCaseNarrative('');
+  };
+
+  // Open Case and Fetch Related Tweets from SQLite
+  const handleSelectCase = async (c: CaseRecord) => {
+    setSelectedCase(c);
+    setIsCasePostsLoading(true);
+    setCaseRelatedPosts([]);
+    try {
+      const kw = c.target_keyword || 'FarmersProtest';
+      const res = await fetch(`/api/posts?keyword=${encodeURIComponent(kw)}&limit=4`);
+      const data = await res.json();
+      if (data.success && Array.isArray(data.posts)) {
+        setCaseRelatedPosts(data.posts);
+      }
+    } catch (err) {
+      console.error('Failed to load related posts for case:', err);
+    } finally {
+      setIsCasePostsLoading(false);
+    }
+  };
+
+  // Accept Candidate AI Cluster and Register as Active Case
+  const handleAcceptCluster = (cluster: CandidateCluster) => {
+    const newCase: CaseRecord = {
+      case_id: `INV-2026-${cluster.id.replace('CL-AI-', 'AI-')}`,
+      title: `${cluster.cluster_name} (AI Detected)`,
+      status: 'ACTIVE_INVESTIGATION',
+      priority: cluster.threat_level,
+      lead_officer: 'Authorized Officer',
+      unit: 'Cyber Defense Operations / Special Task Force',
+      created_at: new Date().toISOString(),
+      narrative_focus: cluster.ai_analysis,
+      evidence_count: cluster.sample_tweets.length,
+      statutory_sections: cluster.recommended_sections,
+      coordination_vectors: [
+        cluster.velocity_spike,
+        `Coordination Score: ${cluster.coordination_score}`,
+        'AI Cluster Accepted'
+      ],
+      target_keyword: cluster.target_keyword,
+      suspect_accounts: cluster.suspect_accounts.map((a) => `@${a.handle}`)
+    };
+    setCases([newCase, ...cases]);
+    setCandidateClusters(candidateClusters.filter((c) => c.id !== cluster.id));
+    setPreservedToast(`AI Cluster ${cluster.id} approved and converted to Active Case!`);
+    setTimeout(() => setPreservedToast(null), 4000);
+  };
+
+  // Dismiss Candidate AI Cluster
+  const handleDismissCluster = (clusterId: string) => {
+    setCandidateClusters(candidateClusters.filter((c) => c.id !== clusterId));
+    setPreservedToast(`Cluster ${clusterId} dismissed from review queue.`);
+    setTimeout(() => setPreservedToast(null), 4000);
+  };
+
+  // Re-scan Feed for AI Clusters
+  const handleScanClusters = () => {
+    setIsScanningClusters(true);
+    setTimeout(() => {
+      setIsScanningClusters(false);
+      setPreservedToast('AI Clustering completed: Coordinated narrative clusters evaluated.');
+      setTimeout(() => setPreservedToast(null), 4000);
+    }, 700);
   };
 
   // Handle Media File Selection in Media Forensics
@@ -767,23 +907,35 @@ export default function VyuhPlatform() {
           )}
 
           {/* ======================================================== */}
-          {/* TAB 2: CASE FILES */}
+          {/* TAB 2: CASE FILES & AI CLUSTERING */}
           {/* ======================================================== */}
           {activeTab === 'investigations' && (
             <div className="flex flex-col gap-6">
+              {/* Header Bar */}
               <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-                    Active Case Files
+                    Active Case Files & AI Clusters
                   </h1>
                   <p className="text-xs text-slate-500 mt-1">
-                    Active disinformation cases, suspect account swarms, and secured evidence. Click any case to inspect details.
+                    Manage active investigations or evaluate AI-detected disinformation clusters to convert into official cases.
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <button
+                    onClick={handleScanClusters}
+                    disabled={isScanningClusters}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-orange-50 hover:bg-orange-100 text-orange-950 text-xs font-semibold border border-orange-200 transition-all cursor-pointer"
+                  >
+                    <span className={`material-symbols-outlined text-[18px] text-orange-600 ${isScanningClusters ? 'animate-spin' : ''}`}>
+                      auto_awesome
+                    </span>
+                    <span>{isScanningClusters ? 'Scanning Stream...' : 'Scan for AI Clusters'}</span>
+                  </button>
+
+                  <button
                     onClick={() => setIsCreateCaseOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-orange-600 to-amber-600 text-white text-xs font-semibold shadow-sm transition-all cursor-pointer hover:brightness-105"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-orange-600 to-amber-600 text-white text-xs font-semibold shadow-xs transition-all cursor-pointer hover:brightness-105"
                   >
                     <span className="material-symbols-outlined text-[18px]">add</span>
                     <span>New Case</span>
@@ -791,48 +943,199 @@ export default function VyuhPlatform() {
                 </div>
               </div>
 
-              {/* Cases Grid - Fully Clickable */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {cases.map((c) => (
-                  <div
-                    key={c.case_id}
-                    onClick={() => setSelectedCase(c)}
-                    className="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all cursor-pointer group active:scale-[0.99]"
-                  >
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-start justify-between">
-                        <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-xl bg-slate-100 text-slate-800 group-hover:bg-orange-50 group-hover:text-orange-950 transition-colors">
-                          {c.case_id}
-                        </span>
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-100 text-amber-800">
-                          {c.priority}
-                        </span>
+              {/* AI Disinformation Cluster Detection Section */}
+              {candidateClusters.length > 0 && (
+                <div className="bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-white p-6 rounded-3xl border border-orange-200 shadow-xs flex flex-col gap-5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-orange-600 text-white flex items-center justify-center shadow-xs">
+                        <span className="material-symbols-outlined text-[18px]">psychology</span>
                       </div>
-                      <h3 className="font-bold text-base text-slate-900 group-hover:text-orange-600 transition-colors">
-                        {c.title}
-                      </h3>
-                      <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
-                        {c.narrative_focus}
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5 pt-2">
-                        {c.statutory_sections.map((sec, i) => (
-                          <span key={i} className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[10px] font-mono">
-                            {sec}
-                          </span>
-                        ))}
+                      <div>
+                        <h2 className="font-bold text-base text-slate-900">
+                          AI Disinformation Cluster Detection
+                        </h2>
+                        <p className="text-[11px] text-slate-500">
+                          {candidateClusters.length} candidate coordinated campaigns flagged by NLP & Graph Analytics. Review AI analysis and decide whether to accept.
+                        </p>
                       </div>
                     </div>
-
-                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                      <span>Authorized Officer</span>
-                      <span className="font-bold text-orange-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        <span>{c.evidence_count} evidence items</span>
-                        <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                      </span>
-                    </div>
+                    <span className="px-3 py-1 rounded-full text-xs font-bold font-mono bg-orange-100 text-orange-900 border border-orange-200">
+                      Pending Officer Decision
+                    </span>
                   </div>
-                ))}
+
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                    {candidateClusters.map((cluster) => (
+                      <div
+                        key={cluster.id}
+                        className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between gap-4 hover:border-orange-300 transition-all"
+                      >
+                        <div className="flex flex-col gap-3">
+                          <div className="flex items-center justify-between">
+                            <span className="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg bg-slate-100 text-slate-800">
+                              {cluster.id}
+                            </span>
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+                                cluster.threat_level === 'CRITICAL'
+                                  ? 'bg-rose-100 text-rose-700'
+                                  : 'bg-amber-100 text-amber-800'
+                              }`}
+                            >
+                              {cluster.threat_level} THREAT
+                            </span>
+                          </div>
+
+                          <h3 className="font-bold text-sm text-slate-900 leading-snug">
+                            {cluster.cluster_name}
+                          </h3>
+
+                          {/* Velocity & AI Analysis */}
+                          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 flex flex-col gap-1.5">
+                            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-orange-700">
+                              <span className="material-symbols-outlined text-[14px]">speed</span>
+                              <span>{cluster.velocity_spike}</span>
+                            </div>
+                            <p className="text-[11px] text-slate-600 leading-relaxed">
+                              {cluster.ai_analysis}
+                            </p>
+                          </div>
+
+                          {/* Suspect Accounts */}
+                          <div className="flex flex-col gap-1">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                              Key Suspect Accounts:
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {cluster.suspect_accounts.map((acc, i) => (
+                                <button
+                                  key={i}
+                                  onClick={() => handleInspectAccount(acc.handle)}
+                                  className="px-2 py-0.5 rounded-lg bg-orange-50 border border-orange-100 text-orange-950 font-mono text-[10px] flex items-center gap-1 hover:bg-orange-100 cursor-pointer"
+                                >
+                                  <span>@{acc.handle}</span>
+                                  <span className="text-[9px] font-bold text-rose-600">
+                                    {(acc.risk * 100).toFixed(0)}%
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Statutory Recommendations */}
+                          <div className="flex flex-wrap gap-1 pt-1">
+                            {cluster.recommended_sections.map((sec, i) => (
+                              <span key={i} className="px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[9px] font-mono">
+                                {sec}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Officer Decision Buttons */}
+                        <div className="pt-3 border-t border-slate-100 flex items-center gap-2">
+                          <button
+                            onClick={() => handleAcceptCluster(cluster)}
+                            className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold text-xs shadow-xs transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                          >
+                            <span className="material-symbols-outlined text-[16px]">check_circle</span>
+                            <span>Accept & Open Case</span>
+                          </button>
+
+                          <button
+                            onClick={() => handleDismissCluster(cluster.id)}
+                            className="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs transition-all cursor-pointer"
+                            title="Dismiss as benign / false positive"
+                          >
+                            Dismiss
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Active Cases Grid */}
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-orange-600">folder_open</span>
+                    <h2 className="font-bold text-base text-slate-900">
+                      Active Investigation Cases ({cases.length})
+                    </h2>
+                  </div>
+                  <span className="text-xs text-slate-500 font-mono">Click any case to inspect details & tweets</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {cases.map((c) => (
+                    <div
+                      key={c.case_id}
+                      onClick={() => handleSelectCase(c)}
+                      className="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all cursor-pointer group active:scale-[0.99]"
+                    >
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-start justify-between">
+                          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-xl bg-slate-100 text-slate-800 group-hover:bg-orange-50 group-hover:text-orange-950 transition-colors">
+                            {c.case_id}
+                          </span>
+                          <span
+                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+                              c.priority === 'CRITICAL'
+                                ? 'bg-rose-100 text-rose-700'
+                                : 'bg-amber-100 text-amber-800'
+                            }`}
+                          >
+                            {c.priority}
+                          </span>
+                        </div>
+                        <h3 className="font-bold text-base text-slate-900 group-hover:text-orange-600 transition-colors">
+                          {c.title}
+                        </h3>
+                        <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                          {c.narrative_focus}
+                        </p>
+
+                        {/* Suspect Accounts */}
+                        {c.suspect_accounts && c.suspect_accounts.length > 0 && (
+                          <div className="flex flex-col gap-1 pt-1">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                              Key Suspect Accounts:
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {c.suspect_accounts.map((acc, i) => (
+                                <span
+                                  key={i}
+                                  className="px-2 py-0.5 rounded-lg bg-orange-50 border border-orange-100 text-orange-950 font-mono text-[10px]"
+                                >
+                                  {acc}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {c.statutory_sections.map((sec, i) => (
+                            <span key={i} className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[10px] font-mono">
+                              {sec}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span className="font-medium text-slate-500">Authorized Officer</span>
+                        <span className="font-bold text-orange-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                          <span>View Related Tweets & Dossier</span>
+                          <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -1967,8 +2270,10 @@ export default function VyuhPlatform() {
                     <span className="text-xs font-semibold text-slate-800 mt-0.5 block truncate" title={selectedCase.unit}>{selectedCase.unit}</span>
                   </div>
                   <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Secured Evidence</span>
-                    <span className="text-xs font-bold text-orange-600 font-mono mt-0.5 block">{selectedCase.evidence_count} items</span>
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Key Suspect Accounts</span>
+                    <span className="text-xs font-bold text-orange-600 font-mono mt-0.5 block">
+                      {selectedCase.suspect_accounts?.length || 3} Flagged Handles
+                    </span>
                   </div>
                 </div>
 
@@ -1989,6 +2294,89 @@ export default function VyuhPlatform() {
                       </span>
                     ))}
                   </div>
+                </div>
+
+                {/* Related Tweets & Account Info */}
+                <div className="flex flex-col gap-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      Related Flagged Tweets & Accounts ({caseRelatedPosts.length})
+                    </span>
+                    <span className="text-[11px] text-slate-400 font-mono">Real-time SQLite Evidence</span>
+                  </div>
+
+                  {isCasePostsLoading ? (
+                    <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-500">
+                      <span className="material-symbols-outlined text-[18px] text-orange-600 animate-spin">sync</span>
+                      <span>Loading related tweets from SQLite database...</span>
+                    </div>
+                  ) : caseRelatedPosts.length > 0 ? (
+                    <div className="flex flex-col gap-2.5 max-h-60 overflow-y-auto pr-1">
+                      {caseRelatedPosts.map((post) => (
+                        <div
+                          key={post.post_id}
+                          className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col gap-2 hover:border-orange-200 transition-colors"
+                        >
+                          <div className="flex items-center justify-between">
+                            <button
+                              onClick={() => {
+                                setSelectedCase(null);
+                                handleInspectAccount(post.author_handle || '');
+                              }}
+                              className="flex items-center gap-2 group text-left cursor-pointer"
+                            >
+                              <div className="w-7 h-7 rounded-full bg-orange-100 text-orange-950 flex items-center justify-center font-bold text-[10px]">
+                                {(post.author_name || post.author_handle || 'U').substring(0, 2).toUpperCase()}
+                              </div>
+                              <div>
+                                <span className="font-bold text-xs text-slate-900 group-hover:text-orange-600 transition-colors block">
+                                  {post.author_name || `@${post.author_handle}`}
+                                </span>
+                                <span className="text-[10px] font-mono text-slate-400">@{post.author_handle}</span>
+                              </div>
+                            </button>
+
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+                                post.bot_risk >= 0.65
+                                  ? 'bg-rose-100 text-rose-700'
+                                  : post.bot_risk >= 0.35
+                                  ? 'bg-amber-100 text-amber-800'
+                                  : 'bg-emerald-100 text-emerald-800'
+                              }`}
+                            >
+                              Bot Risk: {(post.bot_risk * 100).toFixed(0)}%
+                            </span>
+                          </div>
+
+                          <p className="text-xs text-slate-700 leading-relaxed whitespace-pre-line line-clamp-2">
+                            {post.text_content}
+                          </p>
+
+                          <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono">
+                            <span>{post.created_at_utc ? new Date(post.created_at_utc).toLocaleDateString() : 'Live Ingestion'}</span>
+                            <div className="flex items-center gap-3">
+                              <span>RT: {post.metrics?.retweet_count ?? 0}</span>
+                              <span>Likes: {post.metrics?.like_count ?? 0}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+                      <span>No direct text match in recent batch. Search full 30,000+ posts database:</span>
+                      <button
+                        onClick={() => {
+                          setSelectedCase(null);
+                          setActiveTab('social-intelligence');
+                        }}
+                        className="px-3 py-1.5 rounded-xl bg-orange-100 text-orange-950 font-semibold text-xs hover:bg-orange-200 cursor-pointer"
+                      >
+                        Search Live Social Feed →
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-2">
