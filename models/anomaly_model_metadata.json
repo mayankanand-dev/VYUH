@@ -1,0 +1,21 @@
+{
+  "feature_names": [
+    "post_rate_per_hour",
+    "max_burst_count",
+    "exact_text_repetition_ratio",
+    "repeated_url_ratio",
+    "repost_ratio",
+    "median_inter_post_interval"
+  ],
+  "trained_at": "2026-10-23T16:30:45.403201+00:00",
+  "total_records_ingested": 40000,
+  "total_accounts_trained": 1542,
+  "source_files": [
+    "data\\normalized\\farmers_protest_normalized.jsonl",
+    "data\\normalized\\russian_ira_normalized.jsonl"
+  ],
+  "min_raw_score": 0.31748030182787845,
+  "max_raw_score": 0.7694614436284769,
+  "contamination": 0.08,
+  "n_estimators": 150
+}
