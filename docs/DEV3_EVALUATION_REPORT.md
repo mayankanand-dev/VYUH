@@ -64,7 +64,30 @@ All metrics are derived from verifiable canonical data without synthetic label f
 
 ---
 
-## 4. Methodological Limitations
+## 4. Large-Scale Baseline Model Calibration (500,000 Canonical Records)
+
+- **Artifact**: models/anomaly_detector_baseline.joblib
+- **Metadata**: models/anomaly_model_metadata.json
+- **Total Records Ingested**: **500,000** records (250,000 from Russian IRA Troll Tweets + 250,000 from Farmers Protest Tweets)
+- **Total Unique Accounts Extracted**: **49,396** unique accounts
+- **Eligible Multi-Post Accounts Trained**: **18,747** accounts (>= 2 posts required for cadence interval calculation)
+- **Algorithm**: IsolationForest(n_estimators=200, contamination=0.08, random_state=42)
+- **Feature Set**:
+  1. post_rate_per_hour (velocity)
+  2. max_burst_count (burstiness in 10-minute windows)
+  3. exact_text_repetition_ratio (content duplication)
+  4. 
+epeated_url_ratio (hyperlink amplification)
+  5. 
+epost_ratio (retweet behavior)
+  6. median_inter_post_interval (cadence rhythm in seconds)
+- **Score Calibration**:
+  - Raw Score Range: [0.3130, 0.8243]
+  - Normalized Score Range: [0.0, 1.0] via min-max scaling across multi-stream baseline
+
+---
+
+## 5. Methodological Limitations
 
 - Historical archives represent discrete time windows; real-time campaigns may utilize adaptive rate-limiting or linguistic variation to evade exact text matching.
 - Anomaly scores identify distribution outliers; they do not prove that an account is an automated bot.
