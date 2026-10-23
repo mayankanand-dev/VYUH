@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Caches
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+
+# Heavy Raw Data Files (Preserved locally per BSA Section 63 standards)
+farmers protest tweets/
+russian-troll-tweets-master/
+*.zip
+*.tar.gz
+*.csv
+
+# Large Historical Normalized Streams (Devs consume canonical_fixture_1000.jsonl from repo)
+data/normalized/farmers_protest_normalized.jsonl
+data/normalized/russian_ira_normalized.jsonl
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment & IDE
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
