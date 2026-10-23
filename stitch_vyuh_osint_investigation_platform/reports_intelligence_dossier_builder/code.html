@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-fixed-dim":"#ffb68c","on-tertiary-fixed-variant":"#003ea8","surface-container":"#e5eeff","inverse-primary":"#bac7e1","surface":"#f8f9ff","on-error-container":"#93000a","background":"#f8f9ff","primary-container":"#0e1c2f","secondary-fixed":"#ffdbc9","surface-container-lowest":"#ffffff","on-primary-fixed-variant":"#3a475c","on-error":"#ffffff","secondary-container":"#ff842e","surface-bright":"#f8f9ff","surface-container-high":"#dce9ff","tertiary-container":"#00174b","primary-fixed":"#d6e3fe","outline-variant":"#c5c6cd","on-surface-variant":"#44474c","surface-dim":"#cbdbf5","on-secondary-fixed-variant":"#753400","on-primary-fixed":"#0e1c2f","inverse-on-surface":"#eaf1ff","on-secondary-fixed":"#321200","error":"#ba1a1a","inverse-surface":"#213145","on-primary":"#ffffff","on-background":"#0b1c30","on-surface":"#0b1c30","primary":"#000000","on-tertiary":"#ffffff","primary-fixed-dim":"#bac7e1","on-tertiary-fixed":"#00174b","surface-container-highest":"#d3e4fe","on-tertiary-container":"#497cff","surface-variant":"#d3e4fe","on-primary-container":"#77849c","secondary":"#9a4600","tertiary-fixed":"#dbe1ff","error-container":"#ffdad6","surface-container-low":"#eff4ff","surface-tint":"#525f75","on-secondary-container":"#642b00","tertiary":"#000000","on-secondary":"#ffffff","outline":"#75777d","tertiary-fixed-dim":"#b4c5ff"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter":"1rem","space-xl":"1.5rem","gutter-compact":"0.5rem","margin":"1.5rem","space-xs":"0.25rem","space-md":"0.75rem","space-lg":"1rem","space-sm":"0.5rem"},fontFamily:{"body-lg":["Inter"],"headline-lg":["Inter"],"body-sm":["Inter"],"display-lg":["Inter"],"mono-lg":["JetBrains Mono"],"label-md":["Inter"],"body-md":["Inter"],"title-md":["Inter"],"headline-md":["Inter"],"mono-md":["JetBrains Mono"],"mono-sm":["JetBrains Mono"]},fontSize:{"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"mono-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-md":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"mono-md":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"mono-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant shadow-[0_1px_4px_rgba(11,28,48,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="VYUH Intelligence Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WpTLn1fDcosQ6L-pnYhvDv6LzZI-CwyV4CdUdsEN9KWdGFZL9fWwOMiQhupGuQBTxl65FPsAdYbzdsqSbg8G35qq_dGjIy58PbE7oMg7kuen2tFH0NlSjKS5kG8b6mgCli6otQOMLHY-T8U7ffIA22Ul7WtVoNdEBgM6KRP-3TjrWgrrB6B0ZuQE-5ZE_eW5BT2t7azelQyPUdrPlrwGuYXp1IJYKkhzQuWKT_9t96PgAYkuFnmSnGjaI"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface tracking-tight font-bold">VYUH</span><span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-mono-sm text-mono-sm uppercase font-semibold">GOV-OSINT</span></div><span class="font-label-md text-label-md text-on-surface-variant hidden md:inline">OSINT &amp; Disinformation Investigation System</span></div></div><div class="h-6 w-px bg-outline-variant hidden lg:block"></div><div class="hidden lg:flex items-center gap-space-xs px-space-md py-1 rounded bg-surface-container-low border border-outline-variant text-on-surface"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-mono-sm text-mono-sm text-on-surface font-medium">Historical Dataset // Demo Enclave</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button class="p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 backdrop-blur-sm transition-colors" title="Documentation &amp; Help" type="button"><span class="material-symbols-outlined text-[20px]">help_outline</span></button><button class="relative p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 backdrop-blur-sm transition-colors" title="Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-mono-sm text-[9px] font-bold">3</span></button></div><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="relative"><img alt="A. Sharma profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6qKwOq9OuxMcZzeJanW3TTy2Hk0fDOgNQURZzG4ftrx3VGOxzYf-NHnEtUAG9BROVmC1zL0s0huc80tKl4iberJpSA8VcDU-5Z-fSJNTP3Td6H-3Hq7qGp-ZWzkQItETGzTBUXfCG1rM8c3pNczHJ8zNhyqMStl98JLcaSX1v-m_lQTFye7NfAo36XXzuGJNBvLXBtXXYHoJpYNmpE7AmG_CMqK2i87SWgetsx_2_DXXpaWe1InM"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-secondary ring-1 ring-surface-container-lowest"></span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold">A. Sharma</span><span class="font-mono-sm text-mono-sm text-on-surface-variant">Senior Analyst, Cyber Defense</span></div></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-64 bg-surface-container-lowest border-r border-outline-variant z-40 flex flex-col justify-between py-space-md overflow-y-auto"><div class="flex flex-col gap-space-lg px-space-md"><div class="flex flex-col gap-1"><div class="px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Investigation</div><nav class="flex flex-col gap-0.5" data-active-classes="bg-surface-container-low text-on-surface font-semibold border-l-2 border-secondary pl-[calc(0.5rem-2px)]"><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="dashboard" href="#">Dashboard</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="investigations" href="#">Investigations</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="social-intelligence" href="#">Social Intelligence</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="narrative-analysis" href="#">Narrative Analysis</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="account-osint" href="#">Account OSINT</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="network-analysis" href="#">Network Analysis</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="media-forensics" href="#">Media Forensics</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="geospatial-analysis" href="#">Geospatial Analysis</a></nav></div><div class="flex flex-col gap-1"><div class="px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Evidence &amp; Action</div><nav class="flex flex-col gap-0.5" data-active-classes="bg-surface-container-low text-on-surface font-semibold border-l-2 border-secondary pl-[calc(0.5rem-2px)]"><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="evidence-repository" href="#">Evidence Repository</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="notice-preparation" href="#">Notice Preparation</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="reports-exports" href="#">Reports &amp; Exports</a></nav></div><div class="flex flex-col gap-1"><div class="px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">System</div><nav class="flex flex-col gap-0.5" data-active-classes="bg-surface-container-low text-on-surface font-semibold border-l-2 border-secondary pl-[calc(0.5rem-2px)]"><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="sandbox-module-lab" href="#">Sandbox / Module Lab</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="audit-log" href="#">Audit Log</a><a class="flex items-center px-space-sm py-1.5 rounded-r text-on-surface-variant hover:bg-surface-container-low/70 hover:backdrop-blur-sm hover:text-on-surface transition-all font-body-md text-body-md" data-path="settings" href="#">Settings</a></nav></div></div><div class="px-space-md border-t border-outline-variant pt-space-sm mt-space-md flex flex-col gap-space-xs"><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Security Clearance</span><span class="text-secondary font-semibold">RESTRICTED</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Enclave Status</span><span class="text-on-surface font-semibold">Active (Sync)</span></div></div></aside><div class="pl-64"><main class="relative pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Sticky Operational Sub-Header / Breadcrumb & Controls -->
+<div class="px-margin py-space-sm bg-surface-container-lowest shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant">
+<a class="hover:text-on-surface transition-colors" href="#">Portal</a>
+<span>/</span>
+<a class="hover:text-on-surface transition-colors" href="#">Investigation</a>
+<span>/</span>
+<span class="text-secondary font-medium">Reports &amp; Exports</span>
+<span class="px-1.5 py-0.2 bg-surface-container font-mono-sm text-mono-sm text-on-surface rounded">#INV-2025-089X</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Executive Intelligence Dossier &amp; Certified Evidentiary Export</h1>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm uppercase font-semibold">LEGAL ADMISSIBILITY MODE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Compile court-admissible forensic packages, executive briefs, and statutory notices with embedded Section 65B Indian Evidence Act certification.</p>
+</div>
+<!-- Quick Action Toolbelt -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-1.5 rounded bg-surface-container-low text-on-surface hover:bg-surface-container font-title-md text-body-md font-semibold transition-all shadow-sm flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Print Preview (Statutory Format)</span>
+</button>
+<button class="px-space-md py-1.5 rounded bg-surface-container-low text-on-surface hover:bg-surface-container font-title-md text-body-md font-semibold transition-all shadow-sm flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">folder_zip</span>
+<span>Generate Dossier Package (.ZIP)</span>
+</button>
+<button class="px-space-md py-1.5 rounded bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant font-title-md text-body-md font-semibold transition-all shadow-sm flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Export Certified PDF</span>
+</button>
+</div>
+</div>
+<!-- Key Metrics Ribbon -->
+<div class="px-margin pt-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm">
+<div class="p-space-md bg-surface-container-lowest rounded shadow-sm flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase font-bold tracking-wider">Compiled Annexures</span>
+<span class="font-display-lg text-headline-lg text-on-surface mt-1">18 Items</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant mt-0.5">4 Forensics • 6 WORM WARCs • 8 Accounts</span>
+</div>
+<div class="p-2 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded shadow-sm flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase font-bold tracking-wider">Evidentiary Classification</span>
+<span class="font-headline-md text-headline-md text-secondary mt-1">RESTRICTED</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant mt-0.5">Law Enforcement &amp; CERT Use Only</span>
+</div>
+<div class="p-2 rounded bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[20px]">security</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded shadow-sm flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase font-bold tracking-wider">Cryptographic Root Hash</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono-md text-mono-md text-on-surface font-semibold">SHA-256: 4b1f...9e2a</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant mt-0.5">Merkle Root: Validated (Tree Height 6)</span>
+</div>
+<div class="p-2 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[20px]">tag</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded shadow-sm flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase font-bold tracking-wider">Statutory Audit Retention</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">5 Years</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant mt-0.5">Immutable WORM // CERT-IN-ENCLAVE-04</span>
+</div>
+<div class="p-2 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[20px]">lock_clock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Split Studio Workspace -->
+<div class="px-margin py-space-md flex flex-col lg:flex-row gap-space-lg items-start">
+<!-- LEFT CONFIGURATION COLUMN (38%) -->
+<div class="w-full lg:w-[38%] flex flex-col gap-space-md shrink-0">
+<!-- Preset & Scope Card -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">tune</span>
+<h2 class="font-title-md text-title-md text-on-surface">Dossier Preset &amp; Scope</h2>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Profile: CERT-65B-STD</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="p-space-sm text-left rounded bg-surface-container text-on-surface font-title-md text-body-sm flex flex-col gap-0.5 transition-all" type="button">
+<span class="font-semibold text-on-surface">Full Court Package (65B)</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">18 Pages • Statutory Signed</span>
+</button>
+<button class="p-space-sm text-left rounded bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm flex flex-col gap-0.5 transition-all" type="button">
+<span class="font-semibold text-on-surface">Executive Brief</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">4 Pages • C-Level Overview</span>
+</button>
+<button class="p-space-sm text-left rounded bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm flex flex-col gap-0.5 transition-all" type="button">
+<span class="font-semibold text-on-surface">Intermediary Notice</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">IT Rules 3(1)(d) • Sahyog Lodgment</span>
+</button>
+<button class="p-space-sm text-left rounded bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm flex flex-col gap-0.5 transition-all" type="button">
+<span class="font-semibold text-on-surface">Custom Granular Scope</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">User-defined sections</span>
+</button>
+</div>
+</div>
+<!-- Classification & Redaction Parameters -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs pb-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">admin_panel_settings</span>
+<h2 class="font-title-md text-title-md text-on-surface">Classification &amp; Redaction Controls</h2>
+</div>
+<div class="flex flex-col gap-space-sm">
+<label class="flex items-center justify-between p-space-sm rounded bg-surface-container-low hover:bg-surface-container/60 cursor-pointer transition-colors">
+<div class="flex flex-col pr-2">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Redact PII of Secondary Bystanders</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Masks phone digits &amp; civilian usernames</span>
+</div>
+<input checked="" class="w-4 h-4 accent-secondary rounded cursor-pointer" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-space-sm rounded bg-surface-container-low hover:bg-surface-container/60 cursor-pointer transition-colors">
+<div class="flex flex-col pr-2">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Include Cryptographic Merkle Signatures</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Embed per-tweet SHA-256 leaves in appendix</span>
+</div>
+<input checked="" class="w-4 h-4 accent-secondary rounded cursor-pointer" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-space-sm rounded bg-surface-container-low hover:bg-surface-container/60 cursor-pointer transition-colors">
+<div class="flex flex-col pr-2">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Embed HSM PKCS#11 Digital Attestation Seal</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Hardware-backed non-repudiation signature</span>
+</div>
+<input checked="" class="w-4 h-4 accent-secondary rounded cursor-pointer" type="checkbox"/>
+</label>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Document Watermark</span>
+<select class="bg-surface-container-low text-on-surface font-mono-sm text-mono-sm px- space-sm py-1 rounded focus:outline-none cursor-pointer">
+<option selected="">CONFIDENTIAL // LEA ONLY</option>
+<option>STRICTLY RESTRICTED // CERT-IN</option>
+<option>SUB-JUDICE // COURT ANNEXURE</option>
+<option>NONE (AUTHORIZED UNMASKED)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section Checklist & Evidentiary Manifest -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">checklist</span>
+<h2 class="font-title-md text-title-md text-on-surface">Section Manifest &amp; Reordering</h2>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">8 of 8 Selected</span>
+</div>
+<div class="flex flex-col gap-1.5" id="section-sort-list">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-medium">01. Executive Summary &amp; Attribution Synopsis</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px]">p. 1-2</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-medium">02. CIB Burst Spectrum &amp; Velocity Curves</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px]">p. 3-4</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-medium">03. Cross-Platform Seed Vectors (@truth_watcher_in)</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px]">p. 5-7</span>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-medium">04. Media Forensic Report: Gazette ELA &amp; Audio Diff</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px]">p. 8-10</span>
+</div>
+<!-- Item 5 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-medium">05. Geospatial &amp; Kinematic Impossibility Vectors</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px]">p. 11-12</span>
+</div>
+<!-- Item 6 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-medium">06. Cryptographic WORM Vault Manifest (42 Records)</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px]">p. 13-14</span>
+</div>
+<!-- Item 7 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-medium">07. Schedule of Offending URLs for Sahyog Lodgment</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px]">p. 15-16</span>
+</div>
+<!-- Item 8 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low hover:bg-surface-container transition-all text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary cursor-grab text-[18px]">drag_indicator</span>
+<input checked="" class="w-3.5 h-3.5 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-semibold text-secondary">08. Section 65B Indian Evidence Act Certificate</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-mono-sm text-[10px] font-bold">p. 17-18</span>
+</div>
+</div>
+</div>
+<!-- Certifying Officer Sign-off Block -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">badge</span>
+<h2 class="font-title-md text-title-md text-on-surface">Certifying Officer Sign-Off</h2>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-mono-sm text-[10px] uppercase font-bold">HSM TOKEN ARMED</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">A. Sharma (ID: OFF-8821)</span>
+<span class="font-mono-sm text-mono-sm text-secondary font-medium">FIPS 140-3 Validated</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Senior Cyber Intelligence Analyst, CERT-In Coordination</span>
+<div class="flex items-center gap-2 pt-1 font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>YubiKey FIPS 5 Series (Slot 01: PIV Digital Signature)</span>
+</div>
+</div>
+<button class="w-full py-2 rounded bg-primary-container text-on-primary font-title-md text-body-md font-semibold flex items-center justify-center gap-space-xs hover:bg-on-background transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">fingerprint</span>
+<span>Apply Section 65B Cryptographic Attestation</span>
+</button>
+</div>
+</div>
+<!-- RIGHT LIVE DOSSIER PREVIEW (62%) -->
+<div class="w-full lg:w-[62%] flex flex-col gap-space-sm">
+<!-- Preview Meta Bar -->
+<div class="flex items-center justify-between px-space-md py-space-xs bg-surface-container-lowest rounded shadow-sm">
+<div class="flex items-center gap-space-md font-mono-sm text-mono-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">visibility</span>
+<span class="font-semibold text-on-surface">LIVE WYSIWYG PREVIEW</span>
+</div>
+<span>•</span>
+<span>Standard A4 Statutory Sheet (210mm × 297mm)</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono-sm text-mono-sm">
+<span class="text-on-surface-variant">Scale: 100%</span>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface" title="Zoom Out" type="button">
+<span class="material-symbols-outlined text-[16px]">zoom_out</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface" title="Zoom In" type="button">
+<span class="material-symbols-outlined text-[16px]">zoom_in</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface" title="Fit to width" type="button">
+<span class="material-symbols-outlined text-[16px]">fit_screen</span>
+</button>
+</div>
+</div>
+<!-- Simulated Formal Physical Dossier Sheet Container -->
+<div class="relative bg-surface-container-lowest rounded shadow-md p-8 md:p-12 flex flex-col gap-space-lg overflow-hidden">
+<!-- Subtle Faint Diagonal Watermark -->
+<div class="pointer-events-none select-none absolute inset-0 flex items-center justify-center opacity-[0.03] rotate-[-30deg]">
+<span class="font-mono-lg text-[64px] font-black uppercase tracking-widest text-on-surface">RESTRICTED // EVIDENTIARY SUB-JUDICE</span>
+</div>
+<!-- Official Statutory Header with Ashoka Emblem Placeholder -->
+<div class="flex flex-col items-center text-center gap-1 pb-4 relative z-10">
+<div class="w-12 h-12 flex items-center justify-center rounded bg-surface-container text-on-surface mb-1">
+<span class="material-symbols-outlined text-[32px]">account_balance</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Government of India • Ministry of Electronics &amp; Information Technology</span>
+<span class="font-label-md text-[10px] text-on-surface-variant uppercase tracking-widest">National Cyber Forensic Coordination Enclave (NCFCE) • New Delhi</span>
+<div class="h-0.5 w-24 bg-secondary mt-1"></div>
+</div>
+<!-- Document Reference Meta Strip -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-space-sm rounded bg-surface-container-low font-mono-sm text-mono-sm text-on-surface relative z-10">
+<div><span class="text-on-surface-variant">ENCLAVE REF:</span> <span class="font-bold">VYUH/2025/DOSSIER-089X-V2</span></div>
+<div><span class="text-on-surface-variant">DATED:</span> <span class="font-semibold">28 FEBRUARY 2025 (14:32:00 IST)</span></div>
+<div><span class="text-on-surface-variant">SECURITY:</span> <span class="text-secondary font-bold">RESTRICTED (LEA ONLY)</span></div>
+</div>
+<!-- Dossier Headline -->
+<div class="flex flex-col gap-1 relative z-10">
+<span class="font-mono-sm text-mono-sm uppercase text-secondary font-bold tracking-wider">STATUTORY EVIDENTIARY DOSSIER // OPERATION PAPERSTORM</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-bold">Comprehensive Forensic &amp; OSINT Attribution Report</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Prepared pursuant to Section 65B of the Indian Evidence Act, 1872 &amp; Information Technology Act, 2000.</span>
+</div>
+<!-- Executive Synopsis Section Box -->
+<div class="p-space-md rounded bg-surface-container-low relative z-10 flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md uppercase font-bold text-on-surface">1.0 Executive Synopsis &amp; Attribution Summary</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface text-justify leading-relaxed">
+            During the operational window of 25–27 February 2025, the Vyuh OSINT and Disinformation Defense Engine detected a high-velocity Coordinated Inauthentic Behavior (CIB) campaign targeting sovereign Indian financial stability. The campaign utilized a synthetically manipulated Ministry of Finance Gazette notification alleging nationwide private banking liquidity freezes, amplified contemporaneously across 14 Telegram channels and 88 high-synchronicity X (formerly Twitter) sockpuppet handles. Multimodal forensic examination confirms digital forgery with 88.6% Error Level Analysis (ELA) divergence and zero authentic cryptographic watermarks. Infrastructure attribution indicates coordinated proxy routing through offshore transit clusters located in Frankfurt and Singapore.
+          </p>
+</div>
+<!-- 4-Column Mini Key Findings Visual Bento -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm relative z-10">
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-md text-[10px] text-on-surface-variant uppercase font-bold">Peak Burst Rate</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-title-md text-title-md font-bold text-on-surface">148</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">shares/3.4s</span>
+</div>
+<span class="font-mono-sm text-[9px] text-secondary font-semibold mt-0.5">Sub-human Velocity</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-md text-[10px] text-on-surface-variant uppercase font-bold">Primary Seed</span>
+<span class="font-mono-sm text-mono-sm text-on-surface font-bold truncate mt-1">@truth_watcher_in</span>
+<span class="font-mono-sm text-[9px] text-secondary font-semibold mt-0.5">StyleGAN3 Persona</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-md text-[10px] text-on-surface-variant uppercase font-bold">Gazette Tamper</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-title-md text-title-md font-bold text-error">88.6%</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">ELA Diff</span>
+</div>
+<span class="font-mono-sm text-[9px] text-error font-semibold mt-0.5">Altered Seal &amp; Type</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-md text-[10px] text-on-surface-variant uppercase font-bold">Infrastructure</span>
+<span class="font-mono-sm text-mono-sm text-on-surface font-bold mt-1">FRA / SGP</span>
+<span class="font-mono-sm text-[9px] text-on-surface-variant font-semibold mt-0.5">AS-9123 Relay Network</span>
+</div>
+</div>
+<!-- Evidentiary Register Preview Table -->
+<div class="flex flex-col gap-space-xs relative z-10">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase font-bold text-on-surface">2.0 Critical Physical &amp; Digital Evidentiary Register</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Showing 4 of 42 Verified Items</span>
+</div>
+<div class="overflow-x-auto rounded bg-surface-container-low">
+<table class="w-full text-left font-body-sm text-body-sm border-collapse">
+<thead>
+<tr class="bg-surface-container font-mono-sm text-[10px] text-on-surface uppercase tracking-wider">
+<th class="p-2">Item ID</th>
+<th class="p-2">Artifact &amp; Source</th>
+<th class="p-2">SHA-256 Checksum Root</th>
+<th class="p-2">Method</th>
+<th class="p-2 text-right">Integrity</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container/40 transition-colors">
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface font-semibold">EV-089X-01</td>
+<td class="p-2">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Gazette_MoF_Forged.pdf</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">Telegram Channel: @bharat_leaks</span>
+</div>
+</td>
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface-variant">e3b0c442...a549882f</td>
+<td class="p-2">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px] font-medium">● OBSERVED</span>
+</td>
+<td class="p-2 text-right">
+<span class="font-mono-sm text-[10px] text-on-surface font-bold">WORM VERIFIED</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/40 transition-colors">
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface font-semibold">EV-089X-02</td>
+<td class="p-2">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Seed Tweet Payload #189283719</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">X Post Archive (WARC-2.0)</span>
+</div>
+</td>
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface-variant">9f86d081...8570e4e7</td>
+<td class="p-2">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px] font-medium">● OBSERVED</span>
+</td>
+<td class="p-2 text-right">
+<span class="font-mono-sm text-[10px] text-on-surface font-bold">WORM VERIFIED</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/40 transition-colors">
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface font-semibold">EV-089X-03</td>
+<td class="p-2">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">StyleGAN3 Profile Face Specimen</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">Normalized 1024x1024 RAW-PNG</span>
+</div>
+</td>
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface-variant">d4735e3a...2657e2bb</td>
+<td class="p-2">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-mono-sm text-[10px] font-medium">✦ INFERENCE (99.4%)</span>
+</td>
+<td class="p-2 text-right">
+<span class="font-mono-sm text-[10px] text-on-surface font-bold">WORM VERIFIED</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/40 transition-colors">
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface font-semibold">EV-089X-04</td>
+<td class="p-2">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Bot Cluster Telemetry Graph Data</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">Gephi Network Matrix (.GEXF)</span>
+</div>
+</td>
+<td class="p-2 font-mono-sm text-mono-sm text-on-surface-variant">4e074085...61b849e8</td>
+<td class="p-2">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-[10px] font-medium">◆ HEURISTIC</span>
+</td>
+<td class="p-2 text-right">
+<span class="font-mono-sm text-[10px] text-on-surface font-bold">WORM VERIFIED</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Embedded Statutory Certificate of Admissibility under Section 65B -->
+<div class="p-space-md rounded bg-surface-container relative z-10 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">Certificate of Admissibility under Section 65B(4)</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-secondary font-bold">FORM NO. II (ELECTRONIC EVIDENCE)</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface leading-relaxed flex flex-col gap-space-xs">
+<p>
+              I, <strong>A. Sharma</strong>, Senior Cyber Intelligence Analyst at the National Cyber Coordination Enclave (CERT-In), do hereby certify and affirm under penalty of statutory law:
+            </p>
+<ol class="list-decimal pl-5 space-y-1">
+<li>That the electronic records described in this dossier were produced by the automated lawful ingestion systems of the <strong>Vyuh Defense Platform</strong> during periods of lawful regular operation.</li>
+<li>That during the said period, computer outputs were routinely captured directly from primary network nodes, with SHA-256 cryptographic hashes contemporaneously recorded onto immutable WORM hardware vaults without human tampering.</li>
+<li>That the cryptographic root hash <code class="font-mono-sm text-mono-sm bg-surface-container-lowest px-1 rounded">4b1f28b49e2a...c084</code> accurately encapsulates the Merkle proof tree for all 18 included annexures.</li>
+</ol>
+</div>
+<!-- Digital Signature Stamp Strip inside preview -->
+<div class="pt-space-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">qr_code_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm font-bold text-on-surface">PKCS#7 DIGITAL SIGNATURE APPLIED</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">Timestamp: 2025-02-28T09:02:18.421Z • Cert Serial: 09FA-1200-88A</span>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-title-md text-body-md font-bold text-on-surface">A. SHARMA</span>
+<span class="font-mono-sm text-[10px] text-on-surface-variant">Authorized Signatory // CERT-In India</span>
+</div>
+</div>
+</div>
+<!-- Document Footer Note -->
+<div class="flex items-center justify-between pt-4 font-mono-sm text-[10px] text-on-surface-variant relative z-10">
+<span>PAGE 1 OF 18 • OFFICIAL COPY FOR PROSECUTION</span>
+<span>SYSTEM OF RECORD: VYUH-GOV-OSINT-V4</span>
+<span class="text-secondary font-bold">TAMPER-SEALED COPY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple interaction handler for checkbox states and dynamic pagination indicator
+  document.addEventListener('DOMContentLoaded', () => {
+    const list = document.getElementById('section-sort-list');
+    if (list) {
+      list.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.addEventListener('change', (e) => {
+          const parentRow = e.target.closest('div.flex');
+          if (parentRow) {
+            parentRow.style.opacity = e.target.checked ? '1' : '0.45';
+          }
+        });
+      });
+    }
+  });
+</script></main></div></body></html>

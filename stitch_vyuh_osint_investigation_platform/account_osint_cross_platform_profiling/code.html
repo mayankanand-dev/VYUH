@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error":"#ba1a1a","on-secondary-fixed-variant":"#753400","primary":"#000000","error-container":"#ffdad6","primary-container":"#0e1c2f","surface-container-lowest":"#ffffff","secondary-container":"#ff842e","surface-container-low":"#eff4ff","surface-container-high":"#dce9ff","outline-variant":"#c5c6cd","primary-fixed-dim":"#bac7e1","on-surface-variant":"#44474c","surface-container":"#e5eeff","secondary-fixed-dim":"#ffb68c","surface-dim":"#cbdbf5","on-tertiary-fixed-variant":"#003ea8","tertiary":"#000000","on-tertiary":"#ffffff","surface":"#f8f9ff","inverse-on-surface":"#eaf1ff","on-primary-container":"#77849c","on-error":"#ffffff","surface-tint":"#525f75","surface-variant":"#d3e4fe","tertiary-fixed":"#dbe1ff","primary-fixed":"#d6e3fe","tertiary-fixed-dim":"#b4c5ff","on-surface":"#0b1c30","on-primary-fixed-variant":"#3a475c","on-secondary":"#ffffff","surface-bright":"#f8f9ff","inverse-primary":"#bac7e1","inverse-surface":"#213145","surface-container-highest":"#d3e4fe","on-secondary-fixed":"#321200","on-tertiary-container":"#497cff","on-tertiary-fixed":"#00174b","secondary":"#9a4600","on-primary-fixed":"#0e1c2f","outline":"#75777d","on-primary":"#ffffff","background":"#f8f9ff","on-background":"#0b1c30","tertiary-container":"#00174b","on-secondary-container":"#642b00","secondary-fixed":"#ffdbc9","on-error-container":"#93000a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"margin":"1.5rem","space-lg":"1rem","space-xl":"1.5rem","gutter-compact":"0.5rem","space-xs":"0.25rem","gutter":"1rem","space-md":"0.75rem","space-sm":"0.5rem"},fontFamily:{"mono-md":["JetBrains Mono"],"body-lg":["Inter"],"title-md":["Inter"],"display-lg":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"mono-sm":["JetBrains Mono"],"mono-lg":["JetBrains Mono"],"label-md":["Inter"],"headline-lg":["Inter"]},fontSize:{"mono-md":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"mono-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"400"}],"mono-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-md":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-[0_1px_4px_rgba(11,28,48,0.05)]"><div class="h-16 px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="VYUH Intelligence Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WpTLn1fDcosQ6L-pnYhvDv6LzZI-CwyV4CdUdsEN9KWdGFZL9fWwOMiQhupGuQBTxl65FPsAdYbzdsqSbg8G35qq_dGjIy58PbE7oMg7kuen2tFH0NlSjKS5kG8b6mgCli6otQOMLHY-T8U7ffIA22Ul7WtVoNdEBgM6KRP-3TjrWgrrB6B0ZuQE-5ZE_eW5BT2t7azelQyPUdrPlrwGuYXp1IJYKkhzQuWKT_9t96PgAYkuFnmSnGjaI"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface tracking-tight font-bold">VYUH</span><span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-mono-sm text-mono-sm uppercase font-semibold">GOV-OSINT</span></div><span class="font-label-md text-label-md text-on-surface-variant hidden xl:inline">OSINT &amp; Disinformation Intelligence Platform | National Cyber Coordination</span></div></div><div class="h-6 w-px bg-outline-variant hidden md:block"></div><div class="hidden lg:flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded border border-outline-variant"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Case:</span><span class="font-mono-md text-mono-md text-on-surface font-semibold">#INV-2025-089X // Operation PaperStorm</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><span class="font-mono-sm text-mono-sm text-on-surface-variant truncate max-w-xs">Coordinated Banking Phish &amp; Disinformation</span></div><span class="px-space-xs py-0.5 bg-error-container text-on-error-container font-label-md text-label-md rounded font-bold uppercase tracking-wide">CONFIDENTIAL // LAW ENFORCEMENT &amp; CERT USE ONLY</span></div></div><div class="flex items-center gap-space-md"><div class="hidden 2xl:flex items-center gap-space-xs px-space-md py-1 rounded bg-surface-container text-on-surface"><span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span class="font-mono-sm text-mono-sm text-on-surface">Historical Replay Mode (Read-Only Archive - 14.2M Posts Indexed)</span></div><div class="flex items-center gap-space-xs"><button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-mono-sm text-mono-sm text-on-surface-variant hidden sm:inline">Cmd+K</span></button><button class="relative p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-mono-sm text-[9px] font-bold">3</span></button></div><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6qKwOq9OuxMcZzeJanW3TTy2Hk0fDOgNQURZzG4ftrx3VGOxzYf-NHnEtUAG9BROVmC1zL0s0huc80tKl4iberJpSA8VcDU-5Z-fSJNTP3Td6H-3Hq7qGp-ZWzkQItETGzTBUXfCG1rM8c3pNczHJ8zNhyqMStl98JLcaSX1v-m_lQTFye7NfAo36XXzuGJNBvLXBtXXYHoJpYNmpE7AmG_CMqK2i87SWgetsx_2_DXXpaWe1InM"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-secondary-container ring-1 ring-surface-container-lowest"></span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold">A. Sharma</span><span class="font-mono-sm text-mono-sm text-on-surface-variant">Senior Analyst, Cyber Defense</span></div></div></div></div><div class="h-10 px-margin flex items-center justify-between border-t border-outline-variant bg-surface"><nav class="flex items-center gap-space-xs overflow-x-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="investigation-overview" href="#">Investigation Overview</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="narrative-coordination" href="#">Narrative &amp; Coordination</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="network-accounts-osint" href="#">Network &amp; Accounts OSINT</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="media-forensics" href="#">Media Forensics</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="evidence-custody" href="#">Evidence &amp; Custody</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="legal-notice-prep" href="#">Legal Notice Prep</a><a class="px-space-md py-1 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="sandbox-lab" href="#">Sandbox Lab</a></nav><div class="hidden lg:flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-mono-sm text-mono-sm text-on-surface-variant uppercase">Case Ref:</span><span class="font-mono-sm text-mono-sm text-on-surface font-semibold">#INV-2025-089X</span></div><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold tracking-wider uppercase">RESTRICTED</span><div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">verified</span><span>SHA-256: 4b1f...9e2a</span></div><button class="flex items-center gap-space-xs px-space-md py-1 bg-secondary text-on-secondary rounded font-label-md text-label-md font-semibold hover:bg-secondary-container hover:text-on-secondary-container transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">file_download</span>Export Dossier</button></div></div></header><aside class="fixed left-0 top-[104px] bottom-0 w-64 bg-surface-container-lowest border-r border-outline-variant z-40 flex flex-col justify-between py-space-md"><div class="flex flex-col gap-space-sm px-space-md"><div class="px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Forensic Tooling</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="cluster-matrix" href="#"><span class="material-symbols-outlined text-[18px]">hub</span>Cluster Matrix</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="bot-heuristics" href="#"><span class="material-symbols-outlined text-[18px]">smart_toy</span>Bot Heuristics</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="synthetic-speech" href="#"><span class="material-symbols-outlined text-[18px]">record_voice_over</span>Synthetic Audio &amp; Video</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="geo-triangulation" href="#"><span class="material-symbols-outlined text-[18px]">share_location</span>Geo-Triangulation</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-body-md text-body-md" data-path="disinfo-spread-tree" href="#"><span class="material-symbols-outlined text-[18px]">account_tree</span>Propagation Trees</a></nav><div class="mt-space-md px-space-sm py-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-bold">Chain of Custody</div><div class="bg-surface-container-low p-space-sm rounded border border-outline-variant flex flex-col gap-1"><div class="flex items-center justify-between text-on-surface font-mono-sm text-mono-sm"><span>Ledger Block</span><span class="font-semibold">#8812-C</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Seals Intact</span><span class="text-secondary font-semibold">42/42</span></div><div class="flex items-center gap-1 mt-1 text-on-surface font-label-md text-label-md"><span class="material-symbols-outlined text-[14px] text-secondary">lock</span><span>Cryptographic Audit Mode</span></div></div></div><div class="px-space-md border-t border-outline-variant pt-space-sm flex flex-col gap-space-xs"><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Node Status</span><span class="text-on-surface font-semibold">Synced (12ms)</span></div><div class="flex items-center justify-between text-on-surface-variant font-mono-sm text-mono-sm"><span>Target Platform</span><span class="text-on-surface font-semibold">FedRAMP High</span></div></div></aside><div class="pl-64"><main class="relative pt-[104px] bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Query & Verification Header -->
+<section class="bg-surface-container-lowest p-margin shadow-sm">
+<div class="flex flex-col gap-space-md">
+<!-- Breadcrumb + System Flags -->
+<div class="flex flex-wrap items-center justify-between gap-gutter">
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant uppercase tracking-wider">
+<span class="hover:text-on-surface cursor-pointer">PORTAL</span>
+<span>/</span>
+<span class="hover:text-on-surface cursor-pointer">INVESTIGATION</span>
+<span>/</span>
+<span class="text-on-surface font-semibold">ACCOUNT OSINT &amp; ATTRIBUTION</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface font-mono-sm text-mono-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">verified_user</span>
+            EVIDENTIAL LEDGER: SIG-992-BETA
+          </span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-mono-sm text-mono-sm font-semibold">
+            QUERY RUNTIME: 384ms
+          </span>
+</div>
+</div>
+<!-- Prominent Search Bar -->
+<div class="bg-surface-container-low p-space-sm rounded-lg shadow-inner">
+<form class="flex flex-col md:flex-row items-stretch gap-space-sm" onsubmit="event.preventDefault();">
+<div class="relative flex-1 flex items-center">
+<span class="absolute left-3 text-on-surface-variant font-mono-md text-mono-md select-none pointer-events-none">
+<span class="material-symbols-outlined text-[18px] align-middle">alternate_email</span>
+</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-mono-lg text-mono-lg pl-9 pr-24 py-2.5 rounded shadow-sm focus:outline-none focus:ring-1 focus:ring-primary-container" id="osintSearchInput" placeholder="Enter handle, alias, or platform UID..." type="text" value="truth_watcher_in"/>
+<div class="absolute right-3 flex items-center gap-1 text-on-surface-variant font-mono-sm text-mono-sm">
+<span class="px-1 py-0.5 bg-surface-container rounded text-[10px]">FUZZY LEV-2</span>
+</div>
+</div>
+<button class="flex items-center justify-center gap-space-xs px-space-xl py-2.5 bg-primary text-on-primary rounded font-label-md text-label-md uppercase tracking-wider hover:bg-inverse-surface transition-all shadow-sm active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[16px]">radar</span>
+            Execute Multi-Platform OSINT Scan (14 Supported Platforms)
+          </button>
+</form>
+</div>
+<!-- Platform Filter Chips with Live Status -->
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mr-1">Scan Matrices:</span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm font-mono-sm text-mono-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-semibold">X (Twitter)</span>
+<span class="text-on-surface-variant font-normal">Active Match</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm font-mono-sm text-mono-sm">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+<span class="font-semibold">Telegram</span>
+<span class="text-on-surface-variant font-normal">Correlated</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm font-mono-sm text-mono-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-semibold">YouTube</span>
+<span class="text-on-surface-variant font-normal">Candidate (Lev-1)</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface-variant shadow-sm font-mono-sm text-mono-sm opacity-60">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span>Reddit</span>
+<span class="text-[10px]">No Match</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm font-mono-sm text-mono-sm">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<span class="font-semibold">GitHub</span>
+<span class="text-on-surface-variant font-normal">Dormant Match</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm font-mono-sm text-mono-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-semibold">Mastodon</span>
+<span class="text-on-surface-variant font-normal">Mirror</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-mono-sm text-mono-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant animate-pulse"></span>
+<span>Facebook</span>
+<span class="text-[10px] italic">Pending Ingestion</span>
+</span>
+</div>
+<!-- Legal Statutory Notice Banner -->
+<div class="flex items-start gap-space-sm p-space-sm rounded bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">policy</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">
+            LEGAL &amp; COMPLIANCE NOTICE // RULE 4(1)(B) INFORMATIVE PURPOSES ONLY
+          </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Username coincidence across disparate platforms does not constitute definitive attribution of human identity or legal culpable ownership. Behavioral overlap models and psycholinguistic vectors provide investigative leads only. Chain-of-custody preservation must be executed manually before presenting dossiers for subpoena issuance.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Multi-Candidate Account Comparison Table Section -->
+<section class="p-margin flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Discovered Multi-Platform Candidates</h2>
+<span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary-container font-mono-sm text-mono-sm font-semibold">
+          4 DISCOVERED NODES
+        </span>
+</div>
+<div class="flex items-center gap-space-xs font-mono-sm text-mono-sm text-on-surface-variant">
+<span>Fuzzy Alg: Jaro-Winkler ≥ 0.88</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<button class="text-secondary hover:underline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">tune</span> Adjust Thresholds
+        </button>
+</div>
+</div>
+<!-- Compact Forensic Data Table -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="py-2.5 px-space-md">Entity &amp; Identity</th>
+<th class="py-2.5 px-space-md">Platform</th>
+<th class="py-2.5 px-space-md">Registration / Age</th>
+<th class="py-2.5 px-space-md">Audience &amp; Velocity</th>
+<th class="py-2.5 px-space-md">Fingerprint Match Confidence</th>
+<th class="py-2.5 px-space-md">Classification</th>
+<th class="py-2.5 px-space-md text-right">Operation</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-md text-body-md">
+<!-- Row 1: Target Seed -->
+<tr class="bg-surface-container-low/60 hover:bg-surface-container transition-colors">
+<td class="py-2 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="relative w-8 h-8 rounded-full bg-surface-container overflow-hidden shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Digital forensic close-up portrait of an AI generated synthetic male face with slight eye asymmetry and sterile neutral studio lighting on a soft gray gradient, clean surveillance photoreal style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTn9RoYMBmEt713OD5tWgtiAZTOFdMcrnz9fXHcHBE-s0xoJzn_Y5u6JIDFYJM4JsRXKVsXYx9UVg5SpkI7Ls3sY2DMnNrIZyZP8tIegXMGpP2qTHuRABF6JnJx8EnBPEli4eLAlhvnGXZZhA0h0Xlm5iHn6W8ICz8Z9etgVPg_tE438AjVU0HGZo8ZunNW1-4g-lJnGRWMajsC5m3eVnpPJ63YJOpA291uXhj0RGcfTL6fLQBmPqt"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-body-md font-semibold text-on-surface truncate">Truth Watcher IN</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">@truth_watcher_in</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-mono-sm text-mono-sm text-on-surface font-semibold">
+                  X / Twitter
+                </span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm text-on-surface-variant">
+<span>2024-11-04</span>
+<span class="block text-[10px] text-outline">103 days old</span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm">
+<div class="text-on-surface font-medium">8,412 flwrs / 12 flwg</div>
+<div class="text-secondary text-[10px] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">bolt</span> 42.8 posts/day
+                </div>
+</td>
+<td class="py-2 px-space-md">
+<div class="flex flex-col gap-1 w-48">
+<div class="flex items-center justify-between font-mono-sm text-mono-sm">
+<span class="text-secondary font-bold">96.4% MATCH</span>
+<span class="text-on-surface-variant text-[10px]">SEED VECTOR</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 96.4%"></div>
+</div>
+<div class="flex gap-1 text-[10px] font-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-medium">Bio 94%</span> • <span>URLs 89%</span> • <span>Temp 98%</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold uppercase">
+                  ● Target Seed
+                </span>
+</td>
+<td class="py-2 px-space-md text-right">
+<button class="px-space-sm py-1 bg-primary text-on-primary rounded font-label-md text-label-md font-semibold hover:bg-inverse-surface shadow-sm transition-all">
+                  Inspecting
+                </button>
+</td>
+</tr>
+<!-- Row 2: Telegram Correlated Node -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-tertiary-container font-mono-sm font-bold shrink-0">
+                    TW
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-body-md font-semibold text-on-surface truncate">Truth Watcher Broadcast</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">t.me/truth_watcher_channel</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-mono-sm text-mono-sm text-on-surface">
+                  Telegram
+                </span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm text-on-surface-variant">
+<span>2024-11-06</span>
+<span class="block text-[10px] text-outline">+2d offset</span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm">
+<div class="text-on-surface font-medium">14,820 members</div>
+<div class="text-on-surface-variant text-[10px]">19 broadcasts/day</div>
+</td>
+<td class="py-2 px-space-md">
+<div class="flex flex-col gap-1 w-48">
+<div class="flex items-center justify-between font-mono-sm text-mono-sm">
+<span class="text-on-tertiary-container font-bold">88.2% MATCH</span>
+<span class="text-on-surface-variant text-[10px]">PAYLOAD DROP</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container rounded-full" style="width: 88.2%"></div>
+</div>
+<div class="flex gap-1 text-[10px] font-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-medium">Bio 91%</span> • <span>URLs 95%</span> • <span>Temp 74%</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold uppercase">
+                  ◆ Correlated Node
+                </span>
+</td>
+<td class="py-2 px-space-md text-right">
+<button class="px-space-sm py-1 bg-surface-container-low text-on-surface hover:bg-surface-container rounded font-label-md text-label-md font-semibold transition-all">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- Row 3: Mastodon Mirror -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant font-mono-sm shrink-0">
+<span class="material-symbols-outlined text-[16px]">rss_feed</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-body-md font-semibold text-on-surface truncate">TruthWatcher Mirror</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">@truth_watcher@india.social</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-mono-sm text-mono-sm text-on-surface">
+                  Mastodon
+                </span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm text-on-surface-variant">
+<span>2024-11-12</span>
+<span class="block text-[10px] text-outline">Automated API sync</span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm">
+<div class="text-on-surface font-medium">419 flwrs / 1 flwg</div>
+<div class="text-on-surface-variant text-[10px]">Instant Relay Bot</div>
+</td>
+<td class="py-2 px-space-md">
+<div class="flex flex-col gap-1 w-48">
+<div class="flex items-center justify-between font-mono-sm text-mono-sm">
+<span class="text-on-surface font-bold">81.5% MATCH</span>
+<span class="text-on-surface-variant text-[10px]">RELAY SINK</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-surface-tint rounded-full" style="width: 81.5%"></div>
+</div>
+<div class="flex gap-1 text-[10px] font-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-medium">Bio 88%</span> • <span>URLs 79%</span> • <span>Temp 99%</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md uppercase">
+                  ✦ API Bot Mirror
+                </span>
+</td>
+<td class="py-2 px-space-md text-right">
+<button class="px-space-sm py-1 bg-surface-container-low text-on-surface hover:bg-surface-container rounded font-label-md text-label-md font-semibold transition-all">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- Row 4: YouTube Candidate -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant font-mono-sm shrink-0">
+<span class="material-symbols-outlined text-[16px]">play_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-body-md font-semibold text-on-surface truncate">Truth Watcher Insights</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">@TruthWatcherOfficial-in</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low font-mono-sm text-mono-sm text-on-surface">
+                  YouTube
+                </span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm text-on-surface-variant">
+<span>2024-12-01</span>
+<span class="block text-[10px] text-outline">Shorts channel</span>
+</td>
+<td class="py-2 px-space-md font-mono-sm text-mono-sm">
+<div class="text-on-surface font-medium">3,200 subs</div>
+<div class="text-on-surface-variant text-[10px]">14 Synthetic Shorts</div>
+</td>
+<td class="py-2 px-space-md">
+<div class="flex flex-col gap-1 w-48">
+<div class="flex items-center justify-between font-mono-sm text-mono-sm">
+<span class="text-secondary-container font-bold">64.0% MATCH</span>
+<span class="text-on-surface-variant text-[10px]">HEURISTIC</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 64%"></div>
+</div>
+<div class="flex gap-1 text-[10px] font-mono-sm text-on-surface-variant">
+<span class="text-on-surface font-medium">Bio 61%</span> • <span>URLs 50%</span> • <span>Temp 82%</span>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md uppercase">
+                  Unverified Candidate
+                </span>
+</td>
+<td class="py-2 px-space-md text-right">
+<button class="px-space-sm py-1 bg-surface-container-low text-on-surface hover:bg-surface-container rounded font-label-md text-label-md font-semibold transition-all">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-surface-container-low px-space-md py-2 flex items-center justify-between font-mono-sm text-mono-sm text-on-surface-variant">
+<span>Displaying Top 4 of 12 candidate records</span>
+<div class="flex items-center gap-space-sm">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> High Certainty (&gt;85%)</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary-container"></span> Moderate (60-84%)</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-outline"></span> Low / Filtered (&lt;60%)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Split 2-Column Inspector Section -->
+<section class="p-margin pt-0">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN (Profile & Behavioral Fingerprint) -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<!-- Primary Entity Forensic Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-lg shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<!-- Avatar with Forensics Callout -->
+<div class="relative w-20 h-20 rounded-xl bg-surface-container overflow-hidden shadow-sm shrink-0">
+<img class="w-full h-full object-cover" data-alt="Digital forensic close-up portrait of an AI generated synthetic male face with slight eye asymmetry and sterile neutral studio lighting on a soft gray gradient, clean surveillance photoreal style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI0H1jfnYRDOKxPQHfnbWaYwoKyke42yl5T5DM1oAJoyksKdf6l3i7fmlmLvg5xfbAk0MiIgSTHkTl7JHdeDG-4iJpOViyUoFDa-KTxr0EBv-rL6ra_ma6G2OIDTf8Bi99V2350eKCXZKpMbwl7UpYq48XiyapNDyK-GVAAIpAA7jLaJe8WWmRkzhLuM9PRzP4b18DfQJ0Cdu-hFw8Gxp89sll5P1ZMVgD6BaLYVWAD8HjaBj-X4WG"/>
+<div class="absolute bottom-0 inset-x-0 bg-primary-container/90 text-on-primary-container text-center py-0.5 text-[9px] font-mono-sm font-bold uppercase">
+                  SYNTHETIC GAN
+                </div>
+</div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">Truth Watcher IN</h3>
+<span class="material-symbols-outlined text-secondary text-[20px]" title="Attribution Priority">flag_circle</span>
+</div>
+<span class="font-mono-md text-mono-md text-on-surface-variant">@truth_watcher_in</span>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-mono-sm text-mono-sm font-bold uppercase tracking-wider">
+                    PRIMARY DISSEM VECTOR
+                  </span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">UID: 1853491290331</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Dissem Velocity</span>
+<span class="font-display-lg text-display-lg font-bold text-secondary">14,200</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant -mt-1">Impression REACH / HR</span>
+</div>
+</div>
+<!-- Synthetic Avatar Forensic Inspection Artifact Callout -->
+<div class="p-space-sm rounded bg-error-container/40 flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-error mt-0.5">csv</span>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-error-container uppercase">
+                  StyleGAN-3 Latent Artifacts Detected (99.1% Confidence)
+                </span>
+<span class="font-mono-sm text-mono-sm text-error font-semibold">BIO-METRIC ANOMALY</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-error-container">
+                Geometric pupil-distance centering ratio (0.500:0.500 perfectly centered), micro-earlobe texture blur, non-planar specular reflection in left iris. Unquestionably synthetic generated portrait.
+              </p>
+</div>
+</div>
+<!-- Psycholinguistic Narrative Analysis Box -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">
+                Bio Semantic Transcript &amp; Psycholinguistic Model
+              </span>
+<span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-mono-sm text-mono-sm font-bold">
+                NARRATIVE: BANK PANIC
+              </span>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded font-mono-md text-mono-md text-on-surface italic">
+              "Independent investigative voice exposing banking discrepancies &amp; state liquidity coverups across APAC. What legacy media hides, we reveal. Check pinned link for frozen deposit claims."
+            </div>
+<div class="grid grid-cols-3 gap-space-sm mt-1">
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Urgency Framing:</span>
+<span class="font-mono-md text-mono-md font-bold text-secondary">94.8 / 100</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Institutional Distrust:</span>
+<span class="font-mono-md text-mono-md font-bold text-on-surface">98.2 / 100</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Lexical Repetition:</span>
+<span class="font-mono-md text-mono-md font-bold text-on-surface">High (0.81 Entropy)</span>
+</div>
+</div>
+</div>
+<!-- Multi-Platform Footprint Grid -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">
+              Multi-Platform Footprint Mapping
+            </span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Item 1 -->
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span> X / Twitter
+                  </span>
+<span class="font-mono-sm text-mono-sm text-secondary font-bold">Primary Vector</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">@truth_watcher_in</span>
+<span class="font-body-sm text-body-sm text-on-surface">Seed broadcaster, 14.2k avg imp/hr, automated quote cascade</span>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">send</span> Telegram Channel
+                  </span>
+<span class="font-mono-sm text-mono-sm text-error font-bold">Phishing Drop</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">t.me/truth_watcher_channel</span>
+<span class="font-body-sm text-body-sm text-on-surface">Direct credential harvesting drop (.apk &amp; form links hosted on MEGA)</span>
+</div>
+<!-- Item 3 -->
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">code</span> GitHub Repo
+                  </span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Infra Trace</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">github.com/truth-watcher</span>
+<span class="font-body-sm text-body-sm text-on-surface">Forked RSS auto-aggregator script; commits contain hardcoded API tokens</span>
+</div>
+<!-- Item 4 -->
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">hub</span> Mastodon Instance
+                  </span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Sync Node</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant truncate">@truth_watcher@india.social</span>
+<span class="font-body-sm text-body-sm text-on-surface">WebSub listener script instantly republishing X timeline via REST API</span>
+</div>
+</div>
+</div>
+<!-- Infrastructure & C2 Indicators -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">dns</span> Infrastructure &amp; Ingestion Headers
+            </span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm pt-1 font-mono-sm text-mono-sm">
+<div class="flex flex-col">
+<span class="text-on-surface-variant">Egress Ingress IP:</span>
+<span class="font-bold text-on-surface">185.220.101.44</span>
+<span class="text-[10px] text-error font-semibold">TOR EXIT (DE-BERLIN-01)</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant">App User-Agent:</span>
+<span class="font-bold text-on-surface truncate">Python/3.11 requests-async</span>
+<span class="text-[10px] text-on-surface-variant">Non-Browser Client</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant">Broadcaster Tooling:</span>
+<span class="font-bold text-secondary">SocialBlast_v3.4-Pro</span>
+<span class="text-[10px] text-on-surface-variant">Batch automation signature</span>
+</div>
+</div>
+</div>
+<!-- Evidence Chain of Custody Stamp -->
+<div class="pt-space-xs flex items-center justify-between font-mono-sm text-mono-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">lock</span>
+              SHA-256: d8f49a21...cb7708e1
+            </span>
+<span>Recorded: 2025-02-15T09:14:22Z</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (Diurnal Activity & Behavioral Anomaly Engine) -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<!-- Behavioral Heuristic Summary Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">smart_toy</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Automated Heuristics Engine</h3>
+</div>
+<span class="px-space-sm py-1 rounded bg-secondary-container text-on-secondary-container font-mono-md text-mono-md font-bold">
+              BOT LIKELIHOOD: 89.2%
+            </span>
+</div>
+<!-- 24-Hour Diurnal Posting Histogram (Circadian Sleep Dip Absence) -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold">
+                24-Hour Diurnal Volume Histogram (UTC)
+              </span>
+<span class="font-mono-sm text-mono-sm text-error font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bedtime_off</span> NO CIRCADIAN DIP
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Human behavioral baselines typically display a 70–90% decline in post volume during local nighttime hours (01:00–06:00 UTC). This subject exhibits sustained artificial continuity.
+            </p>
+<!-- Inline SVG Chart: 24-Hour Posting Bar Chart -->
+<div class="w-full pt-space-sm">
+<svg class="w-full h-28 text-on-surface" preserveaspectratio="none" viewbox="0 0 480 110">
+<!-- Shaded Anomaly Sleep Zone (01:00 - 06:00 UTC) -->
+<rect fill="currentColor" fill-opacity="0.04" height="90" rx="2" width="100" x="20" y="0"></rect>
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.4" text-anchor="middle" x="70" y="14">SUSPICIOUS NIGHT FLUX</text>
+<!-- Grid lines -->
+<line stroke="currentColor" stroke-opacity="0.1" stroke-width="1" x1="20" x2="470" y1="90" y2="90"></line>
+<line stroke="currentColor" stroke-dasharray="2,2" stroke-opacity="0.05" x1="20" x2="470" y1="50" y2="50"></line>
+<line stroke="currentColor" stroke-dasharray="2,2" stroke-opacity="0.05" x1="20" x2="470" y1="10" y2="10"></line>
+<!-- 24 Hourly bars (Uniformly elevated, showing non-human cadence) -->
+<!-- 00h --> <rect fill="#9a4600" height="62" opacity="0.8" rx="1" width="12" x="24" y="28"></rect>
+<!-- 01h --> <rect fill="#9a4600" height="58" opacity="0.9" rx="1" width="12" x="42" y="32"></rect>
+<!-- 02h --> <rect fill="#ba1a1a" height="66" rx="1" width="12" x="60" y="24"></rect>
+<!-- 03h --> <rect fill="#ba1a1a" height="64" rx="1" width="12" x="78" y="26"></rect>
+<!-- 04h --> <rect fill="#ba1a1a" height="68" rx="1" width="12" x="96" y="22"></rect>
+<!-- 05h --> <rect fill="#ba1a1a" height="60" rx="1" width="12" x="114" y="30"></rect>
+<!-- 06h --> <rect fill="#9a4600" height="65" opacity="0.85" rx="1" width="12" x="132" y="25"></rect>
+<!-- 07h --> <rect fill="#9a4600" height="70" opacity="0.85" rx="1" width="12" x="150" y="20"></rect>
+<!-- 08h --> <rect fill="#9a4600" height="74" opacity="0.85" rx="1" width="12" x="168" y="16"></rect>
+<!-- 09h --> <rect fill="#9a4600" height="72" opacity="0.85" rx="1" width="12" x="186" y="18"></rect>
+<!-- 10h --> <rect fill="#9a4600" height="76" opacity="0.9" rx="1" width="12" x="204" y="14"></rect>
+<!-- 11h --> <rect fill="#9a4600" height="75" opacity="0.9" rx="1" width="12" x="222" y="15"></rect>
+<!-- 12h --> <rect fill="#9a4600" height="78" opacity="0.9" rx="1" width="12" x="240" y="12"></rect>
+<!-- 13h --> <rect fill="#9a4600" height="72" opacity="0.85" rx="1" width="12" x="258" y="18"></rect>
+<!-- 14h --> <rect fill="#9a4600" height="70" opacity="0.85" rx="1" width="12" x="276" y="20"></rect>
+<!-- 15h --> <rect fill="#9a4600" height="68" opacity="0.85" rx="1" width="12" x="294" y="22"></rect>
+<!-- 16h --> <rect fill="#9a4600" height="70" opacity="0.85" rx="1" width="12" x="312" y="20"></rect>
+<!-- 17h --> <rect fill="#9a4600" height="64" opacity="0.85" rx="1" width="12" x="330" y="26"></rect>
+<!-- 18h --> <rect fill="#9a4600" height="62" opacity="0.85" rx="1" width="12" x="348" y="28"></rect>
+<!-- 19h --> <rect fill="#9a4600" height="66" opacity="0.85" rx="1" width="12" x="366" y="24"></rect>
+<!-- 20h --> <rect fill="#9a4600" height="68" opacity="0.85" rx="1" width="12" x="384" y="22"></rect>
+<!-- 21h --> <rect fill="#9a4600" height="65" opacity="0.85" rx="1" width="12" x="402" y="25"></rect>
+<!-- 22h --> <rect fill="#9a4600" height="64" opacity="0.85" rx="1" width="12" x="420" y="26"></rect>
+<!-- 23h --> <rect fill="#9a4600" height="62" opacity="0.85" rx="1" width="12" x="438" y="28"></rect>
+<!-- Time Axis Labels -->
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.5" x="24" y="103">00h</text>
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.5" x="96" y="103">04h</text>
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.5" x="168" y="103">08h</text>
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.5" x="240" y="103">12h</text>
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.5" x="312" y="103">16h</text>
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.5" x="384" y="103">20h</text>
+<text fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.5" x="444" y="103">23h</text>
+</svg>
+</div>
+</div>
+<!-- Explainable Graph Metrics & Centrality -->
+<div class="grid grid-cols-3 gap-space-sm font-mono-sm text-mono-sm">
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col">
+<span class="text-on-surface-variant">Betweenness Centrality</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">0.842</span>
+<span class="text-[10px] text-secondary font-medium">Hub Bottleneck</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col">
+<span class="text-on-surface-variant">Network In-Degree</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">14</span>
+<span class="text-[10px] text-on-surface-variant">Controlled Input</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col">
+<span class="text-on-surface-variant">Amplifier Out-Degree</span>
+<span class="font-headline-md text-headline-md font-bold text-secondary">318</span>
+<span class="text-[10px] text-secondary font-medium">High Dissemination</span>
+</div>
+</div>
+<!-- Synchronized Amplifiers List (Sub-handles re-sharing target) -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">
+                High-Frequency Synchronized Amplifiers
+              </span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Latency: &lt;5.0s Delta</span>
+</div>
+<div class="flex flex-col divide-y divide-surface-container bg-surface-container-low rounded overflow-hidden">
+<!-- Item 1 -->
+<div class="p-space-sm flex items-center justify-between font-mono-sm text-mono-sm hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">sync_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">@insider_bulletin_24</span>
+<span class="text-[10px] text-on-surface-variant">Account Age: 12 days</span>
+</div>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-bold">+1.2s avg delay</span>
+<span class="block text-[10px] text-on-surface-variant">99.4% RT Co-occurrence</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm flex items-center justify-between font-mono-sm text-mono-sm hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">sync_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">@delhi_dispatch_wire</span>
+<span class="text-[10px] text-on-surface-variant">Account Age: 14 days</span>
+</div>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-bold">+2.1s avg delay</span>
+<span class="block text-[10px] text-on-surface-variant">98.1% RT Co-occurrence</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-sm flex items-center justify-between font-mono-sm text-mono-sm hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">sync_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">@apac_alert_node09</span>
+<span class="text-[10px] text-on-surface-variant">Account Age: 19 days</span>
+</div>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">+3.4s avg delay</span>
+<span class="block text-[10px] text-on-surface-variant">95.0% RT Co-occurrence</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-space-sm flex items-center justify-between font-mono-sm text-mono-sm hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">sync_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">@rupee_watchdog_net</span>
+<span class="text-[10px] text-on-surface-variant">Account Age: 8 days</span>
+</div>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">+4.1s avg delay</span>
+<span class="block text-[10px] text-on-surface-variant">92.7% RT Co-occurrence</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Evidence & Escalation Operational Toolbar -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">
+              Evidential Preservation &amp; Case Actions
+            </span>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex-1 flex items-center justify-center gap-space-xs px-space-md py-2 bg-secondary text-on-secondary rounded font-label-md text-label-md font-semibold hover:bg-secondary-container hover:text-on-secondary-container transition-all shadow-sm active:scale-95" id="btnTargetAnnex" type="button">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+                Add to Target Annex
+              </button>
+<button class="flex-1 flex items-center justify-center gap-space-xs px-space-md py-2 bg-surface-container text-on-surface rounded font-label-md text-label-md font-semibold hover:bg-surface-container-high transition-all active:scale-95" id="btnSnapshotWorm" type="button">
+<span class="material-symbols-outlined text-[16px]">save_clock</span>
+                Snapshot to WORM Storage
+              </button>
+<button class="flex items-center justify-center gap-space-xs px-space-md py-2 bg-primary text-on-primary rounded font-label-md text-label-md font-semibold hover:bg-inverse-surface transition-all active:scale-95" id="btnGraphLink" type="button">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+                Link to Network Graph
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive JavaScript Module -->
+<script>
+    (function initAccountOsintInteractivity() {
+      const searchInput = document.getElementById('osintSearchInput');
+      const btnTargetAnnex = document.getElementById('btnTargetAnnex');
+      const btnSnapshotWorm = document.getElementById('btnSnapshotWorm');
+      const btnGraphLink = document.getElementById('btnGraphLink');
+
+      if (btnTargetAnnex) {
+        btnTargetAnnex.addEventListener('click', () => {
+          const originalText = btnTargetAnnex.innerHTML;
+          btnTargetAnnex.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Added to #INV-2025-089X';
+          btnTargetAnnex.classList.remove('bg-secondary');
+          btnTargetAnnex.classList.add('bg-primary-container', 'text-on-primary-container');
+          setTimeout(() => {
+            btnTargetAnnex.innerHTML = originalText;
+            btnTargetAnnex.classList.add('bg-secondary');
+            btnTargetAnnex.classList.remove('bg-primary-container', 'text-on-primary-container');
+          }, 2400);
+        });
+      }
+
+      if (btnSnapshotWorm) {
+        btnSnapshotWorm.addEventListener('click', () => {
+          const original = btnSnapshotWorm.innerHTML;
+          btnSnapshotWorm.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span> Sealing Digest...';
+          setTimeout(() => {
+            btnSnapshotWorm.innerHTML = '<span class="material-symbols-outlined text-[16px]">verified</span> Block #8813 Sealed';
+            setTimeout(() => {
+              btnSnapshotWorm.innerHTML = original;
+            }, 2000);
+          }, 1200);
+        });
+      }
+
+      if (btnGraphLink) {
+        btnGraphLink.addEventListener('click', () => {
+          alert('Node @truth_watcher_in mapped to Primary Cluster Ring #4. Navigating to Topology View.');
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

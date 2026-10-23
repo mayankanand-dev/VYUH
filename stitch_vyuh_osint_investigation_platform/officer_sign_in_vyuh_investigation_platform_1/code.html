@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VYUH — OSINT &amp; Disinformation Investigation System | Officer Sign In</title>
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            govNavy: {
+              800: '#0f2442',
+              900: '#0b192c',
+              950: '#060e1a'
+            },
+            govSaffron: {
+              500: '#ff8a00',
+              600: '#ea6c00'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom Styles for refined glassmorphism & typography -->
+<style data-purpose="custom-layout">
+    /* Subtle background image positioning ensuring illustration prominence */
+    .bg-editorial-art {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPRNqMjc-1PIWFX4pYp7dGR5eq5kikn8BbUb5Fg8GS_9SJrqWHqNdouasBjyr5AH2Fe7_EYZif9F8VD4Cx8kWe-5fJdPxtflbplpNOxqaLB2XtEpO1cbxlgzbqvIWhwqrzZDPCwNluGw-nTC3kkTUOC7YiHkd_w1v-zEcSznivRY-QNDsZi3yrnuZaXvELMPF-nOrn6E2YlWaSaS2tGzxoW_drm4GJIWLZqP8t19HY_Kv5vB2vWF1L');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: left center;
+    }
+
+    /* Enhanced backdrop blur fallback & fine edge reflections */
+    .glass-login-panel {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+  </style>
+</head>
+<body class="h-full w-full font-sans antialiased text-slate-800 bg-slate-100 bg-editorial-art bg-fixed selection:bg-amber-100 selection:text-govNavy-900 flex flex-col justify-between relative overflow-x-hidden">
+<!-- BEGIN: TopBar -->
+<!-- Top brand bar with governmental designation & national tricolor accent -->
+<header class="w-full relative z-20 pt-4 px-6 md:px-10 flex flex-wrap items-center justify-between pointer-events-none" data-purpose="official-top-header">
+<div class="inline-flex items-center gap-3 bg-white/70 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200/70 shadow-sm pointer-events-auto">
+<!-- Indian tricolor indicator strip -->
+<div aria-hidden="true" class="flex flex-col w-1.5 h-6 rounded-full overflow-hidden shadow-inner">
+<div class="h-2 bg-[#FF9933]"></div>
+<div class="h-2 bg-white border-y border-slate-200"></div>
+<div class="h-2 bg-[#128807]"></div>
+</div>
+<div>
+<p class="text-[10px] uppercase font-bold tracking-widest text-slate-700 leading-tight">
+          National Cyber Defense &amp; OSINT Initiative
+        </p>
+<p class="text-[9px] font-semibold tracking-wider text-slate-500 uppercase leading-none">
+          Government of India • Inter-Agency Law Enforcement Grid
+        </p>
+</div>
+</div>
+<!-- Right status badge for secure enclave -->
+<div class="hidden sm:inline-flex items-center gap-2 bg-white/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/60 shadow-sm pointer-events-auto">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-[11px] font-medium text-slate-700 tracking-wide">SECURE ENCLAVE ACTIVE (TLS 1.3)</span>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: MainContent -->
+<!-- Main stage: Illustration visually left-anchored, Login interface stationed in the clean cream expanse on the right -->
+<main class="w-full flex-grow flex items-center justify-end px-4 sm:px-8 md:px-14 lg:px-20 py-8 relative z-10" data-purpose="auth-view-container">
+<!-- Sign In Panel Container -->
+<div class="w-full max-w-md my-auto">
+<div class="glass-login-panel bg-white/90 rounded-2xl border border-slate-200/90 shadow-2xl shadow-slate-900/10 p-7 sm:p-9 relative overflow-hidden transition-all duration-300" data-purpose="officer-login-card">
+<!-- Subtle saffron accent top border indicator -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-govNavy-900 via-govSaffron-500 to-govNavy-900"></div>
+<!-- Card Header & Identity -->
+<div class="mb-6">
+<div class="flex items-center justify-between mb-3">
+<!-- Brand Mark -->
+<div class="flex items-center space-x-2">
+<span class="text-2xl font-black tracking-tight text-govNavy-900 font-sans">
+                VYUH<span class="text-govSaffron-500">.</span>
+</span>
+<span class="text-[9px] uppercase font-bold bg-govNavy-900 text-white px-2 py-0.5 rounded tracking-widest shadow-sm">
+                Gov-OSINT
+              </span>
+</div>
+<!-- Security Classification Badge -->
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+              Confidential // Tier-1
+            </span>
+</div>
+<!-- Title & Subtitle -->
+<h1 class="text-2xl font-bold tracking-tight text-govNavy-900">Officer Sign In</h1>
+<p class="text-xs text-slate-500 uppercase tracking-wider font-medium mt-1">
+            OSINT &amp; Disinformation Investigation System
+          </p>
+<p class="text-[11px] text-slate-400 italic mt-0.5">
+            Investigate Signals. Connect Evidence. Enable Action.
+          </p>
+</div>
+<!-- Security Clearance Warning Advisory Banner -->
+<div class="mb-6 rounded-lg bg-amber-50/90 border border-amber-200/80 p-2.5 flex items-start space-x-2.5" data-purpose="clearance-advisory-banner" role="alert">
+<svg aria-hidden="true" class="w-4 h-4 text-govSaffron-600 mt-0.5 shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" fill-rule="evenodd"></path>
+</svg>
+<p class="text-[10px] leading-tight font-semibold text-amber-900 tracking-wide uppercase">
+            RESTRICTED ACCESS • AUTHORIZED LAW ENFORCEMENT &amp; CERT PERSONNEL ONLY
+          </p>
+</div>
+<!-- Login Form Block -->
+<form action="#" class="space-y-4" data-purpose="login-form" method="POST">
+<!-- Officer Service ID / Gov Email Input -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 tracking-wide mb-1.5" for="officer-id">
+              Officer Service ID / Official Gov Email
+            </label>
+<div class="relative rounded-lg shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<!-- Badge / Officer Shield Icon -->
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input autocomplete="username" class="block w-full rounded-lg border-slate-300 bg-white/90 pl-9 pr-3 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-govNavy-900 focus:ring-1 focus:ring-govNavy-900 transition-colors" id="officer-id" name="officer_id" placeholder="e.g. OFF-8821@cert.gov.in" required="" type="text"/>
+</div>
+</div>
+<!-- Password Field with Show/Hide Toggle -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 tracking-wide mb-1.5" for="password">
+              Secure Passphrase
+            </label>
+<div class="relative rounded-lg shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<!-- Lock Icon -->
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input autocomplete="current-password" class="block w-full rounded-lg border-slate-300 bg-white/90 pl-9 pr-10 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-govNavy-900 focus:ring-1 focus:ring-govNavy-900 transition-colors" id="password" name="password" placeholder="Enter authorized token passphrase" required="" type="password"/>
+<!-- Visibility Toggle Button -->
+<button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600 focus:outline-none" id="toggle-password" type="button">
+<svg class="h-4 w-4" fill="none" id="eye-icon" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Checkbox & Forgotten Password Line -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center">
+<input class="h-3.5 w-3.5 rounded border-slate-300 text-govNavy-900 focus:ring-govNavy-900" id="remember-token" name="remember_token" type="checkbox"/>
+<label class="ml-2 block text-[11px] text-slate-600 font-medium" for="remember-token">
+                Remember workstation token
+              </label>
+</div>
+<div>
+<a class="text-[11px] font-semibold text-govNavy-900 hover:text-govSaffron-600 transition-colors" href="#reset-token">
+                Reset token?
+              </a>
+</div>
+</div>
+<!-- Primary Submit Button -->
+<div class="pt-2">
+<button class="w-full relative group inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-white bg-govNavy-900 hover:bg-govNavy-800 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-govNavy-900 transition-all duration-200" data-purpose="sign-in-action-btn" type="submit">
+<span>Sign In to Investigation Portal</span>
+<svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Hardware Authentication Note -->
+<div class="pt-2 flex items-center justify-center space-x-2 text-[10px] text-slate-500" data-purpose="fido-hardware-notice">
+<svg class="w-3.5 h-3.5 text-govSaffron-600" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-2 4a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1z" fill-rule="evenodd"></path>
+</svg>
+<span>FIDO2 / YubiKey / e-Pramaan Token Supported</span>
+</div>
+</form>
+<!-- Divider line -->
+<hr class="my-5 border-slate-200/80"/>
+<!-- Legal Disclaimer & Audit Warning -->
+<div class="space-y-2 text-center" data-purpose="legal-security-notice">
+<p class="text-[9.5px] leading-relaxed text-slate-500 text-justify">
+<span class="font-bold text-slate-700">Notice:</span> Unauthorized access or misuse of this system is strictly prohibited under the Information Technology Act, 2000 (Sec 66, 69 &amp; 70). All interactive sessions, queries, and dossiers are cryptographically recorded with tamper-evident audit trails.
+          </p>
+</div>
+</div>
+<!-- Quick links underneath panel -->
+<nav aria-label="Portal Navigation" class="mt-4 flex items-center justify-center space-x-3 text-[11px] text-slate-600 font-medium">
+<a class="hover:text-govNavy-900 transition-colors" href="#portal">National Cyber Coordination Portal</a>
+<span class="text-slate-400">•</span>
+<a class="hover:text-govNavy-900 transition-colors" href="#support">Helpdesk &amp; Sahyog</a>
+<span class="text-slate-400">•</span>
+<span class="text-slate-500 font-mono text-[10px]">v4.2.1-LEO</span>
+</nav>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomBar -->
+<!-- Context credit on bottom left acknowledging the official speech context -->
+<footer class="w-full relative z-20 pb-4 px-6 md:px-10 flex flex-wrap items-center justify-between text-slate-600 pointer-events-none" data-purpose="page-footer">
+<div class="pointer-events-auto bg-white/70 backdrop-blur-sm px-3.5 py-1 rounded-md border border-slate-200/60 shadow-xs">
+<p class="text-[10px] font-medium tracking-wide text-slate-700 flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-govSaffron-500"></span>
+        Address to National Cyber Security &amp; Law Enforcement Conclave
+      </p>
+</div>
+<div class="pointer-events-auto hidden sm:block">
+<p class="text-[10px] text-slate-500 font-mono tracking-tight">
+        STQC Certified Infrastructure • ISO/IEC 27001 Compliant
+      </p>
+</div>
+</footer>
+<!-- END: BottomBar -->
+<!-- Password toggle interactivity -->
+<script data-purpose="password-toggle">
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('toggle-password');
+      const passwordInput = document.getElementById('password');
+
+      if (toggleBtn && passwordInput) {
+        toggleBtn.addEventListener('click', function () {
+          const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+          passwordInput.setAttribute('type', type);
+          
+          // Slight opacity shift when active
+          toggleBtn.classList.toggle('text-govNavy-900');
+          toggleBtn.classList.toggle('text-slate-400');
+        });
+      }
+    });
+  </script>
+</body></html>
