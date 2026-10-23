@@ -42,6 +42,18 @@ export async function GET(request: NextRequest) {
       params.push(minRisk);
     }
 
+    const author = searchParams.get('author')?.trim();
+    if (author) {
+      whereClauses.push('author_handle LIKE ?');
+      params.push(`%${author.replace(/^@/, '')}%`);
+    }
+
+    const keyword = searchParams.get('keyword')?.trim();
+    if (keyword) {
+      whereClauses.push('(text_content LIKE ? OR hashtags LIKE ?)');
+      params.push(`%${keyword}%`, `%${keyword}%`);
+    }
+
     if (q) {
       whereClauses.push('(text_content LIKE ? OR author_handle LIKE ? OR hashtags LIKE ?)');
       const wild = `%${q}%`;
