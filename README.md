@@ -2,7 +2,7 @@
 
 [![Specification](https://img.shields.io/badge/Schema-v1.0%20Canonical-blue)](docs/CANONICAL_DATA_SCHEMA.md)
 [![Compliance](https://img.shields.io/badge/Compliance-BSA%20Section%2063-emerald)](evidence/integrity.py)
-[![Frontend](https://img.shields.io/badge/UI-Social%20Signal%20Lab%20(X%20Clone)-black)](social-signal-lab/)
+[![Frontend](https://img.shields.io/badge/UI-X%20Clone-black)](x-clone/)
 
 VYUH is an open-source intelligence (OSINT) and forensic investigation platform designed to analyze coordinated inauthentic behavior, narrative manipulation, and influence campaigns.
 
@@ -30,7 +30,7 @@ VYUH/
 ├── logs/
 │   ├── DEV1_CHANGELOG.md              # Detailed chronological implementation audit log
 │   └── audit_log.jsonl                # Append-only structured audit trail
-├── social-signal-lab/                 # Twitter / X Clone Frontend (Next.js + TypeScript)
+├── x-clone/                           # Twitter / X Clone Frontend (Next.js + TypeScript)
 │   ├── app/                           # Next.js App Router (Pure Home Feed)
 │   ├── components/feed/               # Timeline, PostCard with historical campaign badges
 │   └── data/canonicalPosts.ts         # Ingested 1,000 canonical fixture posts
@@ -53,9 +53,9 @@ VYUH/
 3. **Single Source of Truth**:
    - Developer 2 (NLP / Narrative Intelligence) and Developer 3 (Graph / OSINT) consume directly from the canonical stream.
    - No parallel ingestion or redundant raw CSV wrangling needed.
-4. **Social Signal Lab (Twitter/X Clone)**:
-   - Streamlined, dark-mode Twitter/X interface.
-   - Ingests the 1,000 canonical test fixture with dataset switching: `All Canonical`, `Farmers Protest`, `Russian IRA Trolls`, `Simulated Lab`.
+4. **X Clone**:
+   - Streamlined, dark-mode Twitter/X interface powered by the SQLite server.
+   - Ingests the canonical dataset with dataset switching: `All Canonical`, `Farmers Protest`, `Russian IRA Trolls`.
    - Native image and media preview rendering.
 
 ---
@@ -75,9 +75,9 @@ pip install pydantic
 python -c "import json; from ingestion.models import CanonicalRecord; [CanonicalRecord.model_validate(json.loads(line)) for line in open('data/normalized/canonical_fixture_1000.jsonl', encoding='utf-8')]; print('1,000 records successfully validated against Canonical Schema!')"
 ```
 
-### 2. Social Signal Lab (Twitter/X Clone)
+### 2. X Clone
 ```bash
-cd social-signal-lab
+cd x-clone
 
 # Install dependencies
 npm install

@@ -41,10 +41,10 @@ export default function LeftNav() {
           </div>
           <div className="hidden xl:flex flex-col">
             <span className="font-extrabold text-slate-950 text-base leading-tight tracking-tight">
-              Social Signal Lab
+              X Clone
             </span>
             <span className="text-[11px] font-mono text-blue-600 font-medium">
-              Disinfo Testbed v0.1
+              v0.1 SQLite Powered
             </span>
           </div>
         </Link>

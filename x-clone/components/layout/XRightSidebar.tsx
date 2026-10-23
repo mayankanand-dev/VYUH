@@ -191,7 +191,7 @@ export default function XRightSidebar({
           <span className="hover:underline cursor-pointer">More ...</span>
         </div>
         <p className="text-[12px] text-[#71767b]/80 pt-1">
-          © 2026 X Corp. (Simulated Environment · Social Signal Lab)
+          © 2026 X Corp. (X Clone · SQLite Powered)
         </p>
       </footer>
     </aside>

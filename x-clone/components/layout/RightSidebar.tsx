@@ -182,7 +182,7 @@ export default function RightSidebar({
           <span className="hover:underline cursor-pointer">Privacy / Ethics</span>
         </div>
         <p className="text-[10px] text-slate-400 pt-1">
-          Social Signal Lab © 2026 · Disinformation Detection Test Platform
+          X Clone © 2026 · SQLite Powered Feed
         </p>
       </div>
     </aside>

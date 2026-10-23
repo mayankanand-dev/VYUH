@@ -28,21 +28,40 @@ export default function XTimeline({
   const { isAnalysisMode, setAnalysisMode } = useAnalysisMode();
   const [dataSource, setDataSource] = useState<DataSource>('all');
   const [posts, setPosts] = useState<Post[]>(CANONICAL_FIXTURE_POSTS);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [totalPostsCount, setTotalPostsCount] = useState<number>(30000);
   const [timelineTab, setTimelineTab] = useState<'forYou' | 'following'>('forYou');
   const [selectedPostForDetail, setSelectedPostForDetail] = useState<Post | null>(null);
   const [selectedPostForDetection, setSelectedPostForDetection] = useState<Post | null>(null);
 
+  // Fetch live feed from SQLite server
+  React.useEffect(() => {
+    let ignore = false;
+    const fetchFeed = async () => {
+      setIsLoading(true);
+      try {
+        const params = new URLSearchParams({ source: dataSource, limit: '50' });
+        if (searchQuery.trim()) params.set('q', searchQuery.trim());
+        const res = await fetch(`/api/posts?${params.toString()}`);
+        const data = await res.json();
+        if (!ignore && data.success && Array.isArray(data.posts) && data.posts.length > 0) {
+          setPosts(data.posts);
+          setTotalPostsCount(data.total || 30000);
+        }
+      } catch (err) {
+        console.error('Failed to fetch from x-clone SQLite API:', err);
+      } finally {
+        if (!ignore) setIsLoading(false);
+      }
+    };
+    fetchFeed();
+    return () => {
+      ignore = true;
+    };
+  }, [dataSource, searchQuery]);
+
   const handleSourceChange = (source: DataSource) => {
     setDataSource(source);
-    if (source === 'all') {
-      setPosts(CANONICAL_FIXTURE_POSTS);
-    } else if (source === 'farmers') {
-      setPosts(CANONICAL_FIXTURE_POSTS.filter((p: any) => p.sourceDataset === 'farmers_protest_tweets'));
-    } else if (source === 'ira') {
-      setPosts(CANONICAL_FIXTURE_POSTS.filter((p: any) => p.sourceDataset === 'russian_ira_tweets'));
-    } else if (source === 'simulated') {
-      setPosts(INITIAL_POSTS);
-    }
   };
 
   // Toggle Like

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "X (Simulated) · Social Signal Lab",
-  description: "Faithful X-style simulation feed for evaluating disinformation detection models and narrative cascades.",
+  title: "X Clone · Real-Time Simulation Feed",
+  description: "Faithful X clone interface powered by SQLite and canonical OSINT streams.",
 };
 
 export default function RootLayout({

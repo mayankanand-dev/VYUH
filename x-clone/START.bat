@@ -4,11 +4,11 @@ setlocal enabledelayedexpansion
 :: Ensure Windows System32 and Node.js directories are present in PATH
 set "PATH=%SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem;C:\Program Files\nodejs;C:\Program Files (x86)\nodejs;%LOCALAPPDATA%\Programs\nodejs;%APPDATA%\npm;%PATH%"
 
-title Social Signal Lab - X Simulator and Disinformation Testbed
+title X Clone - X Simulator and Disinformation Testbed
 cd /d "%~dp0"
 
 echo ============================================================
-echo    SOCIAL SIGNAL LAB - X SIMULATOR AND DISINFO TESTBED
+echo       X CLONE - X SIMULATOR AND DISINFO TESTBED
 echo ============================================================
 echo.
 

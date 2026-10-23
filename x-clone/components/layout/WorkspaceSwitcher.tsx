@@ -82,7 +82,7 @@ export default function WorkspaceSwitcher() {
               )}
             </span>
             <span className="text-[11px] text-[#71767b]">
-              {isAnalysisMode ? 'Analysis Mode ON' : 'Social Signal Lab'}
+              {isAnalysisMode ? 'Analysis Mode ON' : 'X Clone'}
             </span>
           </div>
         </div>
