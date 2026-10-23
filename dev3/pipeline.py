@@ -37,7 +37,9 @@ from analytics.influence import calculate_influence_metrics
 from analytics.anomaly_detection import screen_account_anomalies
 from analytics.campaign_score import compute_account_coordination_scores
 from analytics.geospatial import analyze_geospatial_activity
-from media.unified_pipeline import analyze_media_asset
+from media.pipeline import analyze_media_asset, run_multimedia_pipeline
+from media.asset_loader import inventory_canonical_media
+from media.image_similarity import ImageAsset, cross_match_historical_media
 from osint.username_search import search_username_across_platforms
 from osint.account_linkage import generate_candidate_account_links
 
@@ -82,6 +84,7 @@ def run_dev3_pipeline(
     media_dir: Optional[Path] = None,
     enable_osint: bool = False,
     osint_offline_mode: bool = True,
+    media_only: bool = False,
     dry_run: bool = False,
 ) -> Path:
     """Execute Dev 3 forensic and intelligence pipeline.
@@ -106,6 +109,11 @@ def run_dev3_pipeline(
         return run_dir
 
     run_dir.mkdir(parents=True, exist_ok=True)
+
+    if media_only:
+        print("[INFO] Running in MEDIA-ONLY analysis mode...")
+        run_multimedia_pipeline(records=records, media_dir=media_dir, output_dir=run_dir)
+        return run_dir
 
     # Stage 2: Account feature extraction
     print("[INFO] Extracting account behavioural features...")
@@ -193,15 +201,66 @@ def run_dev3_pipeline(
     write_json(run_dir / "geospatial_analysis.json", geo_results)
     print(f"       Spatial status: {geo_results.status} (coverage: {geo_results.coverage_ratio * 100:.2f}%)")
 
-    # Stage 9: Multimedia pipeline (for local assets)
-    media_results = []
+    # Stage 9: Multimedia pipeline (for canonical records and local assets)
+    print("[INFO] Inventorying canonical media references and running forensics...")
+    media_inventory = inventory_canonical_media(records, media_dir=media_dir)
+    write_jsonl(run_dir / "media_inventory.jsonl", media_inventory)
+
+    catalog = []
+    for item in media_inventory:
+        if item.analysis_status == "available" and item.local_asset_path:
+            p = Path(item.local_asset_path)
+            if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp"):
+                catalog.append(
+                    ImageAsset(
+                        artifact_id=item.artifact_id,
+                        file_path=p,
+                        source_record_ids=[item.source_record_id],
+                        author_ids=[item.source_author_id] if item.source_author_id else [],
+                        source_datasets=[item.source_dataset] if item.source_dataset else [],
+                    )
+                )
+
     if media_dir and media_dir.exists():
-        print(f"[INFO] Screening local multimedia assets in {media_dir}...")
-        media_files = [p for p in media_dir.iterdir() if p.is_file() and p.suffix.lower() in (".jpg", ".jpeg", ".png", ".mp4")]
-        for mf in media_files:
-            m_res = analyze_media_asset(mf)
-            media_results.append(m_res)
+        for mf in media_dir.iterdir():
+            if mf.is_file() and mf.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp"):
+                if not any(a.file_path.resolve() == mf.resolve() for a in catalog):
+                    catalog.append(ImageAsset(artifact_id=f"DIR_{mf.stem}", file_path=mf))
+
+    media_results = []
+    dev1_media_findings = []
+    vis_dir = run_dir / "ela_visualizations"
+
+    for item in media_inventory:
+        if item.analysis_status == "available" and item.local_asset_path:
+            res = analyze_media_asset(
+                asset_path=Path(item.local_asset_path),
+                artifact_id=item.artifact_id,
+                source_record_ids=[item.source_record_id],
+                catalog=catalog,
+                output_dir=vis_dir,
+            )
+            media_results.append(res)
+            dev1_media_findings.extend(res.to_developer1_analysis_results())
+
+    if media_dir and media_dir.exists():
+        for mf in media_dir.iterdir():
+            if mf.is_file() and mf.suffix.lower() in (".jpg", ".jpeg", ".png", ".mp4", ".mov"):
+                if not any(r.artifact_id in (mf.stem, f"MEDIA_{mf.stem}", f"DIR_{mf.stem}") for r in media_results):
+                    res = analyze_media_asset(
+                        asset_path=mf,
+                        artifact_id=f"DIR_{mf.stem}",
+                        catalog=catalog,
+                        output_dir=vis_dir,
+                    )
+                    media_results.append(res)
+                    dev1_media_findings.extend(res.to_developer1_analysis_results())
+
+    cross_media_matches = cross_match_historical_media(catalog)
     write_jsonl(run_dir / "media_analysis.jsonl", media_results)
+    write_jsonl(run_dir / "cross_post_media_matches.jsonl", cross_media_matches)
+    write_jsonl(run_dir / "analysis_results_media.jsonl", dev1_media_findings)
+    print(f"       Analyzed {len(media_results)} media assets, found {len(cross_media_matches)} cross-post matches.")
 
     # Stage 10: OSINT username enumeration (optional)
     osint_findings = []
@@ -326,6 +385,11 @@ def main() -> None:
         help="Enable live HTTP OSINT probes (default is safe offline mock)",
     )
     parser.add_argument(
+        "--media-only",
+        action="store_true",
+        help="Run only the multimedia forensics pipeline",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Validate canonical input records without generating output files",
@@ -343,6 +407,7 @@ def main() -> None:
             media_dir=args.media_dir,
             enable_osint=args.enable_osint,
             osint_offline_mode=not args.live_osint,
+            media_only=args.media_only,
             dry_run=args.dry_run,
         )
     except Exception as ex:
