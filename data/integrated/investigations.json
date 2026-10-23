@@ -1,0 +1,65 @@
+[
+  {
+    "case_id": "INV-2026-FARMERS-01",
+    "title": "Operation Kisan Echo \u2014 Agrarian Policy Amplification Inquest",
+    "status": "ACTIVE_INVESTIGATION",
+    "priority": "HIGH",
+    "lead_officer": "Insp. A. Sharma",
+    "unit": "Cyber Defense Operations / Special Task Force",
+    "created_at": "2026-03-30T03:30:00Z",
+    "narrative_focus": "High-velocity coordinated burst posting across agrarian hashtags (#FarmersProtest, #StopHateAgainstFarmers) with 2,287 temporal synchronization bridges.",
+    "evidence_count": 58,
+    "statutory_sections": [
+      "IT Act Sec 79(3)(b)",
+      "BNS Sec 196",
+      "BNS Sec 353"
+    ],
+    "coordination_vectors": [
+      "Temporal Synchronization (<300s)",
+      "Identical Slogan Repetition",
+      "High Burst Velocity"
+    ]
+  },
+  {
+    "case_id": "INV-2026-IRA-02",
+    "title": "Operation St. Petersburg Bridge \u2014 Cross-Border Influence Swarm",
+    "status": "ACTIVE_INVESTIGATION",
+    "priority": "CRITICAL",
+    "lead_officer": "DySP R. Verma",
+    "unit": "OSINT Unit, Cyber Crime Police Station Patna",
+    "created_at": "2026-04-01T10:15:00Z",
+    "narrative_focus": "Multi-language sockpuppet botnet (English/Russian/Hinglish) targeting socio-political fractures, media manipulation, and hashtag hijacking.",
+    "evidence_count": 42,
+    "statutory_sections": [
+      "IT Act Sec 66D",
+      "IT Act Sec 79(3)(b)",
+      "BNS Sec 299"
+    ],
+    "coordination_vectors": [
+      "IRA Sockpuppet Network",
+      "Proxy Geolocation Shifting",
+      "Meme Injection"
+    ]
+  },
+  {
+    "case_id": "INV-2026-PAPERSTORM-03",
+    "title": "Operation PaperStorm \u2014 Multi-Signal Forensic Inquest",
+    "status": "STAGED_FOR_NOTICE",
+    "priority": "CRITICAL",
+    "lead_officer": "Insp. P. Jha",
+    "unit": "State Cyber Intelligence Bureau",
+    "created_at": "2026-04-12T14:40:00Z",
+    "narrative_focus": "Synthetically amplified banking panic circulars and public mischief campaigns violating Section 79(3)(b) & Section 94 BNSS.",
+    "evidence_count": 24,
+    "statutory_sections": [
+      "IT Act Sec 79(3)(b)",
+      "IT Rules 2021 Rule 3(1)(d)",
+      "BNS Sec 353"
+    ],
+    "coordination_vectors": [
+      "Counterfeit Circular Splices",
+      "Synchronized Retweet Swarms",
+      "Hardware HSM Preserved"
+    ]
+  }
+]

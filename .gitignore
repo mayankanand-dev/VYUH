@@ -47,5 +47,8 @@ next-env.d.ts
 Thumbs.db
 runs/
 
+# Dev3 temporary runs
+data/dev3_output/
+
 #Dev2
 tasks.md

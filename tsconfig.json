@@ -37,6 +37,6 @@
   ],
   "exclude": [
     "node_modules",
-    "stitch_vyuh_osint_investigation_platform"
+    "social-signal-lab"
   ]
 }
