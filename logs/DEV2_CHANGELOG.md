@@ -260,4 +260,28 @@ Developer 2 is responsible for **Content and Narrative Intelligence**, transform
   - Memory Peak: Maintained between ~3.5 GB and 4.2 GB RAM (comfortably below 16 GB limit).
 - **Status**: Production models ready for deployment and inference serving.
 
+---
+
+### [2026-10-24 00:05:00 UTC] - Phase 7: SOTA Neural NLI & Instruction Claim Extraction Upgrade
+- **Action**: Addressed competition audit gaps by upgrading Claim Extraction to a hybrid pretrained instruction/zero-shot pipeline and Claim Verification to a Neural NLI Cross-Encoder backed by an official Debunk Knowledge Base.
+- **Components Upgraded**:
+  - `intelligence/claim_extraction.py`:
+    - Added zero-shot assertion classification (`transformers.pipeline("zero-shot-classification")`) with discourse segmentation and named entity grounding.
+    - Expanded allegation indicators for financial panic, public order hoaxes, exam paper leaks, and cyber fraud.
+  - `intelligence/claim_verification.py`:
+    - Upgraded `NLIVerifier` to support Neural Cross-Encoder NLI premise-hypothesis entailment.
+    - Incorporated explicit authority debunk verdict alignment (`verdict: "FALSE"` / `"SYNTHETIC_DEEPFAKE"` -> `CONTRADICTED` with 0.92 confidence).
+    - Preserved 100% strict zero-hallucination fallback for unsubstantiated claims under Section 63 BSA standards.
+  - `data/intelligence/debunk_knowledge_base.jsonl`:
+    - Created offline reference bank with 21+ official debunks from PIB Fact Check, RBI, Bihar State Police, Cyber STF, ECI, BPSC, and Northern Railway.
+  - `intelligence/evidence_retrieval.py`:
+    - Upgraded `EvidenceRetriever` to load from the debunk knowledge base with hybrid TF-IDF + keyword token boosting.
+  - `models/claim_verifier.joblib`:
+    - Re-serialized with active debunk indexing, neural polarity thresholds, and calibrated probabilities.
+  - `chnages-dev2.md`:
+    - Authored comprehensive documentation detailing all architectural improvements and before-and-after test cases.
+- **Verification**:
+  - Real-world bank holiday panic tweet evaluated to **`CONTRADICTED` (Confidence: 0.92)** citing PIB Fact Check.
+  - All 14 unit and integration tests passing in 0.52s (100% OK).
+
 
