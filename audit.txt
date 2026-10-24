@@ -1,0 +1,156 @@
+ROLE
+You are a ruthless principal engineer, ML reviewer, and hackathon judge combined. Audit this project honestly and tell us how to fix it. Do not praise, soften, or hedge. If something is fake, mocked, hardcoded, simulated, unvalidated, or decorative, say so plainly. Vague feedback ("improve accuracy", "add more features") is useless. Every criticism must cite a specific file, function, or line, and every recommendation must be concrete and buildable in our remaining time.
+
+CONTEXT
+Project: "VYUH", an OSINT and Coordinated Disinformation Investigation Platform for a police hackathon (Bihar Police). Repo root is likely `alpha/VYUH/`. We built from a ChatGPT-generated README that split work among 3 devs. After integration and changes, the project is stuck, inconsistent, and partly broken. The README is a CLAIM, not a fact. Verify everything by reading and running the code.
+
+README-claimed ownership (verify against folder structure and git log, state any differences):
+- Dev 1: ingestion, canonical schema, provenance, Twitter-style clone ("Social Signal Lab"), main backend + dashboard, evidence manifest/SHA-256/audit log, Section 63 BSA draft, Sahyog/I4C notice pack, integration of Dev 2/3 outputs, sandbox "Algorithmic Module Lab".
+- Dev 2: language detection, preprocessing, multilingual embeddings, HDBSCAN narrative clustering, near-duplicate/semantic similarity, narrative metrics, claim extraction, evidence retrieval, NLI claim verification, OCR.
+- Dev 3: username OSINT (Sherlock-style), profile enrichment, account linkage, behaviour features, bot/anomaly screening (Isolation Forest), synchronization + coordination score, graph building, community detection (Louvain), influence/centrality, geospatial anomaly, and the single multimedia pipeline (pHash, image forensics/ELA, video/deepfake).
+- Data: canonical JSONL streams in `data/normalized/`: `farmers_protest_normalized.jsonl` (~1.02M), `russian_ira_normalized.jsonl` (~2.94M), `canonical_fixture_1000.jsonl` (1,000). Dev 2/3 are supposed to consume ONLY these.
+- Stack: [FILL IN]
+- Time left: [FILL IN, e.g. 20 hours]
+
+PROBLEM STATEMENT (judging criteria, the only thing that matters)
+Social Media Coordinated Disinformation Detection System: an AI-driven platform to detect coordinated disinformation campaigns by analysing public social media content, suspicious account networks, posting behaviour, manipulated multimedia, narrative propagation, and geographic trends, generating early warnings and visualisations to support evidence-based investigations.
+Requirements:
+1. OSINT and Content Analysis: posts, comments, account info, interactions; emerging narratives and content similarities.
+2. Coordinated Account Detection: posting synchronisation, repeated content, unusual interactions, potential bot networks, coordinated amplification.
+3. Multimedia Verification: manipulated or AI-generated images, memes, videos, deepfakes, with confidence scores and supporting evidence.
+4. Network and Narrative Analysis: originators, influencers, amplifiers, connected clusters; influence propagation; organic discourse vs orchestrated campaigns.
+5. Geospatial Anomaly Detection: unusual narrative spikes across locations.
+6. Investigation Dashboard and Early Warnings: account-linkage graphs, narrative timelines, geospatial heat maps, bot-probability scores, deepfake detection results, risk-based alerts.
+Users: law enforcement, government, monitoring teams. Goal: detect, analyse, respond in near real time.
+
+KNOWN TENSIONS TO INVESTIGATE (do not assume; verify and judge)
+1. PS vs README safeguards: the PS asks for "bot-probability scores", "confidence scores", "risk-based alerts", while the README forbids calling scores probabilities and labels everything heuristic/anomaly. Check whether the dashboard and API are consistent about this, and propose wording and score design that satisfies BOTH (e.g. "bot-likelihood score (uncalibrated, with top reasons)" and a transparent composite risk score).
+2. "Near real time" vs historical data: README says there is no live data. Check whether there is a replay/streaming simulation that makes early-warning behaviour demonstrable, and if not, design one (replay a time window of the canonical stream through the pipeline and fire alerts as thresholds cross).
+3. Scale: 1M+ and 2.9M-record streams. Check whether models and dashboard actually run on the full data, a sample, or only the 1,000 fixture. Check memory/latency and whether the demo path is realistic.
+4. Sandbox/Module Lab (`/api/sandbox/smoke-test`, `/api/sandbox/evaluate-text`, 8-stage pipeline): determine whether each stage calls the REAL Dev 2/Dev 3 modules or is a separate simulated/heuristic reimplementation (e.g. "ELA simulation", "mock-HSM vault seal", "bot probability scoring" in the NLP stage, hardcoded Hindi/Punjabi sentiment, regex "provocative phrase" matching). Flag any duplicated logic and any stage that merely returns plausible-looking output and latency numbers.
+5. Legal and claims overreach: phrases like "court-admissible", "WORM", "HSM", "Section 79(3)(b)", "BNSS Section 94" rule evaluation. Check what is real vs theatrical. Judges from law enforcement will probe this. Recommend honest, defensible wording.
+6. Validation data: the IRA dataset has known troll accounts (a ground-truth label source) and the farmers' protest dataset is largely organic with real regional/Hindi/Hinglish content. Check whether anyone uses this for evaluation (precision/recall on IRA troll vs organic accounts, injected synthetic campaigns). If not, that is a P0 gap.
+7. Language: the PS context is India. Check Hindi, Hinglish, and code-mixed handling in every text model; the IRA data is mostly English/Russian-themed, so Indian-language coverage may exist only in the farmers' protest data.
+8. Geospatial: check how much of the data actually has usable location (profile location strings, geotags). Check whether the heat map is built on real coverage or fabricated/hardcoded coordinates, and whether coverage warnings are shown.
+9. Multimedia: check whether any real media files exist in the datasets or fixtures, or whether the media pipeline only runs on mock images. Check whether the pretrained deepfake/AI-image model is real, loaded, and called, or only referenced.
+10. Contract drift: compare the README's JSON contracts (CanonicalRecord, Analysis result, Edge, Evidence manifest item, Media analysis result) against what the code actually produces and what the dashboard actually consumes.
+
+RULES OF ENGAGEMENT
+- Do NOT modify any code. This is an audit and plan only.
+- Read the whole repo first: README, `docs/CANONICAL_DATA_SCHEMA.md`, folder tree, configs, requirements, model files, backend routes, frontend pages, tests, logs (`logs/audit_log.jsonl`, `logs/DEV1_CHANGELOG.md`), and git log. Run the app, tests, and models where possible.
+- Label every claim VERIFIED (read or ran it) or UNVERIFIED.
+- Cite file paths, function names, and line numbers for every problem.
+- Hunt for fakes: hardcoded outputs, random numbers posing as scores, mock JSON posing as live analysis, models imported but never called, dead code, unjustified thresholds, models evaluated on training data, metrics never computed, "simulations" labelled as analysis.
+- Judge against the problem statement, not code cleverness.
+- Don't ask questions unless fully blocked. State assumptions and continue.
+- If output gets long, finish each Part fully before starting the next. I will say "continue from Part X" if needed.
+
+DELIVERABLE: produce this report in this exact order.
+
+=========================================================
+PART 0: REALITY CHECK
+=========================================================
+a) In 5 sentences: what the project actually does end to end today vs what the README claims.
+b) Table: README claim | actual state (Working / Partial / Mocked / Broken / Missing) | evidence (file:line).
+c) Top 5 root causes of why we are stuck, ranked by severity.
+d) Data-flow truth: trace one record from `canonical_fixture_1000.jsonl` through every stage to the dashboard. Where does the chain break? Which models actually write output that the dashboard actually reads?
+
+=========================================================
+PART 1: PS COMPLIANCE MATRIX
+=========================================================
+For each of the 6 PS requirements: Status (Real / Partial / Fake / Missing), what exists (file/function), what is wrong or missing, "would a judge believe this in a live demo?" (yes/no and why), severity (P0/P1/P2), and the OWNER dev responsible for fixing it.
+
+=========================================================
+PART 2: MODEL-BY-MODEL AUDIT (Dev 2 and Dev 3, plus any model owned by Dev 1, including sandbox heuristics)
+=========================================================
+For EVERY model/algorithm/module use this exact template:
+
+MODEL: <name> | OWNER: <Dev X> | FILE: <path>
+1. Intended purpose (which PS requirement).
+2. Current working algorithm: step by step, what it ACTUALLY does today: inputs, features, method, thresholds, outputs. Not what the README says.
+3. Exact problems, brutal and specific. Check at least:
+   - Does it read the canonical JSONL via the agreed contract, or does it touch raw CSVs / a private format (contract violation)?
+   - Training/eval data: synthetic, tiny, leaked, imbalanced, none?
+   - Real metrics (precision/recall/F1/AUC, cluster quality)? If none, say "unvalidated".
+   - Hardcoded thresholds or magic numbers; unjustified weights.
+   - Calibrated/explainable score or arbitrary number? Is score_type honest (heuristic/anomaly/similarity/calibrated)?
+   - Hindi/Hinglish/code-mixed handling.
+   - Scale: works on 1,000 only, or on 1M+/2.9M? Memory, runtime, batch vs incremental.
+   - Output schema matches the README contract AND what the dashboard consumes?
+   - Produces evidence (evidence_record_ids, explanation, limitations)?
+   - Failure modes: false positives on organic viral trends (farmers' protest hashtags are naturally synchronized!), and evasion by a clever adversary.
+   - Does it give an `insufficient_data` / `inconclusive` state, per the README?
+4. Why this weakens PS alignment.
+5. Better approach: a concrete replacement or upgrade. Name technique, features, library, and output schema. Pick the most robust method realistic in our time. Starting points to verify against our data (not gospel):
+   - Narrative similarity: multilingual embeddings (paraphrase-multilingual-MiniLM or similar) + MinHash/SimHash for near-duplicates at scale + HDBSCAN/BERTopic; run on a time-windowed sample for scale; keyword labels via c-TF-IDF.
+   - Coordination: co-posting within sliding time windows, shared URL/hashtag/near-duplicate co-occurrence, co-retweet bipartite projection with edge weights, Louvain/Leiden, per-pair synchrony score; control against an organic baseline.
+   - Bot/anomaly: explainable behavioural features (post rate, inter-post time entropy, repeated-content ratio, retweet/original mix, account age, follower/following ratio, night-time share) + Isolation Forest or gradient boosting with SHAP-style top reasons; validate on IRA troll vs organic accounts.
+   - Propagation/originators: cascade graph from repost_of_id, earliest-timestamp origin CANDIDATE, PageRank/betweenness for influencers vs amplifiers, burstiness and synchrony metrics to separate organic vs orchestrated.
+   - Multimedia: ensemble of signals (pHash match, ELA/frequency artifacts, EXIF/metadata, pretrained AI-image/deepfake detector) with per-signal evidence, honest limitations, `requires_human_review: true`.
+   - Geospatial: normalise profile-location strings, per-region baselines, robust z-score/CUSUM/Poisson spike detection on narrative-by-region, normalised by baseline volume not raw counts, with a coverage warning when location data is sparse.
+   - Risk score: one transparent composite campaign risk score (coordination, bot-likelihood density, media manipulation, velocity, geo anomaly) with visible weights and per-component breakdown.
+   - Claims/NLI/OCR: keep only if actually wired in and demo-able; otherwise recommend freezing.
+6. How to validate: inject a synthetic coordinated campaign into real organic farmers'-protest data; test on IRA troll accounts as positives vs farmers'-protest accounts as negatives; report precision/recall; minimal benchmark script.
+7. Effort in hours: fastest "good enough" vs ideal.
+8. Verdict: Keep / Rewrite / Replace / Freeze / Delete.
+
+Cover at minimum every module in: `intelligence/*`, `osint/*`, `analytics/*`, `media/*`, `evidence/*`, and every sandbox pipeline stage.
+
+=========================================================
+PART 3: DASHBOARD AUDIT, PAGE BY PAGE
+=========================================================
+For EVERY page/view/route/component (including `data-view` sections, the clone, and the sandbox view):
+
+PAGE: <name> | FILE: <path>
+1. What an investigator needs from it.
+2. What it actually shows (real API data / mock / static / hardcoded).
+3. Problems: bugs, fake data, dead buttons, missing loading/empty/error states, performance on large graphs/feeds, unclear labels, information overload, no drill-down, no link from a finding to its evidence records, state not shared between pages, inconsistent design.
+4. PS mapping: which dashboard requirement it covers (account-linkage graph, narrative timeline, geo heat map, bot-probability score, deepfake result, risk alert) and how well.
+5. Usability for a police analyst with no training: score 1-10 with reasoning.
+6. Specific fixes: components, chart types, data bindings, interactions to add or remove.
+7. Verdict: Keep / Fix / Merge / Delete.
+
+Then a global critique: navigation, workflow, cognitive load, data flow between pages, whether it tells a story or dumps widgets, whether "historical data" labelling is visible.
+
+=========================================================
+PART 4: SIMPLIFIED DASHBOARD AND WORKFLOW REDESIGN
+=========================================================
+Redesign around ONE investigator workflow, max 4-5 screens. Suggested: (1) Alert Inbox (risk-ranked, with replay-driven early warnings), (2) Campaign Case View (hub: risk score, why flagged, key accounts, timeline), (3) Evidence tabs in the case: network graph, narrative timeline, geo map, media verification, account cards, (4) Evidence and Report (SHA-256 manifest, Section 63 draft, Sahyog/I4C pack), (5) optional Data and Provenance/Lab page. Justify each screen against the PS. Fold the sandbox into a small secondary page or delete it.
+Provide:
+a) User journey from "new alert" to "exported evidence pack".
+b) Per-screen text wireframe: layout, components, charts, filters, drill-downs, what each click does.
+c) Existing pages/components to reuse, merge, delete.
+d) ONE unified data contract (JSON schema) that Dev 2 and Dev 3 write and the dashboard reads: Campaign, Account, Narrative, MediaVerdict, GeoAnomaly, Edge, Alert. Reuse the README's Analysis result / Edge / Media schemas where good; fix what is not. Every object: score, score_type, label, confidence/limitations, evidence_record_ids, timestamps, model version.
+e) Minimal backend API endpoints required.
+f) Mock/demo fallback strategy, clearly badged "DEMO / PRECOMPUTED / HISTORICAL REPLAY" in the UI so the demo never breaks but never pretends to be live.
+g) Replay engine design: how to replay a time window of the canonical stream so the dashboard shows alerts emerging "near real time".
+
+=========================================================
+PART 5: INTEGRATION AND ARCHITECTURE PROBLEMS
+=========================================================
+List every broken or fragile seam: schema mismatches, duplicated logic (esp. sandbox vs real modules), hardcoded paths (`c:/Users/...`) and ports, models not wired to the API, blocking calls on huge files, missing error handling, dependency/environment conflicts (torch, paddle, hdbscan, etc.), anything likely to crash live. Then give a simplified target architecture: canonical JSONL -> (precompute jobs by Dev 2/Dev 3 writing versioned result files/tables keyed by record_id/account_id) -> unified store (SQLite/DuckDB/Parquet) -> API (Dev 1) -> dashboard. Explicitly define the handoff files each dev delivers and where they live.
+
+=========================================================
+PART 6: RECOVERY PLAN WITH FIX WORK DIVIDED AMONG DEVS
+=========================================================
+Time left: [TIME LEFT]. Produce:
+a) CUT LIST: what to delete or freeze now.
+b) Hour 0 contract freeze: the exact schema/result-file formats all three devs sign off on first (owner: Dev 1, review: Dev 2 and Dev 3).
+c) THREE separate task lists, one per dev, each task with: exact files, definition of done, hours, priority (P0/P1/P2), and what it blocks or is blocked by.
+   - Dev 1: backend, API, dashboard rebuild per Part 4, replay engine, unified store loader, evidence/BSA/Sahyog honesty fixes, sandbox cleanup (wire to real modules or remove), integration tests.
+   - Dev 2: every fix to narrative/similarity/language/claims/OCR modules, scale strategy, Hindi/Hinglish checks, output files in the agreed schema, evaluation numbers.
+   - Dev 3: every fix to bot/anomaly, coordination, graph, geo, media, OSINT modules, validation on IRA vs farmers' protest, output files in the agreed schema, evaluation numbers.
+   - Shared: who builds the composite risk score (name one owner), who builds the synthetic injected-campaign test (name one owner), who owns demo data curation.
+d) Dependency timeline (hour-by-hour or block-by-block) so no dev is waiting idle; include integration checkpoints (e.g. at 25%, 50%, 75% of remaining time, each with a demoable milestone).
+e) Demo-day safety list: what to precompute, cache, seed; fallback if the model or API fails; one-command startup; offline-capable.
+f) 3-minute demo script hitting all 6 PS requirements: alert fires from replay -> case view -> why flagged -> coordinated-not-organic proof (compare against an organic baseline) -> network graph with candidate originator -> geo spike with coverage warning -> manipulated/matched media item -> export evidence pack with SHA-256 manifest and BSA draft. Include who speaks and clicks what.
+g) The 5 toughest judge questions (including "is this bot score a probability?", "how do you avoid flagging organic protests?", "is the data live?", "what is your precision/recall?", "is this court-admissible?") with honest, strong answers.
+
+=========================================================
+PART 7: FINAL VERDICT
+=========================================================
+- Scores out of 10: PS alignment, technical depth, integration quality, dashboard usability, demo-readiness, honesty of claims, validation rigor.
+- The single biggest thing that will lose us this hackathon if unfixed.
+- The single highest-leverage change we can make in the next 2 hours, and which dev does it.
+
+FORMAT: Markdown, headers per Part, tables where useful, file paths in code formatting. Direct and specific. Start by reading the repo, then begin with Part 0.
